@@ -42,8 +42,8 @@ public class Main extends JFrame {
         export_csv csv = new export_csv();
         TuFinca sistema = new TuFinca();
         csv.exportSistema(sistema);
-        if(Files.exists(Path.of("out/sistema"))){
-            File sistema_datos = new File("out/sistema");
+        if(Files.exists(Path.of("src/sistema"))){
+            File sistema_datos = new File("src/sistema");
             File [] fincas = sistema_datos.listFiles();
             for (int i = 0; i < Objects.requireNonNull(fincas).length; i++) {
                 File[] Datos_Finca = fincas[i].listFiles();

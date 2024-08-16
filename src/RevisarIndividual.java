@@ -330,7 +330,7 @@ public class RevisarIndividual extends JFrame {
                                     public void actionPerformed(ActionEvent e) {
                                         suministrador.setNombre((String) overview_table.getValueAt(0,1));
                                         suministrador.setProducto((String) overview_table.getValueAt(1,1));
-                                        String precio = (String) overview_table.getValueAt(2,1);
+                                        String precio = String.valueOf(overview_table.getValueAt(2,1));
                                         suministrador.setPrecio(Integer.parseInt(precio));
                                         String Dias_espera = String.valueOf(overview_table.getValueAt(3,1));
                                         suministrador.setDias_espera(Integer.parseInt(Dias_espera));
@@ -554,7 +554,7 @@ public class RevisarIndividual extends JFrame {
                                 cosecha_overview[3][0] = "Epoca";
                                 cosecha_overview[3][1] = cosecha.getEpoca();
                                 cosecha_overview[4][0] = "Geografia";
-                                cosecha_overview[4][0] = cosecha.getGeografia();
+                                cosecha_overview[4][1] = cosecha.getGeografia();
 
                                 TableModel model = new DefaultTableModel(cosecha_overview,header);
                                 JTable overview_table = new JTable(model);

@@ -8,14 +8,15 @@ import java.nio.file.Path;
 public class export_csv
 {
     public void exportSistema(TuFinca sistema) throws IOException {
-        if(!Files.exists(Path.of("out/sistema"))) {
-            Files.createDirectory(Path.of("out/sistema"));
+        if(!Files.exists(Path.of("src/sistema"))) {
+            Files.createDirectory(Path.of("src/sistema"));
+            System.out.println("si exporta?");
         }
     }
 
     public void exportFinca(Finca finca) throws IOException {
-        if(!Files.exists(Path.of("out/sistema/finca-" + finca.getNombre_Finca()))) {
-            Files.createDirectory(Path.of("out/sistema/finca-" + finca.getNombre_Finca()));
+        if(!Files.exists(Path.of("src/sistema/finca-" + finca.getNombre_Finca()))) {
+            Files.createDirectory(Path.of("src/sistema/finca-" + finca.getNombre_Finca()));
             exportSetup(finca);
         }
     }
@@ -43,7 +44,7 @@ public class export_csv
     }
 
     public void exportData(String datos, File file, Finca finca) throws IOException {
-        File Datos = new File("out/sistema/finca-"+finca.getNombre_Finca()+"/"+file);
+        File Datos = new File("src/sistema/finca-"+finca.getNombre_Finca()+"/"+file);
         FileWriter fw =  new FileWriter(Datos, true);
         BufferedWriter bw = new BufferedWriter(fw);
         bw. write(datos);

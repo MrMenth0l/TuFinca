@@ -34,7 +34,7 @@ public class Finca {
     public String getNombre_Finca() {return Nombre_Finca;}
 
     public String getFincaPath(){
-        return "out/sistema/finca-"+getNombre_Finca();
+        return "src/sistema/finca-"+getNombre_Finca();
     }
 
 }

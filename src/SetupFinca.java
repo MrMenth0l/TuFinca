@@ -66,8 +66,8 @@ public class SetupFinca extends JFrame{
         Regresar.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                dispose();
                 new Main(sistema,csv);
+                dispose();
             }
         });
         asignarGanadoASeccionButton.addActionListener(new ActionListener() {
