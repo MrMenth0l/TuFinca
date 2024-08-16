@@ -1,4 +1,5 @@
 import javax.swing.*;
+import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.IOException;
@@ -15,7 +16,105 @@ public class AgregarGanado extends JFrame {
     private int ID_Num;
 
     public AgregarGanado(TuFinca sistema, Finca finca, export_csv csv){
-        setContentPane(AgregarGanado);
+        setTitle("Agregar Ganado");
+        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+
+        // Set the frame to full screen
+        GraphicsEnvironment ge = GraphicsEnvironment.getLocalGraphicsEnvironment();
+        GraphicsDevice gd = ge.getDefaultScreenDevice();
+        setExtendedState(JFrame.MAXIMIZED_BOTH); // Maximize the window
+        setUndecorated(true); // Remove window decorations for full screen effect
+
+        // Create a JPanel with GridBagLayout
+        AgregarGanado = new JPanel();
+        AgregarGanado.setLayout(new GridBagLayout());
+        GridBagConstraints gbc = new GridBagConstraints();
+        gbc.fill = GridBagConstraints.BOTH;
+        gbc.insets = new Insets(5, 5, 5, 5);
+
+        // Title Label
+        JLabel titleLabel = new JLabel("Agregar Cabeza de ganado");
+        titleLabel.setFont(new Font("Raleway", Font.BOLD, 18));
+        gbc.gridx = 0;
+        gbc.gridy = 0;
+        gbc.gridwidth = 2;
+        AgregarGanado.add(titleLabel, gbc);
+
+        // Nombre Label
+        JLabel nombreLabel = new JLabel("Nombre: ");
+        nombreLabel.setFont(new Font("Raleway", Font.PLAIN, 16));
+        gbc.gridy = 1;
+        AgregarGanado.add(nombreLabel, gbc);
+
+        // Nombre TextField
+        JTextField nombreField = new JTextField();
+        nombreField.setFont(new Font("Raleway", Font.PLAIN, 14));
+        gbc.gridy = 2;
+        gbc.gridwidth = 2;
+        gbc.ipadx = 150;
+        AgregarGanado.add(nombreField, gbc);
+
+        // Especie Label
+        JLabel especieLabel = new JLabel("Especie");
+        especieLabel.setFont(new Font("Raleway", Font.PLAIN, 16));
+        gbc.gridy = 3;
+        gbc.gridwidth = 2;
+        AgregarGanado.add(especieLabel, gbc);
+
+        // Especie ComboBox
+        JComboBox<String> especieField = new JComboBox<>(new String[]{
+            "Bovino", "Aviar", "Equino", "Ovino", "Caprino"
+        });
+        especieField.setFont(new Font("Raleway", Font.PLAIN, 14));
+        gbc.gridy = 4;
+        AgregarGanado.add(especieField, gbc);
+
+        // Raza Label
+        JLabel razaLabel = new JLabel("Raza");
+        razaLabel.setFont(new Font("Raleway", Font.PLAIN, 16));
+        gbc.gridy = 5;
+        gbc.gridwidth = 2;
+        AgregarGanado.add(razaLabel, gbc);
+
+        // Raza TextField
+        JTextField razaField = new JTextField();
+        razaField.setFont(new Font("Raleway", Font.PLAIN, 14));
+        gbc.gridy = 6;
+        AgregarGanado.add(razaField, gbc);
+
+        // Edad Label
+        JLabel edadLabel = new JLabel("Edad (En años)");
+        edadLabel.setFont(new Font("Raleway", Font.PLAIN, 16));
+        gbc.gridy = 7;
+        AgregarGanado.add(edadLabel, gbc);
+
+        // Edad TextField
+        JTextField edadField = new JTextField();
+        edadField.setFont(new Font("Raleway", Font.PLAIN, 14));
+        gbc.gridy = 8;
+        AgregarGanado.add(edadField, gbc);
+
+        // Add Button
+        agregarButton = new JButton("Agregar");
+        agregarButton.setFont(new Font("Raleway", Font.BOLD, 16));
+        gbc.gridy = 9;
+        gbc.gridwidth = 2;
+        AgregarGanado.add(agregarButton, gbc);
+
+        // Regresar Button
+        Regresar = new JButton("Regresar");
+        Regresar.setFont(new Font("Raleway", Font.BOLD, 14));
+        Regresar.setForeground(new Color(-11179215)); // Color: -11179215
+        gbc.gridy = 10;
+        gbc.gridwidth = 1;
+        gbc.anchor = GridBagConstraints.EAST;
+        AgregarGanado.add(Regresar, gbc);
+
+        // Add panel to the frame
+
+        // Make frame visible
+        setVisible(true);
+        setContentPane(this.AgregarGanado);
         setTitle("TuFinca");
         setSize(300,380);
         setLocationRelativeTo(null);

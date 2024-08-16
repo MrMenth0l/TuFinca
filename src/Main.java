@@ -16,29 +16,59 @@ public class Main extends JFrame {
     private JButton crearCuentaButton;
 
     public Main(TuFinca sistema, export_csv csv){
+        Inicio = new JPanel();
+        Inicio.setLayout(new BoxLayout(Inicio, BoxLayout.Y_AXIS));
+
+
+        Inicio.add(Box.createVerticalGlue());
+
+        InitialLabel = new JLabel("Bienvenido a TuFinca", SwingConstants.CENTER);
+        InitialLabel.setFont(new Font("Raleway", Font.BOLD, 48));
+        InitialLabel.setAlignmentX(Component.CENTER_ALIGNMENT);
+        Inicio.add(InitialLabel);
+
+
+        JPanel buttonPanel = new JPanel();
+        buttonPanel.setLayout(new BoxLayout(buttonPanel, BoxLayout.X_AXIS));
+
+        IngresarCuenta = new JButton("Ingresar");
+        IngresarCuenta.setFont(new Font("Raleway", Font.BOLD, 24));
+        IngresarCuenta.setForeground(new Color(-11179215));
+        IngresarCuenta.setBackground(new Color(-11179215));
+        buttonPanel.add(IngresarCuenta);
+
+
+        buttonPanel.add(Box.createHorizontalStrut(10));
+
+        crearCuentaButton = new JButton("Crear Cuenta");
+        crearCuentaButton.setFont(new Font("Raleway", Font.BOLD, 24));
+        crearCuentaButton.setForeground(new Color(-11179215));
+        crearCuentaButton.setBackground(new Color(-11179215));
+        buttonPanel.add(crearCuentaButton);
+
+        buttonPanel.setAlignmentX(Component.CENTER_ALIGNMENT);
+        Inicio.add(buttonPanel);
+
+        Inicio.add(Box.createVerticalGlue());
+
         setContentPane(Inicio);
         setTitle("TuFinca");
         setDefaultCloseOperation(EXIT_ON_CLOSE);
         setExtendedState(JFrame.MAXIMIZED_BOTH);
         setLocationRelativeTo(null);
         setVisible(true);
-        IngresarCuenta.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                new Login(sistema, csv);
-                setVisible(false);
-            }
+        IngresarCuenta.addActionListener(e -> {
+            new Login(sistema, csv);
+            setVisible(false);
         });
-        crearCuentaButton.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                new SignIn(sistema,csv);
-                setVisible(false);
-            }
+        crearCuentaButton.addActionListener(e -> {
+            new SignIn(sistema,csv);
+            setVisible(false);
         });
     }
 
     public static void main(String[] args) throws IOException {
+
         export_csv csv = new export_csv();
         TuFinca sistema = new TuFinca();
         csv.exportSistema(sistema);
@@ -79,14 +109,14 @@ public class Main extends JFrame {
                             }
                             while (scg.hasNext())
                             {
-                                List<String> datos = new ArrayList<String>();
+                                List<String> datos = new ArrayList<>();
                                 datos.add(scg.nextLine());
                                 List<String> cabeza = Arrays.asList(datos.get(0).split(","));
                                 CabezaGanado ganado = new CabezaGanado();
                                 ganado.setNombre(cabeza.get(0));
                                 ganado.setRaza(cabeza.get(1));
                                 ganado.setEspecie(cabeza.get(2));
-                                ganado.setEdad(Integer.valueOf(cabeza.get(3)));
+                                ganado.setEdad(Integer.parseInt(cabeza.get(3)));
                                 ganado.setID_Num(cabeza.get(4));
                                 finca.addCabezaGanado(ganado);
                             }
@@ -101,7 +131,7 @@ public class Main extends JFrame {
                             }
                             while (scs.hasNext())  //returns a boolean value
                             {
-                                List<String> datos = new ArrayList<String>();
+                                List<String> datos = new ArrayList<>();
                                 datos.add(scs.nextLine());
                                 List<String> seccion_general = Arrays.asList(datos.get(0).split(","));
                                 Seccion seccion = new Seccion();
@@ -125,7 +155,7 @@ public class Main extends JFrame {
                             }
                             while (scm.hasNext())
                             {
-                                List<String> datos = new ArrayList<String>();
+                                List<String> datos = new ArrayList<>();
                                 datos.add(scm.nextLine());
                                 List<String> Suministrador_general = Arrays.asList(datos.get(0).split(","));
                                 Suministrador suministrador = new Suministrador();
@@ -147,14 +177,14 @@ public class Main extends JFrame {
                             }
                             while (sc_m.hasNext())
                             {
-                                List<String> datos = new ArrayList<String>();
+                                List<String> datos = new ArrayList<>();
                                 datos.add(sc_m.nextLine());
                                 List<String> Suministro_general = Arrays.asList(datos.get(0).split(","));
                                 Suministro suministro = new Suministro();
                                 suministro.setNombre(Suministro_general.get(0));
                                 suministro.setTipo(Suministro_general.get(1));
-                                suministro.setCantidad(Integer.valueOf(Suministro_general.get(2)));
-                                suministro.setDiasDesdeCompra(Integer.valueOf(Suministro_general.get(3)));
+                                suministro.setCantidad(Integer.parseInt(Suministro_general.get(2)));
+                                suministro.setDiasDesdeCompra(Integer.parseInt(Suministro_general.get(3)));
                                 suministro.setID_Num(Suministro_general.get(4));
                                 finca.addSuministros(suministro);
                             }
@@ -169,12 +199,12 @@ public class Main extends JFrame {
                             }
                             while (sc_c.hasNext())
                             {
-                                List<String> datos = new ArrayList<String>();
+                                List<String> datos = new ArrayList<>();
                                 datos.add(sc_c.nextLine());
                                 List<String> Cosecha_general = Arrays.asList(datos.get(0).split(","));
                                 Cosecha cosecha = new Cosecha();
                                 cosecha.setTipo(Cosecha_general.get(0));
-                                cosecha.setTamaño(Integer.valueOf(Cosecha_general.get(1).trim()));
+                                cosecha.setTamaño(Integer.parseInt(Cosecha_general.get(1).trim()));
                                 cosecha.setMedida(Cosecha_general.get(2));
                                 cosecha.setEstado(Cosecha_general.get(3));
                                 cosecha.setEpoca(Cosecha_general.get(4));

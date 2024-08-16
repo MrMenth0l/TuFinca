@@ -15,6 +15,72 @@ public class Login extends JFrame {
     private JButton regresarButton;
 
     public Login(TuFinca sistema, export_csv csv){
+        Login = new JPanel();
+        Login.setLayout(new BoxLayout(Login, BoxLayout.Y_AXIS));
+
+        // Farm name label
+        JLabel fincaLabel = new JLabel("Nombre de finca");
+        fincaLabel.setFont(new Font("Raleway", Font.PLAIN, 16));
+        fincaLabel.setAlignmentX(Component.CENTER_ALIGNMENT);
+        Login.add(fincaLabel);
+
+        // Farm name text field
+        FincaField = new JTextField(15);
+        FincaField.setFont(new Font("Raleway", Font.PLAIN, 16));
+        FincaField.setMaximumSize(FincaField.getPreferredSize());
+        FincaField.setAlignmentX(Component.CENTER_ALIGNMENT);
+        Login.add(FincaField);
+
+        Login.add(Box.createVerticalStrut(10)); // Spacer
+
+        // User label
+        JLabel userLabel = new JLabel("Usuario");
+        userLabel.setFont(new Font("Raleway", Font.PLAIN, 16));
+        userLabel.setAlignmentX(Component.CENTER_ALIGNMENT);
+        Login.add(userLabel);
+
+        // User text field
+        UsuarioField1 = new JTextField(15);
+        UsuarioField1.setFont(new Font("Raleway", Font.PLAIN, 16));
+        UsuarioField1.setMaximumSize(UsuarioField1.getPreferredSize());
+        UsuarioField1.setAlignmentX(Component.CENTER_ALIGNMENT);
+        Login.add(UsuarioField1);
+
+        Login.add(Box.createVerticalStrut(10)); // Spacer
+
+        // Password label
+        JLabel passLabel = new JLabel("Contraseña");
+        passLabel.setFont(new Font("Raleway", Font.PLAIN, 16));
+        passLabel.setAlignmentX(Component.CENTER_ALIGNMENT);
+        Login.add(passLabel);
+
+        // Password field
+        PassField1 = new JPasswordField(15);
+        PassField1.setFont(new Font("Raleway", Font.PLAIN, 16));
+        PassField1.setMaximumSize(PassField1.getPreferredSize());
+        PassField1.setAlignmentX(Component.CENTER_ALIGNMENT);
+        Login.add(PassField1);
+
+        Login.add(Box.createVerticalStrut(10)); // Spacer
+
+        // Ingresar button
+        IngresarButton = new JButton("Ingresar");
+        IngresarButton.setFont(new Font("Raleway", Font.BOLD, 16));
+        IngresarButton.setForeground(new Color(-11179215));
+        IngresarButton.setAlignmentX(Component.CENTER_ALIGNMENT);
+        Login.add(IngresarButton);
+
+        Login.add(Box.createVerticalStrut(10)); // Spacer
+
+        // Regresar button
+        regresarButton = new JButton("Regresar");
+        regresarButton.setFont(new Font("Raleway", Font.BOLD, 14));
+        regresarButton.setForeground(new Color(-11179215));
+        regresarButton.setAlignmentX(Component.LEFT_ALIGNMENT);
+        Login.add(regresarButton);
+
+        Login.add(Box.createVerticalStrut(10));
+
     setContentPane(Login);
         setTitle("Ingresar Cuenta");
         setDefaultCloseOperation(EXIT_ON_CLOSE);

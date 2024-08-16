@@ -1,4 +1,5 @@
 import javax.swing.*;
+import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.IOException;
@@ -13,8 +14,123 @@ public class AgregarSuministro extends JFrame {
     private JButton Regresar;
 
     public AgregarSuministro(TuFinca sistema, Finca finca, export_csv csv){
+        setTitle("Agregar Suministro");
+        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+
+        // Set the frame to full screen
+        GraphicsEnvironment ge = GraphicsEnvironment.getLocalGraphicsEnvironment();
+        GraphicsDevice gd = ge.getDefaultScreenDevice();
+        setExtendedState(JFrame.MAXIMIZED_BOTH); // Maximize the window
+        setUndecorated(true); // Remove window decorations for full screen effect
+
+        // Create a JPanel with GridBagLayout
+        JPanel AgregarSuministro = new JPanel();
+        AgregarSuministro.setLayout(new GridBagLayout());
+        GridBagConstraints gbc = new GridBagConstraints();
+        gbc.insets = new Insets(5, 5, 5, 5);
+        gbc.fill = GridBagConstraints.HORIZONTAL;
+
+        // Agregar Suministro Label
+        JLabel titleLabel = new JLabel("Agregar Suministro");
+        titleLabel.setFont(new Font("Raleway", Font.BOLD, 18));
+        titleLabel.setHorizontalAlignment(SwingConstants.CENTER);
+        gbc.gridx = 0;
+        gbc.gridy = 0;
+        gbc.gridwidth = 2;
+        AgregarSuministro.add(titleLabel, gbc);
+
+        // Nombre de Suministro Label
+        JLabel nombreLabel = new JLabel("Nombre de suministro");
+        nombreLabel.setFont(new Font("Raleway", Font.PLAIN, 16));
+        gbc.gridy = 1;
+        gbc.gridwidth = 1;
+        gbc.anchor = GridBagConstraints.WEST;
+        AgregarSuministro.add(nombreLabel, gbc);
+
+        // Nombre de Suministro Field
+        NombreField = new JTextField();
+        NombreField.setFont(new Font("Raleway", Font.PLAIN, 14));
+        gbc.gridy = 2;
+        gbc.fill = GridBagConstraints.HORIZONTAL;
+        gbc.anchor = GridBagConstraints.CENTER;
+        AgregarSuministro.add(NombreField, gbc);
+
+        // Tipo de Suministro Label
+        JLabel tipoLabel = new JLabel("Tipo de suministro");
+        tipoLabel.setFont(new Font("Raleway", Font.PLAIN, 16));
+        gbc.gridy = 3;
+        gbc.anchor = GridBagConstraints.WEST;
+        AgregarSuministro.add(tipoLabel, gbc);
+
+        // Tipo de Suministro ComboBox
+        String[] tipos = {"Veterinario", "Quimico", "Concentrado", "Mecanico", "Pestizida", "Fertilizante", "Mixto"};
+        TipoField = new JComboBox<>(tipos);
+        TipoField.setFont(new Font("Raleway", Font.PLAIN, 14));
+        gbc.gridy = 4;
+        gbc.fill = GridBagConstraints.HORIZONTAL;
+        gbc.anchor = GridBagConstraints.CENTER;
+        AgregarSuministro.add(TipoField, gbc);
+
+        // Cantidad en Existencia Label
+        JLabel existenciaLabel = new JLabel("Cantidad en existencia");
+        existenciaLabel.setFont(new Font("Raleway", Font.PLAIN, 16));
+        gbc.gridy = 5;
+        gbc.anchor = GridBagConstraints.WEST;
+        AgregarSuministro.add(existenciaLabel, gbc);
+
+        // Cantidad en Existencia Field
+        ExistenciaField = new JTextField();
+        ExistenciaField.setFont(new Font("Raleway", Font.PLAIN, 14));
+        gbc.gridy = 6;
+        gbc.fill = GridBagConstraints.HORIZONTAL;
+        gbc.anchor = GridBagConstraints.CENTER;
+        AgregarSuministro.add(ExistenciaField, gbc);
+
+        // Dias desde compra Label
+        JLabel diasLabel = new JLabel("Dias desde compra");
+        diasLabel.setFont(new Font("Raleway", Font.PLAIN, 16));
+        gbc.gridy = 7;
+        gbc.anchor = GridBagConstraints.WEST;
+        AgregarSuministro.add(diasLabel, gbc);
+
+        // Dias desde compra Field
+        DiasField = new JTextField();
+        DiasField.setFont(new Font("Raleway", Font.PLAIN, 14));
+        gbc.gridy = 8;
+        gbc.fill = GridBagConstraints.HORIZONTAL;
+        gbc.anchor = GridBagConstraints.CENTER;
+        AgregarSuministro.add(DiasField, gbc);
+
+        // Agregar Button
+        agregarButton = new JButton("Agregar");
+        agregarButton.setFont(new Font("Raleway", Font.BOLD, 16));
+        gbc.gridy = 9;
+        gbc.gridwidth = 2;
+        gbc.fill = GridBagConstraints.NONE;
+        gbc.anchor = GridBagConstraints.CENTER;
+        AgregarSuministro.add(agregarButton, gbc);
+
+        // Vertical Spacer
+        gbc.gridy = 10;
+        gbc.weighty = 1;
+        gbc.fill = GridBagConstraints.VERTICAL;
+        AgregarSuministro.add(Box.createVerticalGlue(), gbc);
+
+        // Regresar Button
+        Regresar = new JButton("Regresar");
+        Regresar.setFont(new Font("Raleway", Font.BOLD, 14));
+        Regresar.setForeground(new Color(-11179215)); // Color: -11179215
+        gbc.gridy = 11;
+        gbc.gridwidth = 1;
+        gbc.anchor = GridBagConstraints.EAST;
+        AgregarSuministro.add(Regresar, gbc);
+
+        // Add panel to the frame
+        add(AgregarSuministro);
+
+        // Make frame visible
+        setVisible(true);
         setContentPane(AgregarSuministro);
-        setTitle("TuFinca");
         setSize(300,380);
         setLocationRelativeTo(null);
         setVisible(true);

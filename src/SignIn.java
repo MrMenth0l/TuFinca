@@ -1,4 +1,5 @@
 import javax.swing.*;
+import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.File;
@@ -19,10 +20,99 @@ public class SignIn extends JFrame {
 
 
     public SignIn(TuFinca sistema, export_csv csv){
+        SignIn = new JPanel();
+        SignIn.setLayout(new BoxLayout(SignIn, BoxLayout.Y_AXIS));
+
+        // Title label
+        JLabel titleLabel = new JLabel("Crear cuenta", SwingConstants.CENTER);
+        titleLabel.setFont(new Font("Raleway", Font.BOLD, 18));
+        titleLabel.setForeground(new Color(-11179215));
+        titleLabel.setAlignmentX(Component.CENTER_ALIGNMENT);
+        SignIn.add(titleLabel);
+
+        SignIn.add(Box.createVerticalStrut(20)); // Spacer
+
+        // Farm code label
+        JLabel fincaLabel = new JLabel("Codigo de Finca");
+        fincaLabel.setFont(new Font("Raleway", Font.PLAIN, 16));
+        fincaLabel.setAlignmentX(Component.CENTER_ALIGNMENT);
+        SignIn.add(fincaLabel);
+
+        // Farm code text field
+        FincaField = new JTextField(15);
+        FincaField.setFont(new Font("Raleway", Font.PLAIN, 16));
+        FincaField.setMaximumSize(FincaField.getPreferredSize());
+        FincaField.setAlignmentX(Component.CENTER_ALIGNMENT);
+        SignIn.add(FincaField);
+
+        SignIn.add(Box.createVerticalStrut(10)); // Spacer
+
+        // User label
+        JLabel userLabel = new JLabel("Usuario");
+        userLabel.setFont(new Font("Raleway", Font.PLAIN, 16));
+        userLabel.setAlignmentX(Component.CENTER_ALIGNMENT);
+        SignIn.add(userLabel);
+
+        // User text field
+        UsuarioField = new JTextField(15);
+        UsuarioField.setFont(new Font("Raleway", Font.PLAIN, 16));
+        UsuarioField.setMaximumSize(UsuarioField.getPreferredSize());
+        UsuarioField.setAlignmentX(Component.CENTER_ALIGNMENT);
+        SignIn.add(UsuarioField);
+
+        SignIn.add(Box.createVerticalStrut(10)); // Spacer
+
+        // Password label
+        JLabel passLabel = new JLabel("Ingrese su contraseña");
+        passLabel.setFont(new Font("Raleway", Font.PLAIN, 16));
+        passLabel.setAlignmentX(Component.CENTER_ALIGNMENT);
+        SignIn.add(passLabel);
+
+        // Password field
+        PassField = new JPasswordField(15);
+        PassField.setFont(new Font("Raleway", Font.PLAIN, 16));
+        PassField.setMaximumSize(PassField.getPreferredSize());
+        PassField.setAlignmentX(Component.CENTER_ALIGNMENT);
+        SignIn.add(PassField);
+
+        SignIn.add(Box.createVerticalStrut(10)); // Spacer
+
+        // Confirm password label
+        JLabel confirmPassLabel = new JLabel("Ingrese su contraseña de nuevo");
+        confirmPassLabel.setFont(new Font("Raleway", Font.PLAIN, 16));
+        confirmPassLabel.setAlignmentX(Component.CENTER_ALIGNMENT);
+        SignIn.add(confirmPassLabel);
+
+        // Confirm password field
+        PassField2 = new JPasswordField(15);
+        PassField2.setFont(new Font("Raleway", Font.PLAIN, 16));
+        PassField2.setMaximumSize(PassField2.getPreferredSize());
+        PassField2.setAlignmentX(Component.CENTER_ALIGNMENT);
+        SignIn.add(PassField2);
+
+        SignIn.add(Box.createVerticalStrut(20)); // Spacer
+
+        // Ingresar button
+        IngresarButton = new JButton("Ingresar");
+        IngresarButton.setFont(new Font("Raleway", Font.BOLD, 16));
+        IngresarButton.setForeground(new Color(-11179215));
+        IngresarButton.setAlignmentX(Component.CENTER_ALIGNMENT);
+        SignIn.add(IngresarButton);
+
+        SignIn.add(Box.createVerticalStrut(10)); // Spacer
+
+        // Regresar button
+        regresarButton = new JButton("Regresar");
+        regresarButton.setFont(new Font("Raleway", Font.BOLD, 14));
+        regresarButton.setForeground(new Color(-11179215));
+        regresarButton.setAlignmentX(Component.LEFT_ALIGNMENT);
+        SignIn.add(regresarButton);
+
+        SignIn.add(Box.createVerticalStrut(10));
         setContentPane(SignIn);
         setTitle("Crear cuenta");
         setDefaultCloseOperation(EXIT_ON_CLOSE);
-        setSize(300,350);
+        setSize(300,400);
         setLocationRelativeTo(null);
         setVisible(true);
         IngresarButton.addActionListener(new ActionListener() {
