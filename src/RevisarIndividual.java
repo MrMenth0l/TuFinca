@@ -1,0 +1,632 @@
+import javax.swing.*;
+import javax.swing.table.DefaultTableModel;
+import javax.swing.table.TableModel;
+import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+import java.util.Scanner;
+
+public class RevisarIndividual extends JFrame {
+    private JPanel RevisarIndividual;
+    private JPanel datos;
+    public RevisarIndividual(TuFinca sistema, Finca finca, export_csv csv, int categoria){
+        RevisarIndividual = new JPanel();
+        datos = new JPanel();
+        switch (categoria){
+            case 1:
+                List<String> ganado_finca = new ArrayList<>();
+                for (int i = 0; i < finca.getCabezaGanados().size(); i++) {
+                    ganado_finca.add(finca.getCabezaGanados().get(i).getNombre());
+                }
+                JComboBox GanadoField = new JComboBox<>(ganado_finca.toArray());
+                JButton button = new JButton("Revisar cabeza");
+                JLabel b = new JLabel("Seleccione que cabeza quiere revisar");
+
+
+                Object[][] cabeza_overview = new Object[3][2];
+                String[] header = {"Atributo", "Valor"};
+
+                Font font = new Font("Raleway",Font.PLAIN,16);
+                Font font12 = new Font("Raleway",Font.PLAIN,12);
+                datos.setFont(font12);
+                button.setFont(font);
+                b.setFont(font);
+                GanadoField.setFont(font12);
+
+                RevisarIndividual.add(datos, BorderLayout.CENTER);
+                RevisarIndividual.add(button, BorderLayout.PAGE_END);
+                RevisarIndividual.add(b,BorderLayout.NORTH);
+                RevisarIndividual.add(GanadoField, BorderLayout.NORTH);
+
+
+                setContentPane(RevisarIndividual);
+                setTitle("Revisar cabeza de ganado individual");
+                setSize(500,200);
+                setLocationRelativeTo(null);
+                setVisible(true);
+
+
+
+                button.addActionListener(new ActionListener() {
+                    @Override
+                    public void actionPerformed(ActionEvent e) {
+                        for (int j = 0; j < finca.getCabezaGanados().size(); j++) {
+                            if (finca.getCabezaGanados().get(j).getNombre().equals(GanadoField.getSelectedItem())) {
+                                CabezaGanado cabeza = finca.getCabezaGanados().get(j);
+                                cabeza_overview[0][0] = "Nombre: ";
+                                cabeza_overview[0][1] = finca.getCabezaGanados().get(j).getNombre();
+                                cabeza_overview[1][0] = "Edad";
+                                cabeza_overview[1][1] = finca.getCabezaGanados().get(j).getEdad();
+                                cabeza_overview[2][0] = "Raza";
+                                cabeza_overview[2][1] = finca.getCabezaGanados().get(j).getRaza();
+                                String ID_Num = finca.getCabezaGanados().get(j).getID_Num();
+
+                                TableModel model = new DefaultTableModel(cabeza_overview,header);
+                                JTable overview_table = new JTable(model);
+                                overview_table.setFont(font12);
+                                overview_table.setRowHeight(30);
+                                overview_table.setSize(400,100);
+                                JScrollPane scrollPane = new JScrollPane(overview_table);
+                                JButton modificar = new JButton("Modificar cabeza " + finca.getCabezaGanados().get(j).getNombre());
+                                modificar.setFont(font);
+                                RevisarIndividual.add(scrollPane);
+                                RevisarIndividual.add(modificar, BorderLayout.SOUTH);
+                                setSize(700,400);
+
+                                modificar.addActionListener(new ActionListener() {
+                                    @Override
+                                    public void actionPerformed(ActionEvent e) {
+                                        cabeza.setNombre((String) overview_table.getValueAt(0,1));
+                                        String edad = String.valueOf(overview_table.getValueAt(1,1));
+                                        cabeza.setEdad((Integer.parseInt(edad)));
+                                        cabeza.setRaza((String) overview_table.getValueAt(2,1));
+                                        cabeza.setID_Num(ID_Num);
+                                        JOptionPane.showMessageDialog(RevisarIndividual.this, cabeza.getID_Num() +" Modificada correctamente");
+
+
+                                        File datos_cambiados = new File("Cabezas_temp.csv");
+                                        Scanner sc1 = null;
+                                        try {
+                                            sc1 = new Scanner(new File(finca.getFincaPath()+"/"+cabeza.getFile()));
+                                        } catch (FileNotFoundException ex) {
+                                            throw new RuntimeException(ex);
+                                        }
+                                        sc1.useDelimiter(",");
+                                        while (sc1.hasNext()){
+                                            List<String> datos = new ArrayList<String>();
+                                            datos.add(sc1.nextLine());
+                                            List<String> ganado = Arrays.asList(datos.get(0).split(","));
+                                            if (ganado.getLast().equals(cabeza.getID_Num())){
+                                                try {
+                                                    csv.exportData(cabeza.getDatos(), datos_cambiados,finca);
+                                                } catch (IOException ex) {
+                                                    throw new RuntimeException(ex);
+                                                }
+                                            }else {
+                                                try {
+                                                    csv.exportData(datos.get(0),datos_cambiados,finca);
+                                                } catch (IOException ex) {
+                                                    throw new RuntimeException(ex);
+                                                }
+                                            }
+                                        }
+                                        File datos_pasados = new File(finca.getFincaPath()+"/Cabezas_de_Ganado.csv");
+                                        datos_pasados.renameTo(new File(finca.getFincaPath()+"/Cabezas_de_Ganado1.csv"));
+                                        datos_cambiados = new File(finca.getFincaPath()+"/Cabezas_temp.csv");
+                                        try {
+                                            Files.move(datos_cambiados.toPath(), Path.of(finca.getFincaPath() + "/Cabezas_de_Ganado.csv"));
+                                        } catch (IOException ex) {
+                                            throw new RuntimeException(ex);
+                                        }
+                                        try {
+                                            Files.deleteIfExists(Paths.get(finca.getFincaPath()+"/Cabezas_de_Ganado1.csv"));
+                                        } catch (IOException ex) {
+                                            throw new RuntimeException(ex);
+                                        }
+                                        dispose();
+                                    }
+                                });
+                            }
+                    }
+                    }
+                });
+                break;
+
+
+            case 2:
+                Seccion seccion;
+                List<String> seccion_finca = new ArrayList<>();
+                for (int i = 0; i < finca.getSecciones().size(); i++) {
+                    seccion_finca.add(finca.getSecciones().get(i).getSeccion());
+                }
+                JComboBox SeccionField = new JComboBox<>(seccion_finca.toArray());
+                 button = new JButton("Revisar seccion");
+                b = new JLabel("Seleccione que seccion quiere revisar");
+
+
+                Object[][] seccion_overview = new Object[5][2];
+                header = new String[]{"Atributo", "Valor"};
+
+                font = new Font("Raleway",Font.PLAIN,16);
+                font12 = new Font("Raleway",Font.PLAIN,12);
+                datos.setFont(font12);
+                button.setFont(font);
+                b.setFont(font);
+                SeccionField.setFont(font12);
+
+                RevisarIndividual.add(datos, BorderLayout.CENTER);
+                RevisarIndividual.add(button, BorderLayout.PAGE_END);
+                RevisarIndividual.add(b,BorderLayout.NORTH);
+                RevisarIndividual.add(SeccionField, BorderLayout.NORTH);
+
+
+                setContentPane(RevisarIndividual);
+                setTitle("Revisar seccion individual");
+                setSize(500,200);
+                setLocationRelativeTo(null);
+                setVisible(true);
+
+
+
+                button.addActionListener(new ActionListener() {
+                    @Override
+                    public void actionPerformed(ActionEvent e) {
+                        for (int j = 0; j < finca.getSecciones().size(); j++) {
+                            if (finca.getSecciones().get(j).getSeccion().equals(SeccionField.getSelectedItem())) {
+                                Seccion seccion = finca.getSecciones().get(j);
+                                seccion_overview[0][0] = "Nombre: ";
+                                seccion_overview[0][1] = seccion.getSeccion();
+                                seccion_overview[1][0] = "Tamaño con medida";
+                                seccion_overview[1][1] = String.valueOf(seccion.getTamaño()) + seccion.getMedida();
+                                seccion_overview[2][0] = "Funcion";
+                                seccion_overview[2][1] = seccion.getFuncion();
+                                seccion_overview[3][0] = "Estado";
+                                seccion_overview[3][1] = seccion.getEstado();
+                                seccion_overview[4][0] = "Cabezas";
+                                seccion_overview[4][1] = seccion.getCabezas();
+
+                                TableModel model = new DefaultTableModel(seccion_overview,header);
+                                JTable overview_table = new JTable(model);
+                                overview_table.setFont(font12);
+                                overview_table.setRowHeight(30);
+                                overview_table.setSize(400,100);
+                                JScrollPane scrollPane = new JScrollPane(overview_table);
+                                JButton modificar = new JButton("Modificar seccion " + finca.getSecciones().get(j).getSeccion());
+                                modificar.setFont(font);
+                                RevisarIndividual.add(scrollPane);
+                                RevisarIndividual.add(modificar, BorderLayout.SOUTH);
+                                setSize(700,600);
+
+                                modificar.addActionListener(new ActionListener() {
+                                    @Override
+                                    public void actionPerformed(ActionEvent e) {
+                                        seccion.setSeccion((String) overview_table.getValueAt(0,1));
+                                        seccion.setFuncion((String) overview_table.getValueAt(2,1));
+                                        seccion.setEstado((String) overview_table.getValueAt(3,1));
+                                        JOptionPane.showMessageDialog(RevisarIndividual.this, "Seccion: " + seccion.getID_Num() + " Modificada correctamente");
+
+
+
+                                        File datos_cambiados = new File("temp.csv");
+                                        Scanner sc1 = null;
+                                        try {
+                                            sc1 = new Scanner(new File(finca.getFincaPath()+"/"+seccion.getFile()));
+                                        } catch (FileNotFoundException ex) {
+                                            throw new RuntimeException(ex);
+                                        }
+                                        sc1.useDelimiter(",");
+                                        while (sc1.hasNext()){
+                                            List<String> datos = new ArrayList<String>();
+                                            datos.add(sc1.nextLine());
+                                            List<String> seccion_read = Arrays.asList(datos.get(0).split(","));
+                                            if (seccion_read.getLast().equals(seccion.getID_Num())){
+                                                try {
+                                                    csv.exportData(seccion.getDatos(), datos_cambiados,finca);
+                                                } catch (IOException ex) {
+                                                    throw new RuntimeException(ex);
+                                                }
+                                            }else {
+                                                try {
+                                                    csv.exportData(datos.get(0),datos_cambiados,finca);
+                                                } catch (IOException ex) {
+                                                    throw new RuntimeException(ex);
+                                                }
+                                            }
+                                        }
+                                        File datos_pasados = new File(finca.getFincaPath()+"/Secciones.csv");
+                                        datos_pasados.renameTo(new File(finca.getFincaPath()+"/Secciones1.csv"));
+                                        datos_cambiados = new File(finca.getFincaPath()+"/temp.csv");
+                                        try {
+                                            Files.move(datos_cambiados.toPath(), Path.of(finca.getFincaPath() + "/Secciones.csv"));
+                                        } catch (IOException ex) {
+                                            throw new RuntimeException(ex);
+                                        }
+                                        try {
+                                            Files.deleteIfExists(Paths.get(finca.getFincaPath()+"/Secciones1.csv"));
+                                        } catch (IOException ex) {
+                                            throw new RuntimeException(ex);
+                                        }
+                                        dispose();
+                                    }
+                                });
+                            }
+                    }
+                    }
+                });
+                break;
+            case 3:
+                List<String> suministradores_finca = new ArrayList<>();
+                for (int i = 0; i < finca.getSuministradores().size(); i++) {
+                    suministradores_finca.add(finca.getSuministradores().get(i).getNombre());
+                }
+                JComboBox SuministradorField = new JComboBox<>(suministradores_finca.toArray());
+                 button = new JButton("Revisar suministrador");
+                b = new JLabel("Seleccione que suministrador quiere revisar");
+
+
+                Object[][] suministrador_overview = new Object[4][2];
+                header = new String[]{"Atributo", "Valor"};
+
+                font = new Font("Raleway",Font.PLAIN,16);
+                font12 = new Font("Raleway",Font.PLAIN,12);
+                datos.setFont(font12);
+                button.setFont(font);
+                b.setFont(font);
+                SuministradorField.setFont(font12);
+
+
+                RevisarIndividual.add(datos, BorderLayout.CENTER);
+                RevisarIndividual.add(button, BorderLayout.PAGE_END);
+                RevisarIndividual.add(b,BorderLayout.NORTH);
+                RevisarIndividual.add(SuministradorField, BorderLayout.NORTH);
+
+
+                setContentPane(RevisarIndividual);
+                setTitle("Revisar suministrador individual");
+                setSize(500,200);
+                setLocationRelativeTo(null);
+                setVisible(true);
+
+
+
+                button.addActionListener(new ActionListener() {
+                    @Override
+                    public void actionPerformed(ActionEvent e) {
+                        for (int j = 0; j < finca.getSuministradores().size(); j++) {
+                            if (finca.getSuministradores().get(j).getNombre().equals(SuministradorField.getSelectedItem())) {
+                                Suministrador suministrador = finca.getSuministradores().get(j);
+                                suministrador_overview[0][0] = "Nombre: ";
+                                suministrador_overview[0][1] = suministrador.getNombre();
+                                suministrador_overview[1][0] = "Producto";
+                                suministrador_overview[1][1] = suministrador.getProducto();
+                                suministrador_overview[2][0] = "Precio";
+                                suministrador_overview[2][1] = suministrador.getPrecio();
+                                suministrador_overview[3][0] = "Dias de espera";
+                                suministrador_overview[3][1] = suministrador.getDias_espera();
+
+                                TableModel model = new DefaultTableModel(suministrador_overview,header);
+                                JTable overview_table = new JTable(model);
+                                overview_table.setFont(font12);
+                                overview_table.setRowHeight(30);
+                                overview_table.setSize(400,200);
+                                JScrollPane scrollPane = new JScrollPane(overview_table);
+                                JButton modificar = new JButton("Modificar Suministrador " + finca.getSuministradores().get(j).getNombre());
+                                modificar.setFont(font);
+                                RevisarIndividual.add(scrollPane);
+                                RevisarIndividual.add(modificar, BorderLayout.SOUTH);
+                                setSize(700,600);
+
+                                modificar.addActionListener(new ActionListener() {
+                                    @Override
+                                    public void actionPerformed(ActionEvent e) {
+                                        suministrador.setNombre((String) overview_table.getValueAt(0,1));
+                                        suministrador.setProducto((String) overview_table.getValueAt(1,1));
+                                        String precio = (String) overview_table.getValueAt(2,1);
+                                        suministrador.setPrecio(Integer.parseInt(precio));
+                                        String Dias_espera = String.valueOf(overview_table.getValueAt(3,1));
+                                        suministrador.setDias_espera(Integer.parseInt(Dias_espera));
+                                        JOptionPane.showMessageDialog(RevisarIndividual.this, "Seccion: " + suministrador.getID_Num() + " Modificado correctamente");
+
+
+                                        File datos_cambiados = new File("temp.csv");
+                                        Scanner sc1 = null;
+                                        try {
+                                            sc1 = new Scanner(new File(finca.getFincaPath()+"/"+suministrador.getFile()));
+                                        } catch (FileNotFoundException ex) {
+                                            throw new RuntimeException(ex);
+                                        }
+                                        sc1.useDelimiter(",");
+                                        while (sc1.hasNext()){
+                                            List<String> datos = new ArrayList<String>();
+                                            datos.add(sc1.nextLine());
+                                            List<String> suministrador_read = Arrays.asList(datos.get(0).split(","));
+                                            if (suministrador_read.getLast().equals(suministrador.getID_Num())){
+                                                try {
+                                                    csv.exportData(suministrador.getDatos(), datos_cambiados,finca);
+                                                } catch (IOException ex) {
+                                                    throw new RuntimeException(ex);
+                                                }
+                                            }else {
+                                                try {
+                                                    csv.exportData(datos.get(0),datos_cambiados,finca);
+                                                } catch (IOException ex) {
+                                                    throw new RuntimeException(ex);
+                                                }
+                                            }
+                                        }
+                                        File datos_pasados = new File(finca.getFincaPath()+"/Suministradores.csv");
+                                        datos_pasados.renameTo(new File(finca.getFincaPath()+"/Suministradores1.csv"));
+                                        datos_cambiados = new File(finca.getFincaPath()+"/temp.csv");
+                                        try {
+                                            Files.move(datos_cambiados.toPath(), Path.of(finca.getFincaPath() + "/Suministradores.csv"));
+                                        } catch (IOException ex) {
+                                            throw new RuntimeException(ex);
+                                        }
+                                        try {
+                                            Files.deleteIfExists(Paths.get(finca.getFincaPath()+"/Suministradores1.csv"));
+                                        } catch (IOException ex) {
+                                            throw new RuntimeException(ex);
+                                        }
+                                        dispose();
+                                    }
+                                });
+                            }
+                    }
+                    }
+                });
+                break;
+            case 4:
+                List<String> suministros_finca = new ArrayList<>();
+                for (int i = 0; i < finca.getSuministros().size(); i++) {
+                    suministros_finca.add(finca.getSuministros().get(i).getNombre());
+                }
+                JComboBox SuministroField = new JComboBox<>(suministros_finca.toArray());
+                 button = new JButton("Revisar suministro");
+                b = new JLabel("Seleccione que suministro quiere revisar");
+
+
+                Object[][] suministro_overview = new Object[4][2];
+                header = new String[]{"Atributo", "Valor"};
+
+                font = new Font("Raleway",Font.PLAIN,16);
+                font12 = new Font("Raleway",Font.PLAIN,12);
+                datos.setFont(font12);
+                button.setFont(font);
+                b.setFont(font);
+                SuministroField.setFont(font12);
+
+
+                RevisarIndividual.add(datos, BorderLayout.CENTER);
+                RevisarIndividual.add(button, BorderLayout.PAGE_END);
+                RevisarIndividual.add(b,BorderLayout.NORTH);
+                RevisarIndividual.add(SuministroField, BorderLayout.NORTH);
+
+
+                setContentPane(RevisarIndividual);
+                setTitle("Revisar suministro individual");
+                setSize(500,200);
+                setLocationRelativeTo(null);
+                setVisible(true);
+
+
+
+                button.addActionListener(new ActionListener() {
+                    @Override
+                    public void actionPerformed(ActionEvent e) {
+                        for (int j = 0; j < finca.getSuministros().size(); j++) {
+                            if (finca.getSuministros().get(j).getNombre().equals(SuministroField.getSelectedItem())) {
+                                Suministro suministro = finca.getSuministros().get(j);
+                                suministro_overview[0][0] = "Nombre: ";
+                                suministro_overview[0][1] = suministro.getNombre();
+                                suministro_overview[1][0] = "Tipo";
+                                suministro_overview[1][1] = suministro.getTipo();
+                                suministro_overview[2][0] = "Stock";
+                                suministro_overview[2][1] = suministro.getCantidad();
+                                suministro_overview[3][0] = "Dias desde compra";
+                                suministro_overview[3][1] = suministro.getDiasDesdeCompra();
+
+                                TableModel model = new DefaultTableModel(suministro_overview,header);
+                                JTable overview_table = new JTable(model);
+                                overview_table.setFont(font12);
+                                overview_table.setRowHeight(30);
+                                overview_table.setSize(400,200);
+                                JScrollPane scrollPane = new JScrollPane(overview_table);
+                                JButton modificar = new JButton("Modificar suministro " + finca.getSuministros().get(j).getNombre());
+                                modificar.setFont(font);
+                                RevisarIndividual.add(scrollPane);
+                                RevisarIndividual.add(modificar, BorderLayout.SOUTH);
+                                setSize(700,600);
+
+                                modificar.addActionListener(new ActionListener() {
+                                    @Override
+                                    public void actionPerformed(ActionEvent e) {
+                                        suministro.setNombre((String) overview_table.getValueAt(0,1));
+                                        suministro.setTipo((String) overview_table.getValueAt(1,1));
+                                        String cantidad = String.valueOf(overview_table.getValueAt(2,1));
+                                        suministro.setCantidad(Integer.parseInt(cantidad));
+                                        String DiasDesdeCompra = String.valueOf(overview_table.getValueAt(2,1));
+                                        suministro.setDiasDesdeCompra(Integer.parseInt(DiasDesdeCompra));
+                                        JOptionPane.showMessageDialog(RevisarIndividual.this, "Suministro: " + suministro.getID_Num() + " Modificado correctamente");
+
+
+                                        File datos_cambiados = new File("temp.csv");
+                                        Scanner sc1 = null;
+                                        try {
+                                            sc1 = new Scanner(new File(finca.getFincaPath()+"/"+suministro.getFile()));
+                                        } catch (FileNotFoundException ex) {
+                                            throw new RuntimeException(ex);
+                                        }
+                                        sc1.useDelimiter(",");
+                                        while (sc1.hasNext()){
+                                            List<String> datos = new ArrayList<String>();
+                                            datos.add(sc1.nextLine());
+                                            List<String> suministro_read = Arrays.asList(datos.get(0).split(","));
+                                            if (suministro_read.getLast().equals(suministro.getID_Num())){
+                                                try {
+                                                    csv.exportData(suministro.getDatos(), datos_cambiados,finca);
+                                                } catch (IOException ex) {
+                                                    throw new RuntimeException(ex);
+                                                }
+                                            }else {
+                                                try {
+                                                    csv.exportData(datos.get(0),datos_cambiados,finca);
+                                                } catch (IOException ex) {
+                                                    throw new RuntimeException(ex);
+                                                }
+                                            }
+                                        }
+                                        File datos_pasados = new File(finca.getFincaPath()+"/Suministros.csv");
+                                        datos_pasados.renameTo(new File(finca.getFincaPath()+"/Suministros1.csv"));
+                                        datos_cambiados = new File(finca.getFincaPath()+"/temp.csv");
+                                        try {
+                                            Files.move(datos_cambiados.toPath(), Path.of(finca.getFincaPath() + "/Suministros.csv"));
+                                        } catch (IOException ex) {
+                                            throw new RuntimeException(ex);
+                                        }
+                                        try {
+                                            Files.deleteIfExists(Paths.get(finca.getFincaPath()+"/Suministros1.csv"));
+                                        } catch (IOException ex) {
+                                            throw new RuntimeException(ex);
+                                        }
+                                        dispose();
+                                    }
+                                });
+                            }
+                    }
+                    }
+                });
+                break;
+            case 5:
+                List<String> cosechas_finca = new ArrayList<>();
+                for (int i = 0; i < finca.getCosechas().size(); i++) {
+                    cosechas_finca.add(finca.getCosechas().get(i).getTipo());
+                }
+                JComboBox CosechaField = new JComboBox<>(cosechas_finca.toArray());
+                 button = new JButton("Revisar cosecha");
+                b = new JLabel("Seleccione que cosecha quiere revisar");
+
+
+                Object[][] cosecha_overview = new Object[5][2];
+                header = new String[]{"Atributo", "Valor"};
+
+                font = new Font("Raleway",Font.PLAIN,16);
+                font12 = new Font("Raleway",Font.PLAIN,12);
+                datos.setFont(font12);
+                button.setFont(font);
+                b.setFont(font);
+                CosechaField.setFont(font12);
+
+                RevisarIndividual.add(datos, BorderLayout.CENTER);
+                RevisarIndividual.add(button, BorderLayout.PAGE_END);
+                RevisarIndividual.add(b,BorderLayout.NORTH);
+                RevisarIndividual.add(CosechaField, BorderLayout.NORTH);
+
+
+                setContentPane(RevisarIndividual);
+                setTitle("Revisar cosecha individual");
+                setSize(500,200);
+                setLocationRelativeTo(null);
+                setVisible(true);
+
+
+
+                button.addActionListener(new ActionListener() {
+                    @Override
+                    public void actionPerformed(ActionEvent e) {
+                        for (int j = 0; j < finca.getCosechas().size(); j++) {
+                            if (finca.getCosechas().get(j).getTipo().equals(CosechaField.getSelectedItem())) {
+                                Cosecha cosecha = finca.getCosechas().get(j);
+                                cosecha_overview[0][0] = "Nombre: ";
+                                cosecha_overview[0][1] = cosecha.getTipo();
+                                cosecha_overview[1][0] = "Tamaño con medida";
+                                cosecha_overview[1][1] = String.valueOf(cosecha.getTamaño()) + cosecha.getMedida();
+                                cosecha_overview[2][0] = "Estado";
+                                cosecha_overview[2][1] = cosecha.getEstado();
+                                cosecha_overview[3][0] = "Epoca";
+                                cosecha_overview[3][1] = cosecha.getEpoca();
+                                cosecha_overview[4][0] = "Geografia";
+                                cosecha_overview[4][0] = cosecha.getGeografia();
+
+                                TableModel model = new DefaultTableModel(cosecha_overview,header);
+                                JTable overview_table = new JTable(model);
+                                overview_table.setFont(font12);
+                                overview_table.setRowHeight(30);
+                                overview_table.setSize(400,200);
+                                JScrollPane scrollPane = new JScrollPane(overview_table);
+                                JButton modificar = new JButton("Modificar cosecha " + finca.getCosechas().get(j).getTipo());
+                                modificar.setFont(font);
+                                RevisarIndividual.add(scrollPane);
+                                RevisarIndividual.add(modificar, BorderLayout.SOUTH);
+                                setSize(700,600);
+
+                                modificar.addActionListener(new ActionListener() {
+                                    @Override
+                                    public void actionPerformed(ActionEvent e) {
+                                        cosecha.setTipo((String) overview_table.getValueAt(0,1));
+                                        cosecha.setEstado((String) overview_table.getValueAt(2,1));
+                                        cosecha.setEpoca((String) overview_table.getValueAt(3,1));
+                                        cosecha.setGeografia((String) overview_table.getValueAt(4,1));
+                                        JOptionPane.showMessageDialog(RevisarIndividual.this, "Cosecha: " + cosecha.getID_Num() + " Modificado correctamente");
+
+
+                                        File datos_cambiados = new File("temp.csv");
+                                        Scanner sc1 = null;
+                                        try {
+                                            sc1 = new Scanner(new File(finca.getFincaPath()+"/"+cosecha.getFile()));
+                                        } catch (FileNotFoundException ex) {
+                                            throw new RuntimeException(ex);
+                                        }
+                                        sc1.useDelimiter(",");
+                                        while (sc1.hasNext()){
+                                            List<String> datos = new ArrayList<String>();
+                                            datos.add(sc1.nextLine());
+                                            List<String> cosecha_read = Arrays.asList(datos.get(0).split(","));
+                                            if (cosecha_read.getLast().equals(cosecha.getID_Num())){
+                                                try {
+                                                    csv.exportData(cosecha.getDatos(), datos_cambiados,finca);
+                                                } catch (IOException ex) {
+                                                    throw new RuntimeException(ex);
+                                                }
+                                            }else {
+                                                try {
+                                                    csv.exportData(datos.get(0),datos_cambiados,finca);
+                                                } catch (IOException ex) {
+                                                    throw new RuntimeException(ex);
+                                                }
+                                            }
+                                        }
+                                        File datos_pasados = new File(finca.getFincaPath()+"/Cosechas.csv");
+                                        datos_pasados.renameTo(new File(finca.getFincaPath()+"/Cosechas1.csv"));
+                                        datos_cambiados = new File(finca.getFincaPath()+"/temp.csv");
+                                        try {
+                                            Files.move(datos_cambiados.toPath(), Path.of(finca.getFincaPath() + "/Cosechas.csv"));
+                                        } catch (IOException ex) {
+                                            throw new RuntimeException(ex);
+                                        }
+                                        try {
+                                            Files.deleteIfExists(Paths.get(finca.getFincaPath()+"/Cosechas1.csv"));
+                                        } catch (IOException ex) {
+                                            throw new RuntimeException(ex);
+                                        }
+                                        dispose();
+                                    }
+                                });
+                            }
+                    }
+                    }
+                });
+                break;
+            default:
+                break;
+        }
+    }
+}
