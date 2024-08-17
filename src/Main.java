@@ -66,7 +66,6 @@ public class Main extends JFrame {
             setVisible(false);
         });
     }
-
     public static void main(String[] args) throws IOException {
 
         export_csv csv = new export_csv();

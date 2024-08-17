@@ -62,11 +62,11 @@ public class AgregarCosecha extends JFrame {
         AgregarCosecha.add(tamanoLabel, gbc);
 
 
-        JTextField sizeField = new JTextField();
-        sizeField.setFont(new Font("Raleway", Font.PLAIN, 14));
+        SizeField = new JTextField();
+        SizeField.setFont(new Font("Raleway", Font.PLAIN, 14));
         gbc.gridy = 4;
         gbc.gridwidth = 1;
-        AgregarCosecha.add(sizeField, gbc);
+        AgregarCosecha.add(SizeField, gbc);
 
 
         MedidaField = new JComboBox<>(new String[]{
@@ -149,12 +149,12 @@ public class AgregarCosecha extends JFrame {
             @Override
             public void actionPerformed(ActionEvent e) {
                 Cosecha cosecha = new Cosecha();
-                cosecha.setTipo(AgregarCosecha.this.CosechaField.getText());
-                cosecha.setTamaño(Integer.valueOf(SizeField.getText()));
-                cosecha.setMedida((String) AgregarCosecha.this.MedidaField.getSelectedItem());
-                cosecha.setEstado((String) AgregarCosecha.this.EstadoField.getSelectedItem());
-                cosecha.setEpoca((String) AgregarCosecha.this.EpocaField.getSelectedItem());
-                cosecha.setGeografia(AgregarCosecha.this.GeoField.getText());
+                cosecha.setTipo(CosechaField.getText());
+                cosecha.setTamaño(Integer.parseInt(SizeField.getText()));
+                cosecha.setMedida((String) MedidaField.getSelectedItem());
+                cosecha.setEstado((String) EstadoField.getSelectedItem());
+                cosecha.setEpoca((String) EpocaField.getSelectedItem());
+                cosecha.setGeografia(GeoField.getText());
                 cosecha.setID_Num(finca.getCosechas().size()+1);
                 finca.addCosecha(cosecha);
                 try {

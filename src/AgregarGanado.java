@@ -47,12 +47,12 @@ public class AgregarGanado extends JFrame {
         AgregarGanado.add(nombreLabel, gbc);
 
         // Nombre TextField
-        JTextField nombreField = new JTextField();
-        nombreField.setFont(new Font("Raleway", Font.PLAIN, 14));
+        NombreField = new JTextField();
+        NombreField.setFont(new Font("Raleway", Font.PLAIN, 14));
         gbc.gridy = 2;
         gbc.gridwidth = 2;
         gbc.ipadx = 150;
-        AgregarGanado.add(nombreField, gbc);
+        AgregarGanado.add(NombreField, gbc);
 
         // Especie Label
         JLabel especieLabel = new JLabel("Especie");
@@ -62,12 +62,12 @@ public class AgregarGanado extends JFrame {
         AgregarGanado.add(especieLabel, gbc);
 
         // Especie ComboBox
-        JComboBox<String> especieField = new JComboBox<>(new String[]{
+        EspecieField = new JComboBox<>(new String[]{
             "Bovino", "Aviar", "Equino", "Ovino", "Caprino"
         });
-        especieField.setFont(new Font("Raleway", Font.PLAIN, 14));
+        EspecieField.setFont(new Font("Raleway", Font.PLAIN, 14));
         gbc.gridy = 4;
-        AgregarGanado.add(especieField, gbc);
+        AgregarGanado.add(EspecieField, gbc);
 
         // Raza Label
         JLabel razaLabel = new JLabel("Raza");
@@ -77,10 +77,10 @@ public class AgregarGanado extends JFrame {
         AgregarGanado.add(razaLabel, gbc);
 
         // Raza TextField
-        JTextField razaField = new JTextField();
-        razaField.setFont(new Font("Raleway", Font.PLAIN, 14));
+        RazaField = new JTextField();
+        RazaField.setFont(new Font("Raleway", Font.PLAIN, 14));
         gbc.gridy = 6;
-        AgregarGanado.add(razaField, gbc);
+        AgregarGanado.add(RazaField, gbc);
 
         // Edad Label
         JLabel edadLabel = new JLabel("Edad (En años)");
@@ -89,10 +89,10 @@ public class AgregarGanado extends JFrame {
         AgregarGanado.add(edadLabel, gbc);
 
         // Edad TextField
-        JTextField edadField = new JTextField();
-        edadField.setFont(new Font("Raleway", Font.PLAIN, 14));
+        EdadField = new JTextField();
+        EdadField.setFont(new Font("Raleway", Font.PLAIN, 14));
         gbc.gridy = 8;
-        AgregarGanado.add(edadField, gbc);
+        AgregarGanado.add(EdadField, gbc);
 
         // Add Button
         agregarButton = new JButton("Agregar");
@@ -128,7 +128,7 @@ public class AgregarGanado extends JFrame {
                 Seccion seccion = new Seccion();
                 seccion.setSeccion("General");
                 cabezaGanado.setNombre(NombreField.getText());
-                cabezaGanado.setEdad((Integer.valueOf(EdadField.getText())));
+                cabezaGanado.setEdad((Integer.parseInt(EdadField.getText())));
                 cabezaGanado.setRaza(RazaField.getText());
                 cabezaGanado.setEspecie((String) EspecieField.getSelectedItem());
                 cabezaGanado.setSeccion(seccion);
