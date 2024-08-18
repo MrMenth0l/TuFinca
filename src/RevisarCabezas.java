@@ -36,7 +36,7 @@ public class RevisarCabezas extends JFrame {
         scrollPane = new JScrollPane(ganadoTable);
         RevisarCabezas = new JPanel();
         RevisarCabezas.add(scrollPane);
-        JButton ver_mas = new JButton("ver mas");
+        JButton ver_mas = new JButton("Modificar");
         JButton regresar = new JButton("regresar");
         RevisarCabezas.add(ver_mas);
         RevisarCabezas.add(regresar, BorderLayout.PAGE_END);

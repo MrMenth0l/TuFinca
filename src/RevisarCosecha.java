@@ -33,7 +33,7 @@ public class RevisarCosecha extends JFrame {
         JScrollPane scrollPane = new JScrollPane(cosechaTable);
         RevisarCosecha = new JPanel();
         RevisarCosecha.add(scrollPane);
-        JButton ver_mas = new JButton("ver mas");
+        JButton ver_mas = new JButton("Modificar");
         JButton regresar = new JButton("regresar");
         RevisarCosecha.add(ver_mas);
         RevisarCosecha.add(regresar, BorderLayout.PAGE_END);

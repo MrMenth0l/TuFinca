@@ -31,7 +31,7 @@ public class RevisarSuministros extends JFrame {
         JScrollPane scrollPane = new JScrollPane(suministrosTable);
         RevisarSuministros = new JPanel();
         RevisarSuministros.add(scrollPane);
-        JButton ver_mas = new JButton("ver mas");
+        JButton ver_mas = new JButton("Modificar");
         JButton regresar = new JButton("regresar");
         RevisarSuministros.add(ver_mas);
         RevisarSuministros.add(regresar, BorderLayout.PAGE_END);

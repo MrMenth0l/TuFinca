@@ -9,6 +9,7 @@ import java.nio.file.Path;
 import java.util.*;
 import java.util.List;
 
+
 public class Main extends JFrame {
     private JPanel Inicio;
     private JButton IngresarCuenta;
@@ -30,7 +31,6 @@ public class Main extends JFrame {
 
         JPanel buttonPanel = new JPanel();
         buttonPanel.setLayout(new BoxLayout(buttonPanel, BoxLayout.X_AXIS));
-
         IngresarCuenta = new JButton("Ingresar");
         IngresarCuenta.setFont(new Font("Raleway", Font.BOLD, 24));
         IngresarCuenta.setForeground(new Color(-11179215));

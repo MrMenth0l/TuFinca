@@ -31,28 +31,33 @@ public class RevisarSetup extends JFrame{
         gbc.weighty = 1;
 
         // Create and configure components
-        revisarGanadoButton = new JButton("Cabeza de ganado");
+        revisarGanadoButton = new JButton("Cabezas de ganado");
+        revisarGanadoButton.setIcon(new ImageIcon("src/graficos/vaca_icon.png"));
         revisarGanadoButton.setFont(new Font("Raleway", Font.PLAIN, 18));
         gbc.gridx = 1;
         gbc.gridy = 1;
         RevisarSetup.add(revisarGanadoButton, gbc);
 
         revisarSuministradoresButton = new JButton("Suministradores de su finca");
+        revisarSuministradoresButton.setIcon(new ImageIcon("src/graficos/suministrador.png"));
         revisarSuministradoresButton.setFont(new Font("Raleway", Font.PLAIN, 18));
         gbc.gridy = 3;
         RevisarSetup.add(revisarSuministradoresButton, gbc);
 
         revisarCosechasbutton = new JButton("Cosechas de su finca");
+        revisarCosechasbutton.setIcon(new ImageIcon("src/graficos/cosecha.png"));
         revisarCosechasbutton.setFont(new Font("Raleway", Font.PLAIN, 18));
         gbc.gridy = 5;
         RevisarSetup.add(revisarCosechasbutton, gbc);
 
         revisarSuministrosButton = new JButton("Suministros de su finca");
+        revisarSuministrosButton.setIcon(new ImageIcon("src/graficos/suministro.png"));
         revisarSuministrosButton.setFont(new Font("Raleway", Font.PLAIN, 18));
         gbc.gridy = 4;
         RevisarSetup.add(revisarSuministrosButton, gbc);
 
         revisarSeccionesDeFincaButton = new JButton("Secciones de su finca");
+        revisarSeccionesDeFincaButton.setIcon(new ImageIcon("src/graficos/seccion.png"));
         revisarSeccionesDeFincaButton.setFont(new Font("Raleway", Font.PLAIN, 18));
         gbc.gridy = 2;
         RevisarSetup.add(revisarSeccionesDeFincaButton, gbc);

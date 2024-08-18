@@ -33,27 +33,32 @@ public class SetupFinca extends JFrame {
 
         // Create and configure components
         GanadoAgregar = new JButton("Agregar cabeza de ganado");
+        GanadoAgregar.setIcon(new ImageIcon("src/graficos/vaca_icon.png"));
         GanadoAgregar.setFont(new Font("Raleway", Font.PLAIN, 18));
         gbc.gridx = 1;
         gbc.gridy = 1;
         Setup.add(GanadoAgregar, gbc);
 
         SuministradorAgregar = new JButton("Agregar Suministrador");
+        SuministradorAgregar.setIcon(new ImageIcon("src/graficos/suministrador.png"));
         SuministradorAgregar.setFont(new Font("Raleway", Font.PLAIN, 18));
         gbc.gridy = 3;
         Setup.add(SuministradorAgregar, gbc);
 
         CosechaAgregar = new JButton("Agregar Cosecha");
+        CosechaAgregar.setIcon(new ImageIcon("src/graficos/cosecha.png"));
         CosechaAgregar.setFont(new Font("Raleway", Font.PLAIN, 18));
         gbc.gridy = 5;
         Setup.add(CosechaAgregar, gbc);
 
         SuministroAgregar = new JButton("Agregar Suministro");
+        SuministroAgregar.setIcon(new ImageIcon("src/graficos/suministro.png"));
         SuministroAgregar.setFont(new Font("Raleway", Font.PLAIN, 18));
         gbc.gridy = 4;
         Setup.add(SuministroAgregar, gbc);
 
         SeccionAgregar = new JButton("Agregar seccion de su finca");
+        SeccionAgregar.setIcon(new ImageIcon("src/graficos/seccion.png"));
         SeccionAgregar.setFont(new Font("Raleway", Font.PLAIN, 18));
         gbc.gridy = 2;
         Setup.add(SeccionAgregar, gbc);
@@ -79,9 +84,43 @@ public class SetupFinca extends JFrame {
         Setup.add(RevisarFinca, gbc);
 
         asignarGanadoASeccionButton = new JButton("Asignar ganado a seccion");
+        asignarGanadoASeccionButton.setIcon(new ImageIcon("src/graficos/asignar.png"));
         asignarGanadoASeccionButton.setFont(new Font("Raleway", Font.PLAIN, 18));
         gbc.gridy = 6;
         Setup.add(asignarGanadoASeccionButton, gbc);
+
+        JPanel opciones_panel = new JPanel();
+        opciones_panel.setLayout(new BoxLayout(opciones_panel, BoxLayout.X_AXIS));
+        JButton opciones = new JButton();
+        opciones.setPreferredSize(new Dimension(80, 60));
+        opciones.setMaximumSize(new Dimension(80, 60));
+        opciones.setMinimumSize(new Dimension(80, 60));
+        opciones.setIcon(new ImageIcon("src/graficos/options.png"));
+        opciones.setContentAreaFilled(false);
+        opciones.setBorderPainted(false);
+        opciones.setOpaque(false);
+        opciones.setFocusPainted(false);
+        gbc.gridx = 2;
+        gbc.gridy = 0;
+        opciones_panel.add(opciones, BorderLayout.EAST);
+        Setup.add(opciones_panel,gbc);
+
+
+        JPopupMenu user_action = new JPopupMenu("ver mas");
+        JButton calendario = new JButton("Calendario");
+        calendario.setFont(new Font("Raleway", Font.BOLD, 14));
+        JButton usuario = new JButton("Usuario");
+        usuario.setFont(new Font("Raleway", Font.BOLD, 14));
+        user_action.add(usuario);
+        user_action.add(calendario);
+        opciones.setFont(new Font("Raleway", Font.BOLD, 18));
+        opciones.setComponentPopupMenu(user_action);
+        opciones.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                user_action.show(opciones,0,opciones.getWidth()/2);
+            }
+        });
 
         setContentPane(Setup);
         setLocationRelativeTo(null);
