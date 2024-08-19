@@ -30,4 +30,6 @@ public class Contacto {
     public String getCorreo() {return Correo;}
     public String getID_Num() {return ID_Num;}
     public File getFile() {return file;}
+
+    public String getDatos(){return getNombre()+","+getTipo_de_contacto()+","+getDireccion()+","+getTelefono()+","+getCorreo()+","+getID_Num();}
 }

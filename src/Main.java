@@ -1,7 +1,5 @@
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import java.io.File;
 import java.io.IOException;
 import java.nio.file.Files;
@@ -234,6 +232,29 @@ public class  Main extends JFrame {
                                 finca.addTrabajador(trabajador);
                             }
                             sc_t.close();
+                            break;
+                        case "Contactos.csv":
+                            File Contactos_finca = new File(fincas[i]+"/"+"Contactos.csv");
+                            Scanner sc_cs = new Scanner(new File(String.valueOf(Contactos_finca)));
+                            sc_cs.useDelimiter(",");
+                            if (sc_cs.hasNextLine()) {
+                                sc_cs.nextLine();
+                            }
+                            while (sc_cs.hasNext())
+                            {
+                                List<String> datos = new ArrayList<>();
+                                datos.add(sc_cs.nextLine());
+                                List<String> Contacto_general = Arrays.asList(datos.get(0).split(","));
+                                Contacto contacto = new Contacto();
+                                contacto.setNombre(Contacto_general.get(0));
+                                contacto.setTipo_de_contacto(Contacto_general.get(1));
+                                contacto.setDireccion(Contacto_general.get(2));
+                                contacto.setTelefono(Contacto_general.get(3));
+                                contacto.setCorreo(Contacto_general.get(4));
+                                contacto.setID_Num(Contacto_general.get(5));
+                                finca.addContacto(contacto);
+                            }
+                            sc_cs.close();
                             break;
                         default:
                             break;

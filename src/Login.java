@@ -102,6 +102,7 @@ public class Login extends JFrame {
                                         JOptionPane.showMessageDialog(Login.this, "Bienvenido " + UsuarioField1.getText());
                                         dispose();
                                         new SetupFinca(sistema, finca, csv);
+                                        finca.setUsuario_activo(usuario_activo.getUser());
                                         return;
                                     } else {
                                         if (j == sistema.getFincas().get(i).getUsuarios().size() - 1) {

@@ -144,6 +144,7 @@ public class SignIn extends JFrame {
                         throw new RuntimeException(ex);
                     }
                     new SetupFinca(sistema, finca, csv);
+                    finca.setUsuario_activo(usuario_activo.getUser());
                     dispose();
                 }else{JOptionPane.showMessageDialog(SignIn.this,"Ingrese bien su contraseña");}
             }

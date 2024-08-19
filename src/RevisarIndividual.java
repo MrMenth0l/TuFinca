@@ -746,6 +746,130 @@ public class RevisarIndividual extends JFrame {
                 });
                 break;
 
+            case 7:
+                List<String> contactos_finca = new ArrayList<>();
+                for (int i = 0; i < finca.getContactos().size(); i++) {
+                    contactos_finca.add(finca.getContactos().get(i).getNombre());
+                }
+                JComboBox ContactosField = new JComboBox<>(contactos_finca.toArray());
+                 button = new JButton("Revisar Contacto");
+                b = new JLabel("Seleccione que contacto quiere revisar");
+
+
+                Object[][] contacto_overview = new Object[5][2];
+                header = new String[]{"Atributo", "Valor"};
+
+                font = new Font("Raleway",Font.PLAIN,16);
+                font12 = new Font("Raleway",Font.PLAIN,12);
+                datos.setFont(font12);
+                button.setFont(font);
+                b.setFont(font);
+                ContactosField.setFont(font12);
+
+
+                RevisarIndividual.add(datos, BorderLayout.CENTER);
+                RevisarIndividual.add(button, BorderLayout.PAGE_END);
+                RevisarIndividual.add(b,BorderLayout.NORTH);
+                RevisarIndividual.add(ContactosField, BorderLayout.NORTH);
+
+
+                setContentPane(RevisarIndividual);
+                setTitle("Revisar trabajador individual");
+                setSize(500,200);
+                setLocationRelativeTo(null);
+                setVisible(true);
+
+
+
+                button.addActionListener(new ActionListener() {
+                    @Override
+                    public void actionPerformed(ActionEvent e) {
+                        for (int j = 0; j < finca.getContactos().size(); j++) {
+                            if (finca.getContactos().get(j).getNombre().equals(ContactosField.getSelectedItem())) {
+                                Contacto contacto = finca.getContactos().get(j);
+                                contacto_overview[0][0] = "Nombre: ";
+                                contacto_overview[0][1] = contacto.getNombre();
+                                contacto_overview[1][0] = "Tipo de contacto";
+                                contacto_overview[1][1] = contacto.getTipo_de_contacto();
+                                contacto_overview[2][0] = "Direccion";
+                                contacto_overview[2][1] = contacto.getDireccion();
+                                contacto_overview[3][0] = "Correo";
+                                contacto_overview[3][1] = contacto.getCorreo();
+                                contacto_overview[4][0] = "Telefono";
+                                contacto_overview[4][1] = contacto.getTelefono();
+
+
+                                TableModel model = new DefaultTableModel(contacto_overview,header);
+                                JTable overview_table = new JTable(model);
+                                overview_table.setFont(font12);
+                                overview_table.setRowHeight(30);
+                                overview_table.setSize(400,200);
+                                JScrollPane scrollPane = new JScrollPane(overview_table);
+                                JButton modificar = new JButton("Modificar Contacto " + finca.getContactos().get(j).getNombre());
+                                modificar.setFont(font);
+                                RevisarIndividual.add(scrollPane);
+                                RevisarIndividual.add(modificar, BorderLayout.SOUTH);
+                                setSize(700,600);
+
+                                modificar.addActionListener(new ActionListener() {
+                                    @Override
+                                    public void actionPerformed(ActionEvent e) {
+                                        contacto.setNombre((String) overview_table.getValueAt(0,1));
+                                        contacto.setTipo_de_contacto((String) overview_table.getValueAt(1,1));
+                                        contacto.setDireccion((String) overview_table.getValueAt(2,1));
+                                        contacto.setCorreo((String) overview_table.getValueAt(3,1));
+                                        contacto.setTelefono((String) overview_table.getValueAt(4,1));
+                                        JOptionPane.showMessageDialog(RevisarIndividual.this, "Contacto: " + contacto.getID_Num() + " Modificado correctamente");
+
+
+                                        File datos_cambiados = new File("temp.csv");
+                                        Scanner sc1 = null;
+                                        try {
+                                            sc1 = new Scanner(new File(finca.getFincaPath()+"/"+contacto.getFile()));
+                                        } catch (FileNotFoundException ex) {
+                                            throw new RuntimeException(ex);
+                                        }
+                                        sc1.useDelimiter(",");
+                                        while (sc1.hasNext()){
+                                            List<String> datos = new ArrayList<String>();
+                                            datos.add(sc1.nextLine());
+                                            List<String> contacto_read = Arrays.asList(datos.get(0).split(","));
+                                            if (contacto_read.getLast().equals(contacto.getID_Num())){
+                                                try {
+                                                    csv.exportData(contacto.getDatos(), datos_cambiados,finca);
+                                                } catch (IOException ex) {
+                                                    throw new RuntimeException(ex);
+                                                }
+                                            }else {
+                                                try {
+                                                    csv.exportData(datos.get(0),datos_cambiados,finca);
+                                                } catch (IOException ex) {
+                                                    throw new RuntimeException(ex);
+                                                }
+                                            }
+                                        }
+                                        File datos_pasados = new File(finca.getFincaPath()+"/Contactos.csv");
+                                        datos_pasados.renameTo(new File(finca.getFincaPath()+"/Contactos1.csv"));
+                                        datos_cambiados = new File(finca.getFincaPath()+"/temp.csv");
+                                        try {
+                                            Files.move(datos_cambiados.toPath(), Path.of(finca.getFincaPath() + "/Contactos.csv"));
+                                        } catch (IOException ex) {
+                                            throw new RuntimeException(ex);
+                                        }
+                                        try {
+                                            Files.deleteIfExists(Paths.get(finca.getFincaPath()+"/Contactos1.csv"));
+                                        } catch (IOException ex) {
+                                            throw new RuntimeException(ex);
+                                        }
+                                        dispose();
+                                    }
+                                });
+                            }
+                    }
+                    }
+                });
+                break;
+
             default:
                 break;
         }

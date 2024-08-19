@@ -208,15 +208,22 @@ public class SetupFinca extends JFrame {
         TrabajadorAgregar.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                new AgregarTrabajador(sistema, finca, csv);
+                new AgregarTrabajador(sistema,finca,csv);
             }
         });
 
         ContactoAgregar.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                new AgregarCosecha(sistema, finca, csv);
+                new AgregarContacto(sistema, finca, csv);
             }
         });
+        usuario.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                new RevisarUsuario(sistema, finca, csv);
+            }
+        });
+
     }
 }

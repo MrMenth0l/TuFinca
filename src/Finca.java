@@ -13,6 +13,8 @@ public class Finca {
     private List<Trabajador> trabajadores = new ArrayList<Trabajador>();
     private List<Contacto> contactos = new ArrayList<Contacto>();
     private String Nombre_Finca;
+    private String Usuario_activo;
+
 
 
     public File getFinca() {return finca;}
@@ -41,5 +43,8 @@ public class Finca {
     public String getFincaPath(){
         return "src/sistema/finca-"+getNombre_Finca();
     }
+
+    public String getUsuario_activo(){return this.Usuario_activo;}
+    public void setUsuario_activo(String usuario_activo) {this.Usuario_activo = usuario_activo;}
 
 }
