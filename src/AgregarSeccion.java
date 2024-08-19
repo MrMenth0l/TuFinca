@@ -127,6 +127,7 @@ public class AgregarSeccion extends JFrame {
 
 
         Seccion seccion = new Seccion();
+        setUndecorated(true);
         setContentPane(AgregarSeccion);
         setTitle("TuFinca");
         setSize(650,400);

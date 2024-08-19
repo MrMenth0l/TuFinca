@@ -625,6 +625,127 @@ public class RevisarIndividual extends JFrame {
                     }
                 });
                 break;
+            case 6:
+                List<String> trabajadores_finca = new ArrayList<>();
+                for (int i = 0; i < finca.getTrabajadores().size(); i++) {
+                    trabajadores_finca.add(finca.getTrabajadores().get(i).getNombre());
+                }
+                JComboBox TrabajadorField = new JComboBox<>(trabajadores_finca.toArray());
+                 button = new JButton("Revisar Trabajador");
+                b = new JLabel("Seleccione que trabajador quiere revisar");
+
+
+                Object[][] trabajador_overview = new Object[4][2];
+                header = new String[]{"Atributo", "Valor"};
+
+                font = new Font("Raleway",Font.PLAIN,16);
+                font12 = new Font("Raleway",Font.PLAIN,12);
+                datos.setFont(font12);
+                button.setFont(font);
+                b.setFont(font);
+                TrabajadorField.setFont(font12);
+
+
+                RevisarIndividual.add(datos, BorderLayout.CENTER);
+                RevisarIndividual.add(button, BorderLayout.PAGE_END);
+                RevisarIndividual.add(b,BorderLayout.NORTH);
+                RevisarIndividual.add(TrabajadorField, BorderLayout.NORTH);
+
+
+                setContentPane(RevisarIndividual);
+                setTitle("Revisar trabajador individual");
+                setSize(500,200);
+                setLocationRelativeTo(null);
+                setVisible(true);
+
+
+
+                button.addActionListener(new ActionListener() {
+                    @Override
+                    public void actionPerformed(ActionEvent e) {
+                        for (int j = 0; j < finca.getTrabajadores().size(); j++) {
+                            if (finca.getTrabajadores().get(j).getNombre().equals(TrabajadorField.getSelectedItem())) {
+                                Trabajador trabajador = finca.getTrabajadores().get(j);
+                                trabajador_overview[0][0] = "Nombre: ";
+                                trabajador_overview[0][1] = trabajador.getNombre();
+                                trabajador_overview[1][0] = "Rol";
+                                trabajador_overview[1][1] = trabajador.getRol();
+                                trabajador_overview[2][0] = "Salario";
+                                trabajador_overview[2][1] = trabajador.getSueldo();
+                                trabajador_overview[3][0] = "Telefono";
+                                trabajador_overview[3][1] = trabajador.getTelefono();
+
+                                TableModel model = new DefaultTableModel(trabajador_overview,header);
+                                JTable overview_table = new JTable(model);
+                                overview_table.setFont(font12);
+                                overview_table.setRowHeight(30);
+                                overview_table.setSize(400,200);
+                                JScrollPane scrollPane = new JScrollPane(overview_table);
+                                JButton modificar = new JButton("Modificar Trabajador " + finca.getTrabajadores().get(j).getNombre());
+                                modificar.setFont(font);
+                                RevisarIndividual.add(scrollPane);
+                                RevisarIndividual.add(modificar, BorderLayout.SOUTH);
+                                setSize(700,600);
+
+                                modificar.addActionListener(new ActionListener() {
+                                    @Override
+                                    public void actionPerformed(ActionEvent e) {
+                                        trabajador.setNombre((String) overview_table.getValueAt(0,1));
+                                        trabajador.setRol((String) overview_table.getValueAt(1,1));
+                                        String Sueldo = String.valueOf(overview_table.getValueAt(2,1));
+                                        trabajador.setSueldo(Double.parseDouble(Sueldo));
+                                        trabajador.setTelefono((String) overview_table.getValueAt(3,1));
+                                        JOptionPane.showMessageDialog(RevisarIndividual.this, "Trabajador: " + trabajador.getID_Num() + " Modificado correctamente");
+
+
+                                        File datos_cambiados = new File("temp.csv");
+                                        Scanner sc1 = null;
+                                        try {
+                                            sc1 = new Scanner(new File(finca.getFincaPath()+"/"+trabajador.getFile()));
+                                        } catch (FileNotFoundException ex) {
+                                            throw new RuntimeException(ex);
+                                        }
+                                        sc1.useDelimiter(",");
+                                        while (sc1.hasNext()){
+                                            List<String> datos = new ArrayList<String>();
+                                            datos.add(sc1.nextLine());
+                                            List<String> trabajador_read = Arrays.asList(datos.get(0).split(","));
+                                            if (trabajador_read.getLast().equals(trabajador.getID_Num())){
+                                                try {
+                                                    csv.exportData(trabajador.getDatos(), datos_cambiados,finca);
+                                                } catch (IOException ex) {
+                                                    throw new RuntimeException(ex);
+                                                }
+                                            }else {
+                                                try {
+                                                    csv.exportData(datos.get(0),datos_cambiados,finca);
+                                                } catch (IOException ex) {
+                                                    throw new RuntimeException(ex);
+                                                }
+                                            }
+                                        }
+                                        File datos_pasados = new File(finca.getFincaPath()+"/Trabajadores.csv");
+                                        datos_pasados.renameTo(new File(finca.getFincaPath()+"/Trabajadores1.csv"));
+                                        datos_cambiados = new File(finca.getFincaPath()+"/temp.csv");
+                                        try {
+                                            Files.move(datos_cambiados.toPath(), Path.of(finca.getFincaPath() + "/Trabajadores.csv"));
+                                        } catch (IOException ex) {
+                                            throw new RuntimeException(ex);
+                                        }
+                                        try {
+                                            Files.deleteIfExists(Paths.get(finca.getFincaPath()+"/Trabajadores1.csv"));
+                                        } catch (IOException ex) {
+                                            throw new RuntimeException(ex);
+                                        }
+                                        dispose();
+                                    }
+                                });
+                            }
+                    }
+                    }
+                });
+                break;
+
             default:
                 break;
         }

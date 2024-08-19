@@ -54,7 +54,7 @@ public class RevisarSuministradores extends JFrame {
             }
         });
 
-                ver_mas.addActionListener(new ActionListener() {
+        ver_mas.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 new RevisarIndividual(sistema, finca, csv,3);

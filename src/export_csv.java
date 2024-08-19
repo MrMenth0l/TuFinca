@@ -41,6 +41,9 @@ public class export_csv
 
             File CabezasGanado = new File("Cabezas&Ganado.csv");
             exportData("Cabeza, Seccion", CabezasGanado, finca);
+
+            File Trabajadores = new File("Trabajadores.csv");
+            exportData("Nombre, Rol, Sueldo, Telefono, ID_Num", Trabajadores, finca);
     }
 
     public void exportData(String datos, File file, Finca finca) throws IOException {

@@ -9,6 +9,8 @@ public class RevisarSetup extends JFrame{
     private JButton revisarSuministradoresButton;
     private JButton revisarSuministrosButton;
     private JButton revisarCosechasbutton;
+    private JButton revisarTrabajadoresbutton;
+    private JButton revisarContactosbutton;
     private JButton Regresar;
     private JPanel RevisarSetup;
 
@@ -62,8 +64,16 @@ public class RevisarSetup extends JFrame{
         gbc.gridy = 2;
         RevisarSetup.add(revisarSeccionesDeFincaButton, gbc);
 
+        revisarTrabajadoresbutton = new JButton("Trabajadores de su finca");
+        revisarTrabajadoresbutton.setIcon(new ImageIcon("src/graficos/trabajador.png"));
+        revisarTrabajadoresbutton.setFont(new Font("Raleway", Font.PLAIN, 18));
+        gbc.gridx = 2;
+        gbc.gridy = 2;
+        RevisarSetup.add(revisarTrabajadoresbutton,gbc);
+
         JLabel welcomeLabel = new JLabel("Revisar su Finca: ");
         welcomeLabel.setFont(new Font("Raleway", Font.BOLD, 22));
+        gbc.gridx = 1;
         gbc.gridy = 0;
         gbc.gridwidth = 3;
         RevisarSetup.add(welcomeLabel, gbc);
@@ -113,6 +123,13 @@ public class RevisarSetup extends JFrame{
             @Override
             public void actionPerformed(ActionEvent e) {
                 new RevisarCosecha(sistema, finca, csv);
+                dispose();
+            }
+        });
+        revisarTrabajadoresbutton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                new RevisarTrabajadores(sistema, finca, csv);
                 dispose();
             }
         });

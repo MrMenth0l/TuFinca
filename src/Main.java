@@ -10,7 +10,7 @@ import java.util.*;
 import java.util.List;
 
 
-public class Main extends JFrame {
+public class  Main extends JFrame {
     private JPanel Inicio;
     private JButton IngresarCuenta;
     private JLabel InitialLabel;
@@ -212,6 +212,28 @@ public class Main extends JFrame {
                                 finca.addCosecha(cosecha);
                             }
                             sc_c.close();
+                            break;
+                        case "Trabajadores.csv":
+                            File Trabajadores_finca = new File(fincas[i]+"/"+"Trabajadores.csv");
+                            Scanner sc_t = new Scanner(new File(String.valueOf(Trabajadores_finca)));
+                            sc_t.useDelimiter(",");
+                            if (sc_t.hasNextLine()) {
+                                sc_t.nextLine();
+                            }
+                            while (sc_t.hasNext())
+                            {
+                                List<String> datos = new ArrayList<>();
+                                datos.add(sc_t.nextLine());
+                                List<String> Trabajador_general = Arrays.asList(datos.get(0).split(","));
+                                Trabajador trabajador = new Trabajador();
+                                trabajador.setNombre(Trabajador_general.get(0));
+                                trabajador.setRol(Trabajador_general.get(1));
+                                trabajador.setSueldo(Double.parseDouble(Trabajador_general.get(2)));
+                                trabajador.setTelefono(Trabajador_general.get(3));
+                                trabajador.setID_Num(Trabajador_general.get(4));
+                                finca.addTrabajador(trabajador);
+                            }
+                            sc_t.close();
                             break;
                         default:
                             break;
