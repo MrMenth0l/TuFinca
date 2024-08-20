@@ -1,0 +1,31 @@
+Tipo, Tamaño, Medida, Estado, Epoca, Geografia, ID_Num
+Maíz,50,Hectáreas,Maduro,Verano,Montaña,#MaM001
+Trigo,100,Hectáreas,Verde,Primavera,Llanura,#TrL002
+Cebada,75,Hectáreas,Maduro,Otoño,Valle,#CeV003
+Soja,60,Hectáreas,Seco,Invierno,Montaña,#SoM004
+Girasol,120,Hectáreas,Verde,Verano,Llanura,#GiL005
+Arroz,90,Hectáreas,Maduro,Primavera,Río,#ArR006
+Algodón,40,Hectáreas,Seco,Otoño,Llanura,#AlL007
+Café,30,Hectáreas,Maduro,Invierno,Montaña,#CaM008
+Caña de Azúcar,150,Hectáreas,Verde,Verano,Río,#CaR009
+Sorgo,80,Hectáreas,Seco,Otoño,Valle,#SoV010
+Avena,70,Hectáreas,Verde,Primavera,Llanura,#AvL011
+Olivo,35,Hectáreas,Maduro,Verano,Montaña,#OlM012
+Vid,45,Hectáreas,Seco,Otoño,Valle,#ViV013
+Cacao,55,Hectáreas,Verde,Invierno,Río,#CaR014
+Tomate,20,Hectáreas,Maduro,Primavera,Llanura,#ToL015
+Papa,100,Hectáreas,Seco,Otoño,Montaña,#PaM016
+Tabaco,65,Hectáreas,Verde,Verano,Valle,#TaV017
+Remolacha,50,Hectáreas,Maduro,Invierno,Llanura,#ReL018
+Alfalfa,85,Hectáreas,Seco,Primavera,Río,#AlR019
+Cilantro,25,Hectáreas,Verde,Otoño,Valle,#CiV020
+Lechuga,15,Hectáreas,Maduro,Invierno,Llanura,#LeL021
+Cebolla,110,Hectáreas,Seco,Verano,Río,#CeR022
+Pimiento,95,Hectáreas,Verde,Otoño,Llanura,#PiL023
+Zanahoria,40,Hectáreas,Maduro,Primavera,Montaña,#ZaM024
+Espárrago,30,Hectáreas,Seco,Verano,Llanura,#EsL025
+Fresa,25,Hectáreas,Verde,Otoño,Valle,#FrV026
+Mango,60,Hectáreas,Maduro,Invierno,Montaña,#MaM027
+Piña,70,Hectáreas,Seco,Verano,Llanura,#PiL028
+Melón,90,Hectáreas,Verde,Otoño,Valle,#MeV029
+Sandía,80,Hectáreas,Maduro,Primavera,Río,#SaR030
