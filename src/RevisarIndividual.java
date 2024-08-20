@@ -635,7 +635,7 @@ public class RevisarIndividual extends JFrame {
                 b = new JLabel("Seleccione que trabajador quiere revisar");
 
 
-                Object[][] trabajador_overview = new Object[4][2];
+                Object[][] trabajador_overview = new Object[5][2];
                 header = new String[]{"Atributo", "Valor"};
 
                 font = new Font("Raleway",Font.PLAIN,16);
@@ -674,6 +674,8 @@ public class RevisarIndividual extends JFrame {
                                 trabajador_overview[2][1] = trabajador.getSueldo();
                                 trabajador_overview[3][0] = "Telefono";
                                 trabajador_overview[3][1] = trabajador.getTelefono();
+                                trabajador_overview[4][0] = "Tareas asignadas";
+                                trabajador_overview[4][1] = trabajador.getTareas().size();
 
                                 TableModel model = new DefaultTableModel(trabajador_overview,header);
                                 JTable overview_table = new JTable(model);

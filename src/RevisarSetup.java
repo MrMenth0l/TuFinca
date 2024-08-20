@@ -121,8 +121,12 @@ public class RevisarSetup extends JFrame{
         JButton usuario = new JButton("Usuario");
         usuario.setIcon(new ImageIcon("src/graficos/Usuario.png"));
         usuario.setFont(new Font("Raleway", Font.BOLD, 14));
+        JButton tarea = new JButton("Tareas");
+        tarea.setIcon(new ImageIcon("src/graficos/tareas.png"));
+        tarea.setFont(new Font("Raleway", Font.BOLD, 14));
         user_action.add(usuario);
         user_action.add(calendario);
+        user_action.add(tarea);
         opciones.setFont(new Font("Raleway", Font.BOLD, 18));
         opciones.setComponentPopupMenu(user_action);
         opciones.addActionListener(new ActionListener() {
@@ -200,5 +204,18 @@ public class RevisarSetup extends JFrame{
                 new RevisarUsuario(sistema, finca, csv);
             }
         });
+        calendario.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                new Calendario(sistema, finca, csv);
+            }
+        });
+        tarea.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                new AgregarTarea(sistema, finca, csv);
+            }
+        });
+
     }
 }

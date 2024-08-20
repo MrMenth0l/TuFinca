@@ -288,6 +288,35 @@ public class  Main extends JFrame {
                 }
             }
         }
+        for (int i = 0; i < sistema.getFincas().size(); i++) {
+            Finca finca = sistema.getFincas().get(i);
+            File Tareas = new File(finca.getFincaPath()+"/Tareas.csv");
+            Scanner sc_t = new Scanner(new File(String.valueOf(Tareas)));
+            sc_t.useDelimiter(",");
+            if (sc_t.hasNextLine()){
+                sc_t.nextLine();
+            }
+            while (sc_t.hasNextLine()){
+                List<String> datos = new ArrayList<String>();
+                datos.add(sc_t.nextLine());
+                List<String> Tarea = Arrays.asList(datos.get(0).split(","));
+                for (int j = 0; j < finca.getTrabajadores().size(); j++) {
+                    if (Tarea.get(4).equals(finca.getTrabajadores().get(j).getID_Num())){
+                        Trabajador trabajador = finca.getTrabajadores().get(j);
+                        List<String> datosTarea =new ArrayList<>();
+                        datosTarea.add(Tarea.get(0));
+                        datosTarea.add(Tarea.get(1));
+                        datosTarea.add(Tarea.get(2));
+                        trabajador.addTarea(datosTarea);
+                        List<String>datosTareaTrabajador = datosTarea;
+                        datosTareaTrabajador.add(trabajador.getNombre());
+                        datosTareaTrabajador.add(trabajador.getID_Num());
+                        finca.addTarea(datosTareaTrabajador);
+                        System.out.println("a" + trabajador.getNombre() + trabajador.getTareas().getFirst().get(2));
+                    }
+                }
+            }
+        }
         new Main(sistema, csv);
 
 

@@ -12,6 +12,7 @@ public class Finca {
     private List<Suministro> suministros = new ArrayList<Suministro>();
     private List<Trabajador> trabajadores = new ArrayList<Trabajador>();
     private List<Contacto> contactos = new ArrayList<Contacto>();
+    private List<List<String>> tareas = new ArrayList<>();
     private String Nombre_Finca;
     private String Usuario_activo;
 
@@ -27,6 +28,7 @@ public class Finca {
     public List<Suministro> getSuministros() {return suministros;}
     public List<Trabajador> getTrabajadores() {return trabajadores;}
     public List<Contacto> getContactos() {return contactos;}
+    public List<List<String>> getTareas() {return tareas;}
 
     public void addUsuario(Usuario usuario){usuarios.add(usuario);}
     public void addCabezaGanado(CabezaGanado cabezaGanado){cabezaGanados.add(cabezaGanado);}
@@ -36,6 +38,7 @@ public class Finca {
     public void addSuministros(Suministro suministro){suministros.add(suministro);}
     public void addTrabajador(Trabajador trabajador){trabajadores.add(trabajador);}
     public void addContacto(Contacto contacto){contactos.add(contacto);}
+    public void addTarea(List<String> tarea){tareas.add(tarea);}
 
     public void setNombre_Finca(String nombre_Finca) {Nombre_Finca = nombre_Finca;this.finca = new File("Fincas.csv");}
     public String getNombre_Finca() {return Nombre_Finca;}

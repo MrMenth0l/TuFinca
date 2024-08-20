@@ -1,5 +1,8 @@
 import java.io.File;
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 public class Trabajador {
     private String Nombre;
@@ -7,7 +10,7 @@ public class Trabajador {
     private double Sueldo;
     private String ID_Num;
     private String Telefono;
-    private List<String> Tareas;
+    private List<List<String>> Tareas = new ArrayList<>();
     private File file;
 
 
@@ -18,8 +21,9 @@ public class Trabajador {
     public void setSueldo(double sueldo) {Sueldo = sueldo;}
     public void setID_Num(String ID_Num) {this.ID_Num = ID_Num;}
     public void setID_Num(int ID_Num) {this.ID_Num = "#"+ getNombre().substring(0,2) + getRol().substring(0,2) + ID_Num;}
-    public void setTareas(List<String> tareas) {Tareas = tareas;}
-    public void addTarea(String tarea){Tareas.add(tarea);}
+
+    public void setTareas() {}
+    public void addTarea(List<String> tarea){Tareas.add(tarea);}
     public void setTelefono(String telefono) {Telefono = telefono;}
 
 
@@ -27,7 +31,7 @@ public class Trabajador {
     public String getRol() {return Rol;}
     public String getID_Num() {return ID_Num;}
     public double getSueldo() {return Sueldo;}
-    public List<String> getTareas() {return Tareas;}
+    public List<List<String>> getTareas() {return Tareas;}
     public File getFile() {return file;}
     public String getTelefono() {return Telefono;}
 
