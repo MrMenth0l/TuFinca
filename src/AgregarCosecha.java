@@ -18,12 +18,7 @@ public class AgregarCosecha extends JFrame {
     public AgregarCosecha(TuFinca sistema, Finca finca, export_csv csv){
         setTitle("Agregar Cosecha");
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-
-        // Set the frame to full screen
-        GraphicsEnvironment ge = GraphicsEnvironment.getLocalGraphicsEnvironment();
-        GraphicsDevice gd = ge.getDefaultScreenDevice();
-        setExtendedState(JFrame.MAXIMIZED_BOTH); // Maximize the window
-        setUndecorated(true); // Remove window decorations for full screen effect
+        setUndecorated(true);
 
         AgregarCosecha = new JPanel();
         AgregarCosecha.setLayout(new GridBagLayout());
@@ -139,9 +134,8 @@ public class AgregarCosecha extends JFrame {
         setVisible(true);
         setContentPane(AgregarCosecha);
         setTitle("TuFinca");
-        setSize(640,400);
+        setSize(700,400);
         setLocationRelativeTo(null);
-        setVisible(true);
 
 
         String [] estados = {"Vacia", "En crecimiento", "Sembra", "Lista para cosechar"};

@@ -18,11 +18,6 @@ public class AgregarGanado extends JFrame {
     public AgregarGanado(TuFinca sistema, Finca finca, export_csv csv){
         setTitle("Agregar Ganado");
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-
-        // Set the frame to full screen
-        GraphicsEnvironment ge = GraphicsEnvironment.getLocalGraphicsEnvironment();
-        GraphicsDevice gd = ge.getDefaultScreenDevice();
-        setExtendedState(JFrame.MAXIMIZED_BOTH); // Maximize the window
         setUndecorated(true); // Remove window decorations for full screen effect
 
         // Create a JPanel with GridBagLayout
@@ -118,7 +113,6 @@ public class AgregarGanado extends JFrame {
         setTitle("TuFinca");
         setSize(300,380);
         setLocationRelativeTo(null);
-        setVisible(true);
 
 
         agregarButton.addActionListener(new ActionListener() {
