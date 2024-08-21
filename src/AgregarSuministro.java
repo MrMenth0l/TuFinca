@@ -30,7 +30,7 @@ public class AgregarSuministro extends JFrame {
         gbc.insets = new Insets(5, 5, 5, 5);
         gbc.fill = GridBagConstraints.HORIZONTAL;
 
-        // Agregar Suministro Label
+
         JLabel titleLabel = new JLabel("Agregar Suministro");
         titleLabel.setFont(new Font("Raleway", Font.BOLD, 18));
         titleLabel.setHorizontalAlignment(SwingConstants.CENTER);
@@ -62,7 +62,7 @@ public class AgregarSuministro extends JFrame {
         gbc.anchor = GridBagConstraints.WEST;
         AgregarSuministro.add(tipoLabel, gbc);
 
-        // Tipo de Suministro ComboBox
+
         String[] tipos = {"Veterinario", "Quimico", "Concentrado", "Mecanico", "Pestizida", "Fertilizante", "Mixto"};
         TipoField = new JComboBox<>(tipos);
         TipoField.setFont(new Font("Raleway", Font.PLAIN, 14));
@@ -71,14 +71,14 @@ public class AgregarSuministro extends JFrame {
         gbc.anchor = GridBagConstraints.CENTER;
         AgregarSuministro.add(TipoField, gbc);
 
-        // Cantidad en Existencia Label
+
         JLabel existenciaLabel = new JLabel("Cantidad en existencia");
         existenciaLabel.setFont(new Font("Raleway", Font.PLAIN, 16));
         gbc.gridy = 5;
         gbc.anchor = GridBagConstraints.WEST;
         AgregarSuministro.add(existenciaLabel, gbc);
 
-        // Cantidad en Existencia Field
+
         ExistenciaField = new JTextField();
         ExistenciaField.setFont(new Font("Raleway", Font.PLAIN, 14));
         gbc.gridy = 6;
@@ -125,10 +125,9 @@ public class AgregarSuministro extends JFrame {
         gbc.anchor = GridBagConstraints.EAST;
         AgregarSuministro.add(Regresar, gbc);
 
-        // Add panel to the frame
+
         add(AgregarSuministro);
 
-        // Make frame visible
         setVisible(true);
         setContentPane(AgregarSuministro);
         setSize(300,380);

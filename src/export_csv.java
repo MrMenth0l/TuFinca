@@ -41,6 +41,20 @@ public class export_csv
 
             File CabezasGanado = new File("Cabezas&Ganado.csv");
             exportData("Cabeza, Seccion", CabezasGanado, finca);
+
+            File Trabajadores = new File("Trabajadores.csv");
+            exportData("Nombre, Rol, Sueldo, Telefono, ID_Num", Trabajadores, finca);
+
+            File Contactos = new File("Contactos.csv");
+            exportData("Nombre, Tipo de contacto, Direccion, Telefono, Correo, ID_Num", Contactos,finca);
+
+            File Tareas = new File("Tareas.csv");
+            exportData("Nombre, Descripcion, Fecha, Trabajador, ID_Num",Tareas,finca);
+
+            if(!Files.exists(Path.of("src/sistema/finca-" + finca.getNombre_Finca()+"/Tareas"))) {
+                Files.createDirectory(Path.of("src/sistema/finca-" + finca.getNombre_Finca() + "/Tareas"));
+            }
+
     }
 
     public void exportData(String datos, File file, Finca finca) throws IOException {
@@ -53,5 +67,23 @@ public class export_csv
         fw.close();
 
 
+    }
+
+    public void exportData(String datos, File file, Finca finca, boolean tarea) throws IOException {
+        File Datos = new File("src/sistema/finca-"+finca.getNombre_Finca()+"/Tareas/"+file);
+        FileWriter fw =  new FileWriter(Datos, true);
+        BufferedWriter bw = new BufferedWriter(fw);
+        bw. write(datos);
+        bw.newLine();
+        bw.close();
+        fw.close();
+
+
+    }
+
+    public void setupTarea(File file, Finca finca) throws IOException {
+        if(!Files.exists(Path.of("src/sistema/finca-" + finca.getNombre_Finca()+"/Tareas/"+file))) {
+                exportData("Nombre, Descripcion, Fecha", file, finca, true);
+            }
     }
 }

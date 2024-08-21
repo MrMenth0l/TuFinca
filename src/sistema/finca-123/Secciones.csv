@@ -1,0 +1,21 @@
+Seccion, Tamaño, Medida, Funcion, Estado, Cabezas, ID_Num
+Granja Norte,100,hectáreas,Cultivo,Activa,50,#GrCu001
+Campo Oeste,75,hectáreas,Pastoreo,En descanso,200,#CaPa002
+Ladera Sur,120,hectáreas,Cría,Activa,150,#LaCr003
+Valle Central,60,hectáreas,Cultivo,Activa,80,#VaCu004
+Pradera Este,90,hectáreas,Pastoreo,Activa,100,#PrPa005
+Colina Norte,50,hectáreas,Cría,En descanso,70,#CoCr006
+Rincón Sureste,130,hectáreas,Cultivo,Activa,90,#RiCu007
+Terreno Suroeste,85,hectáreas,Pastoreo,Activa,110,#TePa008
+Llanura Central,140,hectáreas,Cría,En descanso,60,#LlCr009
+Bosque Norte,110,hectáreas,Cultivo,Activa,40,#BoCu010
+Cañada Este,55,hectáreas,Pastoreo,Activa,120,#CaPa011
+Huerto Sur,70,hectáreas,Cría,En descanso,30,#HuCr012
+Viñedo Oeste,95,hectáreas,Cultivo,Activa,65,#ViCu013
+Montaña Central,150,hectáreas,Pastoreo,Activa,75,#MoPa014
+Río Norte,125,hectáreas,Cría,Activa,85,#RiCr015
+Isla Sur,105,hectáreas,Cultivo,En descanso,45,#IsCu016
+Estepa Este,65,hectáreas,Pastoreo,Activa,35,#EsPa017
+Vega Oeste,135,hectáreas,Cría,En descanso,25,#VeCr018
+Desierto Suroeste,115,hectáreas,Cultivo,Activa,95,#DeCu019
+Laguna Norte,145,hectáreas,Pastoreo,En descanso,55,#LaPa020

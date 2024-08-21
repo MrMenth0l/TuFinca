@@ -25,13 +25,14 @@ public class RevisarSuministros extends JFrame {
 
         TableModel model = new DefaultTableModel(Suministros, header);
         JTable suministrosTable = new JTable(model);
+        suministrosTable.setPreferredScrollableViewportSize(new Dimension(800, Suministros.length*15));
         Font font12 = new Font("Raleway",Font.PLAIN,12);
         suministrosTable.setFont(font12);
 
         JScrollPane scrollPane = new JScrollPane(suministrosTable);
         RevisarSuministros = new JPanel();
         RevisarSuministros.add(scrollPane);
-        JButton ver_mas = new JButton("ver mas");
+        JButton ver_mas = new JButton("Modificar");
         JButton regresar = new JButton("regresar");
         RevisarSuministros.add(ver_mas);
         RevisarSuministros.add(regresar, BorderLayout.PAGE_END);

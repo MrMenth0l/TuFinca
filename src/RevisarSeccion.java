@@ -28,13 +28,14 @@ public class RevisarSeccion extends JFrame {
 
         TableModel model = new DefaultTableModel(secciones, header);
         JTable seccionTable = new JTable(model);
+        seccionTable.setPreferredScrollableViewportSize(new Dimension(800, secciones.length*15));
         Font font12 = new Font("Raleway",Font.PLAIN,12);
         seccionTable.setFont(font12);
 
         JScrollPane scrollPane = new JScrollPane(seccionTable);
         RevisarSeccion = new JPanel();
         RevisarSeccion.add(scrollPane);
-        JButton ver_mas = new JButton("ver mas");
+        JButton ver_mas = new JButton("Modificar");
         JButton regresar = new JButton("regresar");
         RevisarSeccion.add(ver_mas);
         RevisarSeccion.add(regresar, BorderLayout.PAGE_END);

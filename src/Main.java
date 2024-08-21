@@ -1,7 +1,5 @@
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import java.io.File;
 import java.io.IOException;
 import java.nio.file.Files;
@@ -9,7 +7,8 @@ import java.nio.file.Path;
 import java.util.*;
 import java.util.List;
 
-public class Main extends JFrame {
+
+public class  Main extends JFrame {
     private JPanel Inicio;
     private JButton IngresarCuenta;
     private JLabel InitialLabel;
@@ -30,7 +29,6 @@ public class Main extends JFrame {
 
         JPanel buttonPanel = new JPanel();
         buttonPanel.setLayout(new BoxLayout(buttonPanel, BoxLayout.X_AXIS));
-
         IngresarCuenta = new JButton("Ingresar");
         IngresarCuenta.setFont(new Font("Raleway", Font.BOLD, 24));
         IngresarCuenta.setForeground(new Color(-11179215));
@@ -213,6 +211,51 @@ public class Main extends JFrame {
                             }
                             sc_c.close();
                             break;
+                        case "Trabajadores.csv":
+                            File Trabajadores_finca = new File(fincas[i]+"/"+"Trabajadores.csv");
+                            Scanner sc_t = new Scanner(new File(String.valueOf(Trabajadores_finca)));
+                            sc_t.useDelimiter(",");
+                            if (sc_t.hasNextLine()) {
+                                sc_t.nextLine();
+                            }
+                            while (sc_t.hasNext())
+                            {
+                                List<String> datos = new ArrayList<>();
+                                datos.add(sc_t.nextLine());
+                                List<String> Trabajador_general = Arrays.asList(datos.get(0).split(","));
+                                Trabajador trabajador = new Trabajador();
+                                trabajador.setNombre(Trabajador_general.get(0));
+                                trabajador.setRol(Trabajador_general.get(1));
+                                trabajador.setSueldo(Double.parseDouble(Trabajador_general.get(2)));
+                                trabajador.setTelefono(Trabajador_general.get(3));
+                                trabajador.setID_Num(Trabajador_general.get(4));
+                                finca.addTrabajador(trabajador);
+                            }
+                            sc_t.close();
+                            break;
+                        case "Contactos.csv":
+                            File Contactos_finca = new File(fincas[i]+"/"+"Contactos.csv");
+                            Scanner sc_cs = new Scanner(new File(String.valueOf(Contactos_finca)));
+                            sc_cs.useDelimiter(",");
+                            if (sc_cs.hasNextLine()) {
+                                sc_cs.nextLine();
+                            }
+                            while (sc_cs.hasNext())
+                            {
+                                List<String> datos = new ArrayList<>();
+                                datos.add(sc_cs.nextLine());
+                                List<String> Contacto_general = Arrays.asList(datos.get(0).split(","));
+                                Contacto contacto = new Contacto();
+                                contacto.setNombre(Contacto_general.get(0));
+                                contacto.setTipo_de_contacto(Contacto_general.get(1));
+                                contacto.setDireccion(Contacto_general.get(2));
+                                contacto.setTelefono(Contacto_general.get(3));
+                                contacto.setCorreo(Contacto_general.get(4));
+                                contacto.setID_Num(Contacto_general.get(5));
+                                finca.addContacto(contacto);
+                            }
+                            sc_cs.close();
+                            break;
                         default:
                             break;
                     }
@@ -241,6 +284,34 @@ public class Main extends JFrame {
                                 seccion.addCabezaGanado(cabeza);
                             }
                         }
+                    }
+                }
+            }
+        }
+        for (int i = 0; i < sistema.getFincas().size(); i++) {
+            Finca finca = sistema.getFincas().get(i);
+            File Tareas = new File(finca.getFincaPath()+"/Tareas.csv");
+            Scanner sc_t = new Scanner(new File(String.valueOf(Tareas)));
+            sc_t.useDelimiter(",");
+            if (sc_t.hasNextLine()){
+                sc_t.nextLine();
+            }
+            while (sc_t.hasNextLine()){
+                List<String> datos = new ArrayList<String>();
+                datos.add(sc_t.nextLine());
+                List<String> Tarea = Arrays.asList(datos.get(0).split(","));
+                for (int j = 0; j < finca.getTrabajadores().size(); j++) {
+                    if (Tarea.get(4).equals(finca.getTrabajadores().get(j).getID_Num())){
+                        Trabajador trabajador = finca.getTrabajadores().get(j);
+                        List<String> datosTarea =new ArrayList<>();
+                        datosTarea.add(Tarea.get(0));
+                        datosTarea.add(Tarea.get(1));
+                        datosTarea.add(Tarea.get(2));
+                        trabajador.addTarea(datosTarea);
+                        List<String>datosTareaTrabajador = datosTarea;
+                        datosTareaTrabajador.add(trabajador.getNombre());
+                        datosTareaTrabajador.add(trabajador.getID_Num());
+                        finca.addTarea(datosTareaTrabajador);
                     }
                 }
             }

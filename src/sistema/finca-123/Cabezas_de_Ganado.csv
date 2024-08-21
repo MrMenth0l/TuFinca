@@ -1,0 +1,51 @@
+Nombre, Raza, Especie, Edad(años), ID_Num
+Luna,Holstein,Vaca,4,#LVaHo001
+Bella,Merino,Oveja,3,#BOVeMe002
+Max,Berkshire,Cerdo,2,#MBeCe003
+Daisy,Jersey,Vaca,5,#DVaJe004
+Rocky,Suffolk,Oveja,4,#ROSu005
+Toby,Duroc,Cerdo,3,#TCDu006
+Coco,Angus,Vaca,2,#CAVaAn007
+Molly,Texel,Oveja,1,#MOTe008
+Buster,Hampshire,Cerdo,4,#BCHa009
+Rosie,Guernsey,Vaca,3,#RVaGu010
+Jack,Dorper,Oveja,2,#JODo011
+Porky,Yorkshire,Cerdo,5,#PYCY012
+Buttercup,Brown Swiss,Vaca,6,#BVBr013
+Snowy,Dorset,Oveja,4,#SODo014
+Wilbur,Tamworth,Cerdo,3,#WTCe015
+Olive,Ayrshire,Vaca,2,#OAVa016
+Bonnie,Romney,Oveja,3,#BOVeRo017
+Hamlet,Large White,Cerdo,1,#HCLW018
+Elsie,Simmental,Vaca,5,#EViSi019
+Lily,Lincoln,Oveja,4,#LOL020
+Rufus,Landrace,Cerdo,2,#RCL021
+Ginger,Charolais,Vaca,3,#GVaCh022
+Sadie,Border Leicester,Oveja,1,#SOLB023
+Bacon,Gloucestershire Old Spots,Cerdo,4,#BGO024
+Fern,Hereford,Vaca,5,#FViHe025
+Maisie,Shropshire,Oveja,2,#MSOSh026
+Benny,Saddleback,Cerdo,3,#BCSa027
+Nellie,Limousin,Vaca,4,#NViLi028
+Heather,Cheviot,Oveja,3,#HOCh029
+Oreo,Pietrain,Cerdo,2,#OPiCe030
+Clara,Montbéliarde,Vaca,6,#CVMo031
+Pippa,Bluefaced Leicester,Oveja,5,#PBO032
+Snout,Hampshire,Cerdo,1,#SHaCe033
+Ruby,Fleckvieh,Vaca,4,#RViFl034
+Ella,Jacob,Oveja,3,#EOJa035
+Chester,Mangalitsa,Cerdo,5,#CMaCe036
+Maggie,Gelbvieh,Vaca,2,#MViGe037
+Floss,Gotland,Oveja,4,#FOGo038
+Patch,KuneKune,Cerdo,3,#PKuCe039
+Brandy,Chianina,Vaca,5,#BVCCh040
+Tilly,Cotswold,Oveja,2,#TCO041
+Oscar,Red Wattle,Cerdo,4,#ORWC042
+Hazel,Salers,Vaca,6,#HViSa043
+Polly,Shetland,Oveja,3,#POSh044
+Truffles,Ossabaw Island,Cerdo,2,#TOIC045
+Blossom,Parthenais,Vaca,4,#BPV046
+Willow,Clun Forest,Oveja,5,#WCF047
+Peppa,Berkshire,Cerdo,1,#PBKCe048
+Minnie,Blonde d'Aquitaine,Vaca,3,#MBAV049
+Bailey,Southdown,Oveja,4,#BSOS050

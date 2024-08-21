@@ -106,6 +106,7 @@ public class AgregarSuministrador extends JFrame{
         gbc.fill = GridBagConstraints.VERTICAL;
         AgregarSuministrador.add(Box.createVerticalStrut(20), gbc);
 
+        setUndecorated(true);
         setContentPane(AgregarSuministrador);
         setTitle("TuFinca");
         setSize(400,390);

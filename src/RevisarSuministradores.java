@@ -27,13 +27,14 @@ public class RevisarSuministradores extends JFrame {
 
         TableModel model = new DefaultTableModel(Suministradores, header);
         JTable suministradorTable = new JTable(model);
+        suministradorTable.setPreferredScrollableViewportSize(new Dimension(800, Suministradores.length*15));
         Font font12 = new Font("Raleway",Font.PLAIN,12);
         suministradorTable.setFont(font12);
 
         JScrollPane scrollPane = new JScrollPane(suministradorTable);
         RevisarSuministradores = new JPanel();
         RevisarSuministradores.add(scrollPane);
-        JButton ver_mas = new JButton("ver mas");
+        JButton ver_mas = new JButton("Modificar");
         JButton regresar = new JButton("regresar");
         RevisarSuministradores.add(ver_mas);
         RevisarSuministradores.add(regresar, BorderLayout.PAGE_END);
@@ -54,7 +55,7 @@ public class RevisarSuministradores extends JFrame {
             }
         });
 
-                ver_mas.addActionListener(new ActionListener() {
+        ver_mas.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 new RevisarIndividual(sistema, finca, csv,3);

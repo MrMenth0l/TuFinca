@@ -27,13 +27,14 @@ public class RevisarCosecha extends JFrame {
 
         TableModel model = new DefaultTableModel(Cosechas, header);
         JTable cosechaTable = new JTable(model);
+        cosechaTable.setPreferredScrollableViewportSize(new Dimension(800, Cosechas.length*15));
         Font font12 = new Font("Raleway",Font.PLAIN,12);
         cosechaTable.setFont(font12);
 
         JScrollPane scrollPane = new JScrollPane(cosechaTable);
         RevisarCosecha = new JPanel();
         RevisarCosecha.add(scrollPane);
-        JButton ver_mas = new JButton("ver mas");
+        JButton ver_mas = new JButton("Modificar");
         JButton regresar = new JButton("regresar");
         RevisarCosecha.add(ver_mas);
         RevisarCosecha.add(regresar, BorderLayout.PAGE_END);

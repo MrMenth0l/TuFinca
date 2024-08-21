@@ -135,12 +135,14 @@ public class AgregarCosecha extends JFrame {
         gbc.gridx = 3;
         AgregarCosecha.add(Regresar, gbc);
 
+        setUndecorated(true);
         setVisible(true);
         setContentPane(AgregarCosecha);
         setTitle("TuFinca");
         setSize(640,400);
         setLocationRelativeTo(null);
         setVisible(true);
+
 
         String [] estados = {"Vacia", "En crecimiento", "Sembra", "Lista para cosechar"};
 

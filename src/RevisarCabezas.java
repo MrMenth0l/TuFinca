@@ -30,13 +30,15 @@ public class RevisarCabezas extends JFrame {
 
         TableModel model = new DefaultTableModel(cabezasGanado, header);
         ganadoTable = new JTable(model);
+        ganadoTable.setPreferredScrollableViewportSize(new Dimension(800, cabezasGanado.length*15));
         Font font12 = new Font("Raleway",Font.PLAIN,12);
         ganadoTable.setFont(font12);
 
         scrollPane = new JScrollPane(ganadoTable);
         RevisarCabezas = new JPanel();
+
         RevisarCabezas.add(scrollPane);
-        JButton ver_mas = new JButton("ver mas");
+        JButton ver_mas = new JButton("Modificar");
         JButton regresar = new JButton("regresar");
         RevisarCabezas.add(ver_mas);
         RevisarCabezas.add(regresar, BorderLayout.PAGE_END);

@@ -32,6 +32,8 @@ public class AsignarGanado extends JFrame{
         AsignarGanado.add(GanadoField);
         AsignarGanado.add(asignar);
         AsignarGanado.add(Regresar, BorderLayout.PAGE_END);
+
+        setUndecorated(true);
         setContentPane(AsignarGanado);
         setTitle("Asignar ganado");
         setSize(500,200);
@@ -102,6 +104,8 @@ public class AsignarGanado extends JFrame{
         AsignarGanado.add(GanadoField);
         AsignarGanado.add(asignar);
         AsignarGanado.add(Regresar, BorderLayout.PAGE_END);
+
+        setUndecorated(true);
         setContentPane(AsignarGanado);
         setTitle("Asignar ganado");
         setSize(500,200);
