@@ -27,6 +27,7 @@ public class RevisarCosecha extends JFrame {
 
         TableModel model = new DefaultTableModel(Cosechas, header);
         JTable cosechaTable = new JTable(model);
+        cosechaTable.setPreferredScrollableViewportSize(new Dimension(800, Cosechas.length*15));
         Font font12 = new Font("Raleway",Font.PLAIN,12);
         cosechaTable.setFont(font12);
 

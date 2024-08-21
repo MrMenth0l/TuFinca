@@ -26,6 +26,7 @@ public class RevisarTrabajadores extends JFrame{
 
         TableModel model = new DefaultTableModel(Trabajadores, header);
         JTable trabajadorTable = new JTable(model);
+        trabajadorTable.setPreferredScrollableViewportSize(new Dimension(800, Trabajadores.length*15));
         Font font12 = new Font("Raleway",Font.PLAIN,12);
         trabajadorTable.setFont(font12);
 

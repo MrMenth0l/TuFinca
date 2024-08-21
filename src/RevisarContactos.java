@@ -31,6 +31,7 @@ public class RevisarContactos extends JFrame {
 
        TableModel model = new DefaultTableModel(Contactos, header);
        JTable contactoTable = new JTable(model);
+       contactoTable.setPreferredScrollableViewportSize(new Dimension(800, Contactos.length*15));
        Font font12 = new Font("Raleway",Font.PLAIN,12);
        contactoTable.setFont(font12);
 

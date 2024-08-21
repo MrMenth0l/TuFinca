@@ -72,6 +72,7 @@ public class RevisarIndividual extends JFrame {
 
                                 TableModel model = new DefaultTableModel(cabeza_overview,header);
                                 JTable overview_table = new JTable(model);
+                                overview_table.setPreferredScrollableViewportSize(new Dimension(600, cabeza_overview.length*30));
                                 overview_table.setFont(font12);
                                 overview_table.setRowHeight(30);
                                 overview_table.setSize(400,100);
@@ -80,7 +81,7 @@ public class RevisarIndividual extends JFrame {
                                 modificar.setFont(font);
                                 RevisarIndividual.add(scrollPane);
                                 RevisarIndividual.add(modificar, BorderLayout.SOUTH);
-                                setSize(700,400);
+                                setSize(700,cabeza_overview.length*30 + 150);
 
                                 modificar.addActionListener(new ActionListener() {
                                     @Override
@@ -196,6 +197,7 @@ public class RevisarIndividual extends JFrame {
 
                                 TableModel model = new DefaultTableModel(seccion_overview,header);
                                 JTable overview_table = new JTable(model);
+                                overview_table.setPreferredScrollableViewportSize(new Dimension(600, seccion_overview.length*30));
                                 overview_table.setFont(font12);
                                 overview_table.setRowHeight(30);
                                 overview_table.setSize(400,100);
@@ -204,7 +206,7 @@ public class RevisarIndividual extends JFrame {
                                 modificar.setFont(font);
                                 RevisarIndividual.add(scrollPane);
                                 RevisarIndividual.add(modificar, BorderLayout.SOUTH);
-                                setSize(700,600);
+                                setSize(700,seccion_overview.length*30 + 150);
 
                                 modificar.addActionListener(new ActionListener() {
                                     @Override
@@ -315,6 +317,7 @@ public class RevisarIndividual extends JFrame {
 
                                 TableModel model = new DefaultTableModel(suministrador_overview,header);
                                 JTable overview_table = new JTable(model);
+                                overview_table.setPreferredScrollableViewportSize(new Dimension(600, suministrador_overview.length*30));
                                 overview_table.setFont(font12);
                                 overview_table.setRowHeight(30);
                                 overview_table.setSize(400,200);
@@ -323,7 +326,7 @@ public class RevisarIndividual extends JFrame {
                                 modificar.setFont(font);
                                 RevisarIndividual.add(scrollPane);
                                 RevisarIndividual.add(modificar, BorderLayout.SOUTH);
-                                setSize(700,600);
+                                setSize(700,suministrador_overview.length*30 + 150);
 
                                 modificar.addActionListener(new ActionListener() {
                                     @Override
@@ -436,6 +439,7 @@ public class RevisarIndividual extends JFrame {
 
                                 TableModel model = new DefaultTableModel(suministro_overview,header);
                                 JTable overview_table = new JTable(model);
+                                overview_table.setPreferredScrollableViewportSize(new Dimension(600, suministro_overview.length*30));
                                 overview_table.setFont(font12);
                                 overview_table.setRowHeight(30);
                                 overview_table.setSize(400,200);
@@ -444,7 +448,7 @@ public class RevisarIndividual extends JFrame {
                                 modificar.setFont(font);
                                 RevisarIndividual.add(scrollPane);
                                 RevisarIndividual.add(modificar, BorderLayout.SOUTH);
-                                setSize(700,600);
+                                setSize(700,suministro_overview.length*30 + 150);
 
                                 modificar.addActionListener(new ActionListener() {
                                     @Override
@@ -558,6 +562,7 @@ public class RevisarIndividual extends JFrame {
 
                                 TableModel model = new DefaultTableModel(cosecha_overview,header);
                                 JTable overview_table = new JTable(model);
+                                overview_table.setPreferredScrollableViewportSize(new Dimension(600, cosecha_overview.length*30));
                                 overview_table.setFont(font12);
                                 overview_table.setRowHeight(30);
                                 overview_table.setSize(400,200);
@@ -566,7 +571,7 @@ public class RevisarIndividual extends JFrame {
                                 modificar.setFont(font);
                                 RevisarIndividual.add(scrollPane);
                                 RevisarIndividual.add(modificar, BorderLayout.SOUTH);
-                                setSize(700,600);
+                                setSize(700,cosecha_overview.length*30 + 150);
 
                                 modificar.addActionListener(new ActionListener() {
                                     @Override
@@ -679,6 +684,7 @@ public class RevisarIndividual extends JFrame {
 
                                 TableModel model = new DefaultTableModel(trabajador_overview,header);
                                 JTable overview_table = new JTable(model);
+                                overview_table.setPreferredScrollableViewportSize(new Dimension(600, trabajador_overview.length*30));
                                 overview_table.setFont(font12);
                                 overview_table.setRowHeight(30);
                                 overview_table.setSize(400,200);
@@ -687,7 +693,7 @@ public class RevisarIndividual extends JFrame {
                                 modificar.setFont(font);
                                 RevisarIndividual.add(scrollPane);
                                 RevisarIndividual.add(modificar, BorderLayout.SOUTH);
-                                setSize(700,600);
+                                setSize(700,trabajador_overview.length*30 + 150);
 
                                 modificar.addActionListener(new ActionListener() {
                                     @Override
@@ -803,6 +809,7 @@ public class RevisarIndividual extends JFrame {
 
                                 TableModel model = new DefaultTableModel(contacto_overview,header);
                                 JTable overview_table = new JTable(model);
+                                overview_table.setPreferredScrollableViewportSize(new Dimension(600, contacto_overview.length*30));
                                 overview_table.setFont(font12);
                                 overview_table.setRowHeight(30);
                                 overview_table.setSize(400,200);
@@ -811,7 +818,7 @@ public class RevisarIndividual extends JFrame {
                                 modificar.setFont(font);
                                 RevisarIndividual.add(scrollPane);
                                 RevisarIndividual.add(modificar, BorderLayout.SOUTH);
-                                setSize(700,600);
+                                setSize(700,contacto_overview.length*30 + 150);
 
                                 modificar.addActionListener(new ActionListener() {
                                     @Override

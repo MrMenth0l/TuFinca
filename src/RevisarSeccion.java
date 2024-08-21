@@ -28,6 +28,7 @@ public class RevisarSeccion extends JFrame {
 
         TableModel model = new DefaultTableModel(secciones, header);
         JTable seccionTable = new JTable(model);
+        seccionTable.setPreferredScrollableViewportSize(new Dimension(800, secciones.length*15));
         Font font12 = new Font("Raleway",Font.PLAIN,12);
         seccionTable.setFont(font12);
 

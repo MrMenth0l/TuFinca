@@ -3,6 +3,8 @@ import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableModel;
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
@@ -28,6 +30,11 @@ public class Calendario extends JFrame{
         gbc.gridy = 0;
         Calendario.add(calendar, gbc);
 
+        JButton regresar = new JButton("Regresar");
+        regresar.setFont(new Font("Raleway",Font.BOLD,14));
+        gbc.gridy=2;
+        Calendario.add(regresar,gbc);
+
 
         // Add a listener to update the label when a date is selected
         calendar.addPropertyChangeListener("calendar", evt -> {
@@ -38,7 +45,12 @@ public class Calendario extends JFrame{
             new TareasDia(sistema,finca,csv,dateOnly);
 
         });
-
+        regresar.addActionListener(new ActionListener() {
+           @Override
+           public void actionPerformed(ActionEvent e) {
+               dispose();
+           }
+       });
 
 
 

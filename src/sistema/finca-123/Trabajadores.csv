@@ -1,5 +1,5 @@
 Nombre, Rol, Sueldo, Telefono, ID_Num
-Juan Pérez,Agricultor,2000,555-1000,#JuAg1
+Juan Pérez,Agricultor,2000.0,555-1000,#JuAg1
 María Gómez,Ganadero,2010,555-1001,#MaGa2
 Carlos Ruiz,Obrero,2020,555-1002,#CaOb3
 Ana Rodríguez,Administrador,2030,555-1003,#AnAd4
@@ -46,4 +46,8 @@ Sara Martínez,Administrador,2430,555-1043,#SaAd44
 Felipe Gómez,Operador,2440,555-1044,#FeOp45
 Carla Rodríguez,Agricultor,2450,555-1045,#CaAg46
 Edison Silva,Ganadero,2460,555-1046,#EdGa47
-Diana López,Obrero,2470,555-1047,#DiOb48
+Diana López,Obrero,2470,555-1047,#DiOb48Miguel HUECO,pene,100.0,54261728,#Mipe10
+Andrew HUECO,pito,100.0,40101510,#Anpi10
+Miguelito HUECO,chupar pene,100.0,54261728,#Mich10
+Velismel,trabajadora,1000.0,49946145,#Vetr10
+Zcuinkle,trabajadora,100.0,30574902,#Zctr10

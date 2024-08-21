@@ -1,5 +1,5 @@
 Nombre, Tipo, Cantidad, Dias desde compra, ID_Num
-Fertilizante,Orgánico,100,30,#FeOr001
+Fertilizante,Orgánico,100,100,#FeOr001
 Herbicida,Químico,50,15,#HeQu002
 Semillas,Maíz,200,7,#SeMa003
 Pesticida,Orgánico,30,22,#PeOr004

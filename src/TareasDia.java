@@ -29,14 +29,20 @@ public class TareasDia extends JFrame {
         if (a>0){
         TableModel model = new DefaultTableModel(Tareas, header);
         JTable tareasTable = new JTable(model);
+        tareasTable.setSize(400,50);
         tareasTable.setFont(font);
 
-        JScrollPane scrollPane = new JScrollPane(tareasTable);
         TareasDia = new JPanel();
+
+        JScrollPane scrollPane = new JScrollPane(tareasTable);
+        scrollPane.setSize(400, 50);
         TareasDia.add(scrollPane);
+
         JButton regresar = new JButton("Regresar");
-        TareasDia.add(regresar);
-        regresar.setFont(font);
+        regresar.setFont(new Font("Raleway",Font.BOLD,14));
+        regresar.setForeground(new Color(-11179215));
+        TareasDia.add(regresar,BorderLayout.PAGE_END);
+
 
         setContentPane(TareasDia);
         setTitle("Tareas para " + date);

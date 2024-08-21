@@ -2,7 +2,6 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.io.IOException;
 
 public class Login extends JFrame {
     private JPanel Login;
@@ -19,13 +18,21 @@ public class Login extends JFrame {
         Login = new JPanel();
         Login.setLayout(new BoxLayout(Login, BoxLayout.Y_AXIS));
 
-        // Farm name label
+        JLabel titleLabel = new JLabel("Iniciar sesion", SwingConstants.CENTER);
+        titleLabel.setFont(new Font("Raleway", Font.BOLD, 18));
+        titleLabel.setForeground(new Color(-11179215));
+        titleLabel.setAlignmentX(Component.CENTER_ALIGNMENT);
+        Login.add(titleLabel);
+
+        Login.add(Box.createVerticalStrut(20));
+
+
         JLabel fincaLabel = new JLabel("Nombre de finca");
         fincaLabel.setFont(new Font("Raleway", Font.PLAIN, 16));
         fincaLabel.setAlignmentX(Component.CENTER_ALIGNMENT);
         Login.add(fincaLabel);
 
-        // Farm name text field
+
         FincaField = new JTextField(15);
         FincaField.setFont(new Font("Raleway", Font.PLAIN, 16));
         FincaField.setMaximumSize(FincaField.getPreferredSize());
@@ -34,13 +41,13 @@ public class Login extends JFrame {
 
         Login.add(Box.createVerticalStrut(10)); // Spacer
 
-        // User label
-        JLabel userLabel = new JLabel("Usuario");
-        userLabel.setFont(new Font("Raleway", Font.PLAIN, 16));
-        userLabel.setAlignmentX(Component.CENTER_ALIGNMENT);
-        Login.add(userLabel);
 
-        // User text field
+        Usuario = new JLabel("Usuario");
+        Usuario.setFont(new Font("Raleway", Font.PLAIN, 16));
+        Usuario.setAlignmentX(Component.CENTER_ALIGNMENT);
+        Login.add(Usuario);
+
+
         UsuarioField1 = new JTextField(15);
         UsuarioField1.setFont(new Font("Raleway", Font.PLAIN, 16));
         UsuarioField1.setMaximumSize(UsuarioField1.getPreferredSize());
@@ -49,11 +56,11 @@ public class Login extends JFrame {
 
         Login.add(Box.createVerticalStrut(10)); // Spacer
 
-        // Password label
-        JLabel passLabel = new JLabel("Contraseña");
-        passLabel.setFont(new Font("Raleway", Font.PLAIN, 16));
-        passLabel.setAlignmentX(Component.CENTER_ALIGNMENT);
-        Login.add(passLabel);
+
+        Pass = new JLabel("Contraseña");
+        Pass.setFont(new Font("Raleway", Font.PLAIN, 16));
+        Pass.setAlignmentX(Component.CENTER_ALIGNMENT);
+        Login.add(Pass);
 
         // Password field
         PassField1 = new JPasswordField(15);
@@ -82,10 +89,10 @@ public class Login extends JFrame {
 
         Login.add(Box.createVerticalStrut(10));
 
-    setContentPane(Login);
+        setContentPane(Login);
         setTitle("Ingresar Cuenta");
         setDefaultCloseOperation(EXIT_ON_CLOSE);
-        setSize(300,300);
+        setSize(250,340);
         setLocationRelativeTo(null);
         setVisible(true);
         IngresarButton.addActionListener(new ActionListener() {

@@ -25,6 +25,7 @@ public class RevisarSuministros extends JFrame {
 
         TableModel model = new DefaultTableModel(Suministros, header);
         JTable suministrosTable = new JTable(model);
+        suministrosTable.setPreferredScrollableViewportSize(new Dimension(800, Suministros.length*15));
         Font font12 = new Font("Raleway",Font.PLAIN,12);
         suministrosTable.setFont(font12);
 

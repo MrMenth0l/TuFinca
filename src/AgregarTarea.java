@@ -26,18 +26,17 @@ public class AgregarTarea extends JFrame {
         titleLabel.setFont(new Font("Raleway", Font.BOLD, 18));
         titleLabel.setHorizontalAlignment(SwingConstants.CENTER);
         gbc.gridx = 0;
-        gbc.gridy = 0;
-        gbc.gridwidth = 2;
+        gbc.gridy = 1;
         AgregarTarea.add(titleLabel, gbc);
 
         JLabel NombreLabel = new JLabel("Nombre de la tarea: ");
         NombreLabel.setFont(new Font("Raleway", Font.BOLD, 16));
-        gbc.gridx = 1;
+        gbc.gridx = 0;
         gbc.gridy = 2;
-        AgregarTarea.add(NombreLabel);
+        AgregarTarea.add(NombreLabel,gbc);
 
         JTextField NombreField = new JTextField();
-        NombreField.setFont(new Font("Raleway", Font.BOLD, 16));
+        NombreField.setFont(new Font("Raleway", Font.PLAIN, 16));
         gbc.gridy = 3;
         AgregarTarea.add(NombreField,gbc);
 
@@ -47,7 +46,7 @@ public class AgregarTarea extends JFrame {
         AgregarTarea.add(DescripcionLabel,gbc);
 
         JTextField DescripcionField = new JTextField();
-        DescripcionField.setFont(new Font("Raleway", Font.BOLD, 16));
+        DescripcionField.setFont(new Font("Raleway", Font.PLAIN, 16));
         gbc.gridy = 5;
         AgregarTarea.add(DescripcionField,gbc);
 
@@ -78,10 +77,27 @@ public class AgregarTarea extends JFrame {
         gbc.gridy = 9;
         AgregarTarea.add(FechaField,gbc);
 
+        JCheckBox Recordar = new JCheckBox("Enviar recordatorio de tarea");
+        Recordar.setFont(new Font("Raleway", Font.PLAIN, 14));
+        gbc.gridy = 10;
+        AgregarTarea.add(Recordar,gbc);
+
+        JCheckBox Avisar = new JCheckBox("Avisar asignacion de tarea por mensaje");
+        Avisar.setFont(new Font("Raleway", Font.PLAIN, 14));
+        gbc.gridy = 11;
+        AgregarTarea.add(Avisar,gbc);
+
         JButton crearButton = new JButton("Crear tarea");
-        crearButton.setFont(new Font("Raleway", Font.PLAIN, 16));
-        gbc.gridy=10;
+        crearButton.setFont(new Font("Raleway", Font.BOLD, 16));
+        crearButton.setForeground(new Color(-11179215));
+        gbc.gridy=12;
         AgregarTarea.add(crearButton,gbc);
+
+        JButton regresar = new JButton("Regresar");
+        regresar.setFont(new Font("Raleway",Font.BOLD,14));
+        regresar.setForeground(new Color(-11179215));
+        gbc.gridy = 13;
+        AgregarTarea.add(regresar,gbc);
 
 
         setContentPane(AgregarTarea);
@@ -115,6 +131,7 @@ public class AgregarTarea extends JFrame {
                        Tarea.add(trabajador.getNombre());
                        Tarea.add(trabajador.getID_Num());
                        finca.addTarea(Tarea);
+                       //new Recordatorio(trabajador.getTelefono(), Tarea, 2);
                        try {
                            csv.setupTarea(tareasFile,finca);
                            csv.exportData(datosTrabajador,tareasFile,finca,true);
@@ -129,7 +146,12 @@ public class AgregarTarea extends JFrame {
                dispose();
            }
        });
-
+        regresar.addActionListener(new ActionListener() {
+           @Override
+           public void actionPerformed(ActionEvent e) {
+               dispose();
+           }
+       });
 
     }
 }

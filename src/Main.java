@@ -312,7 +312,6 @@ public class  Main extends JFrame {
                         datosTareaTrabajador.add(trabajador.getNombre());
                         datosTareaTrabajador.add(trabajador.getID_Num());
                         finca.addTarea(datosTareaTrabajador);
-                        System.out.println("a" + trabajador.getNombre() + trabajador.getTareas().getFirst().get(2));
                     }
                 }
             }
