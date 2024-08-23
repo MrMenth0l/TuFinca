@@ -86,6 +86,7 @@ public class AgregarTrabajador extends JFrame{
 
 
        telefonoField = new JTextField();
+       telefonoField.setToolTipText("Ingrese un numero con codigo +502, con el formato (1234-5678)");
        telefonoField.setFont(new Font("Raleway", Font.PLAIN, 16));
        gbc.gridy = 8;
        AgregarTrabajador.add(telefonoField,gbc);
@@ -121,14 +122,17 @@ public class AgregarTrabajador extends JFrame{
        setVisible(true);
 
 
+
+
        agregar.addActionListener(new ActionListener() {
            @Override
            public void actionPerformed(ActionEvent e) {
+               String Telefono_num_only = telefonoField.getText().substring(0,4)+telefonoField.getText().substring(4+1);
                Trabajador trabajador = new Trabajador();
                trabajador.setNombre(nombreField.getText());
                trabajador.setRol(rolField.getText());
                trabajador.setSueldo(Double.parseDouble(sueldoField.getText()));
-               trabajador.setTelefono(telefonoField.getText());
+               trabajador.setTelefono(Telefono_num_only);
                finca.addTrabajador(trabajador);
                trabajador.setID_Num(finca.getContactos().size());
                try {

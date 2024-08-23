@@ -94,6 +94,7 @@ public class AsignarGanado extends JFrame{
         Font font14 = new Font("Raleway",Font.PLAIN,14);
         b.setFont(font);
         a.setFont(font);
+        SeccionesField.setFont(font);
         GanadoField.setFont(font);
         asignar.setFont(font14);
         Regresar.setFont(font14);

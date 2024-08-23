@@ -11,23 +11,17 @@ public class AgregarGanado extends JFrame {
     private JTextField EdadField;
     private JButton agregarButton;
     private JComboBox EspecieField;
-    private JLabel Especie;
     private JButton Regresar;
     private int ID_Num;
 
     public AgregarGanado(TuFinca sistema, Finca finca, export_csv csv){
-        setTitle("Agregar Ganado");
-        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        setUndecorated(true); // Remove window decorations for full screen effect
-
-        // Create a JPanel with GridBagLayout
         AgregarGanado = new JPanel();
         AgregarGanado.setLayout(new GridBagLayout());
         GridBagConstraints gbc = new GridBagConstraints();
         gbc.fill = GridBagConstraints.BOTH;
         gbc.insets = new Insets(5, 5, 5, 5);
 
-        // Title Label
+
         JLabel titleLabel = new JLabel("Agregar Cabeza de ganado");
         titleLabel.setFont(new Font("Raleway", Font.BOLD, 18));
         gbc.gridx = 0;
@@ -35,13 +29,13 @@ public class AgregarGanado extends JFrame {
         gbc.gridwidth = 2;
         AgregarGanado.add(titleLabel, gbc);
 
-        // Nombre Label
+
         JLabel nombreLabel = new JLabel("Nombre: ");
         nombreLabel.setFont(new Font("Raleway", Font.PLAIN, 16));
         gbc.gridy = 1;
         AgregarGanado.add(nombreLabel, gbc);
 
-        // Nombre TextField
+
         NombreField = new JTextField();
         NombreField.setFont(new Font("Raleway", Font.PLAIN, 14));
         gbc.gridy = 2;
@@ -49,14 +43,14 @@ public class AgregarGanado extends JFrame {
         gbc.ipadx = 150;
         AgregarGanado.add(NombreField, gbc);
 
-        // Especie Label
+
         JLabel especieLabel = new JLabel("Especie");
         especieLabel.setFont(new Font("Raleway", Font.PLAIN, 16));
         gbc.gridy = 3;
         gbc.gridwidth = 2;
         AgregarGanado.add(especieLabel, gbc);
 
-        // Especie ComboBox
+
         EspecieField = new JComboBox<>(new String[]{
             "Bovino", "Aviar", "Equino", "Ovino", "Caprino"
         });
@@ -64,20 +58,20 @@ public class AgregarGanado extends JFrame {
         gbc.gridy = 4;
         AgregarGanado.add(EspecieField, gbc);
 
-        // Raza Label
+
         JLabel razaLabel = new JLabel("Raza");
         razaLabel.setFont(new Font("Raleway", Font.PLAIN, 16));
         gbc.gridy = 5;
         gbc.gridwidth = 2;
         AgregarGanado.add(razaLabel, gbc);
 
-        // Raza TextField
+
         RazaField = new JTextField();
         RazaField.setFont(new Font("Raleway", Font.PLAIN, 14));
         gbc.gridy = 6;
         AgregarGanado.add(RazaField, gbc);
 
-        // Edad Label
+
         JLabel edadLabel = new JLabel("Edad (En años)");
         edadLabel.setFont(new Font("Raleway", Font.PLAIN, 16));
         gbc.gridy = 7;
@@ -105,12 +99,13 @@ public class AgregarGanado extends JFrame {
         gbc.anchor = GridBagConstraints.EAST;
         AgregarGanado.add(Regresar, gbc);
 
-        // Add panel to the frame
 
-        // Make frame visible
+
+        setUndecorated(true);
         setVisible(true);
         setContentPane(this.AgregarGanado);
-        setTitle("TuFinca");
+        setTitle("Agregar Ganado");
+        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setSize(300,380);
         setLocationRelativeTo(null);
 

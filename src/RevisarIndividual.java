@@ -70,6 +70,7 @@ public class RevisarIndividual extends JFrame {
                                 cabeza_overview[2][1] = finca.getCabezaGanados().get(j).getRaza();
                                 String ID_Num = finca.getCabezaGanados().get(j).getID_Num();
 
+
                                 TableModel model = new DefaultTableModel(cabeza_overview,header);
                                 JTable overview_table = new JTable(model);
                                 overview_table.setPreferredScrollableViewportSize(new Dimension(600, cabeza_overview.length*30));

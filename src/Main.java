@@ -4,6 +4,7 @@ import java.io.File;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
+import java.text.SimpleDateFormat;
 import java.util.*;
 import java.util.List;
 
@@ -312,6 +313,12 @@ public class  Main extends JFrame {
                         datosTareaTrabajador.add(trabajador.getNombre());
                         datosTareaTrabajador.add(trabajador.getID_Num());
                         finca.addTarea(datosTareaTrabajador);
+                        SimpleDateFormat dateFormat= new SimpleDateFormat("dd/MMM/yyyy");
+                        Date fecha = new Date();
+                        String dateOnly = dateFormat.format(fecha);
+                        if (Tarea.get(5).equals(dateOnly)){
+                            new Recordatorio(trabajador.getTelefono(), datosTarea,1);
+                        }
                     }
                 }
             }

@@ -122,6 +122,8 @@ public class AgregarTarea extends JFrame {
 
                        File tareasFile = new File("Tareas-"+trabajador.getID_Num());
                        File file = new File("Tareas.csv");
+
+                       String FechaRecordatorio = "";
                        String datosTrabajador = NombreField.getText() + ","+DescripcionField.getText()+","+dateOnly;
                        String datosTarea = datosTrabajador +","+trabajador.getNombre()+","+trabajador.getID_Num();
                        List<String> Tarea= new ArrayList<>();
@@ -132,18 +134,37 @@ public class AgregarTarea extends JFrame {
                        Tarea.add(trabajador.getID_Num());
                        finca.addTarea(Tarea);
                        //new Recordatorio(trabajador.getTelefono(), Tarea, 2);
-                       try {
+                       if (Recordar.isSelected()){
+                            new AsginarRecordatorio(finca, csv, trabajador, Tarea,datosTrabajador,datosTarea,tareasFile,file);
+                            dispose();
+                       } else if (Avisar.isSelected() && !Recordar.isSelected()){
+                           new Recordatorio(trabajador.getTelefono(), Tarea, 2);
+                           datosTrabajador += ",NoRecordar";
+                           datosTarea += ",NoRecordar";
+                           try {
                            csv.setupTarea(tareasFile,finca);
                            csv.exportData(datosTrabajador,tareasFile,finca,true);
                            csv.exportData(datosTarea, file,finca);
 
-                       } catch (IOException ex) {
-                           throw new RuntimeException(ex);
+                           } catch (IOException ex) {
+                               throw new RuntimeException(ex);
+                           }
+                       }else {
+                           datosTrabajador += ",NoRecordar";
+                           datosTarea += ",NoRecordar";
+                           try {
+                           csv.setupTarea(tareasFile,finca);
+                           csv.exportData(datosTrabajador,tareasFile,finca,true);
+                           csv.exportData(datosTarea, file,finca);
+
+                           } catch (IOException ex) {
+                               throw new RuntimeException(ex);
+                           }
                        }
                    }
 
                }
-               dispose();
+               if (!Recordar.isSelected()){dispose();}
            }
        });
         regresar.addActionListener(new ActionListener() {

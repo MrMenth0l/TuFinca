@@ -10,7 +10,6 @@ public class export_csv
     public void exportSistema(TuFinca sistema) throws IOException {
         if(!Files.exists(Path.of("src/sistema"))) {
             Files.createDirectory(Path.of("src/sistema"));
-            System.out.println("si exporta?");
         }
     }
 
@@ -49,7 +48,7 @@ public class export_csv
             exportData("Nombre, Tipo de contacto, Direccion, Telefono, Correo, ID_Num", Contactos,finca);
 
             File Tareas = new File("Tareas.csv");
-            exportData("Nombre, Descripcion, Fecha, Trabajador, ID_Num",Tareas,finca);
+            exportData("Nombre, Descripcion, Fecha, Trabajador, ID_Num, Recordatorio",Tareas,finca);
 
             if(!Files.exists(Path.of("src/sistema/finca-" + finca.getNombre_Finca()+"/Tareas"))) {
                 Files.createDirectory(Path.of("src/sistema/finca-" + finca.getNombre_Finca() + "/Tareas"));
