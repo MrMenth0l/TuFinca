@@ -19,12 +19,10 @@ public class SetupFinca extends JFrame {
         setTitle("Configurador de su Finca");
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
-        // Full screen setup
         GraphicsEnvironment ge = GraphicsEnvironment.getLocalGraphicsEnvironment();
         GraphicsDevice gd = ge.getDefaultScreenDevice();
         setExtendedState(JFrame.MAXIMIZED_BOTH);
 
-        // Initialize the main panel with GridBagLayout
         JPanel Setup = new JPanel();
         Setup.setLayout(new GridBagLayout());
         GridBagConstraints gbc = new GridBagConstraints();
@@ -33,7 +31,6 @@ public class SetupFinca extends JFrame {
         gbc.weightx = 1;
         gbc.weighty = 1;
 
-        // Create and configure components
         GanadoAgregar = new JButton("Agregar cabeza de ganado");
         GanadoAgregar.setIcon(new ImageIcon("src/graficos/vaca_icon.png"));
         GanadoAgregar.setFont(new Font("Raleway", Font.PLAIN, 18));
@@ -76,7 +73,6 @@ public class SetupFinca extends JFrame {
         gbc.gridx = 2;
         Setup.add(TrabajadorAgregar, gbc);
 
-
         asignarGanadoASeccionButton = new JButton("Asignar ganado a seccion");
         asignarGanadoASeccionButton.setIcon(new ImageIcon("src/graficos/asignar.png"));
         asignarGanadoASeccionButton.setFont(new Font("Raleway", Font.PLAIN, 18));
@@ -90,7 +86,6 @@ public class SetupFinca extends JFrame {
         gbc.gridy = 4;
         gbc.gridx = 2;
         Setup.add(ContactoAgregar, gbc);
-
 
         JLabel welcomeLabel = new JLabel("Bienvenido al configurador de su Finca: ");
         welcomeLabel.setFont(new Font("Raleway", Font.BOLD, 22));
@@ -113,7 +108,6 @@ public class SetupFinca extends JFrame {
         gbc.gridx = 1;
         Setup.add(RevisarFinca, gbc);
 
-
         JPanel opciones_panel = new JPanel();
         opciones_panel.setLayout(new BoxLayout(opciones_panel, BoxLayout.X_AXIS));
         JButton opciones = new JButton();
@@ -131,7 +125,6 @@ public class SetupFinca extends JFrame {
         Setup.add(opciones);
         gbc.gridx = 2;
         Setup.add(opciones_panel,gbc);
-
 
         JPopupMenu user_action = new JPopupMenu("ver mas");
         JButton calendario = new JButton("Calendario");
@@ -191,17 +184,11 @@ public class SetupFinca extends JFrame {
         });
         RevisarFinca.addActionListener(new ActionListener() {
             @Override
-            public void actionPerformed(ActionEvent e) {
-                new RevisarSetup(sistema, finca, csv);
-                dispose();
-            }
+            public void actionPerformed(ActionEvent e) {new RevisarSetup(sistema, finca, csv);dispose();}
         });
         Regresar.addActionListener(new ActionListener() {
             @Override
-            public void actionPerformed(ActionEvent e) {
-                new Main(sistema, csv);
-                dispose();
-            }
+            public void actionPerformed(ActionEvent e) {new Main(sistema, csv);dispose();}
         });
         asignarGanadoASeccionButton.addActionListener(new ActionListener() {
             @Override
@@ -215,7 +202,6 @@ public class SetupFinca extends JFrame {
                 new AgregarTrabajador(sistema,finca,csv);
             }
         });
-
         ContactoAgregar.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -240,6 +226,5 @@ public class SetupFinca extends JFrame {
                 new AgregarTarea(sistema, finca, csv);
             }
         });
-
     }
 }

@@ -56,6 +56,7 @@ public class RevisarSeccion extends JFrame {
                 dispose();
             }
         });
+
         ver_mas.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -64,4 +65,3 @@ public class RevisarSeccion extends JFrame {
         });
     }
 }
-

@@ -25,13 +25,11 @@ public class AgregarTrabajador extends JFrame{
        setTitle("Agregar Contacto");
        setLayout(new GridBagLayout());
 
-
        AgregarTrabajador = new JPanel();
        AgregarTrabajador.setLayout(new GridBagLayout());
        GridBagConstraints gbc = new GridBagConstraints();
        gbc.fill = GridBagConstraints.HORIZONTAL;
        gbc.insets = new Insets(5, 5, 5, 5);
-
 
        JLabel titleLabel = new JLabel("Agregar Trabajador: ");
        titleLabel.setFont(new Font("Raleway", Font.BOLD, 18));
@@ -41,49 +39,41 @@ public class AgregarTrabajador extends JFrame{
        gbc.gridwidth = 2;
        AgregarTrabajador.add(titleLabel, gbc);
 
-
        nombreLabel = new JLabel("Nombre del Trabajador: ");
        nombreLabel.setFont(new Font("Raleway", Font.PLAIN, 16));
        gbc.gridx = 0;
        gbc.gridy = 1;
        AgregarTrabajador.add(nombreLabel,gbc);
 
-
        nombreField = new JTextField();
        nombreField.setFont(new Font("Raleway", Font.PLAIN, 16));
        gbc.gridy=2;
        AgregarTrabajador.add(nombreField, gbc);
-
 
        tipoLabel = new JLabel("Rol del trabajador: ");
        tipoLabel.setFont(new Font("Raleway", Font.PLAIN, 16));
        gbc.gridy =3;
        AgregarTrabajador.add(tipoLabel, gbc);
 
-
        rolField = new JTextField();
        rolField.setFont(new Font("Raleway", Font.PLAIN, 16));
        gbc.gridy = 4;
        AgregarTrabajador.add(rolField,gbc);
-
 
        sueldoLabel = new JLabel("Salario mensual en QTZ: ");
        sueldoLabel.setFont(new Font("Raleway", Font.PLAIN, 16));
        gbc.gridy = 5;
        AgregarTrabajador.add(sueldoLabel,gbc);
 
-
        sueldoField = new JTextField();
        sueldoField.setFont(new Font("Raleway", Font.PLAIN, 16));
        gbc.gridy = 6;
        AgregarTrabajador.add(sueldoField,gbc);
 
-
        telefonoLabel = new JLabel("Telefono del trabajador:");
        telefonoLabel.setFont(new Font("Raleway", Font.PLAIN, 16));
        gbc.gridy = 7;
        AgregarTrabajador.add(telefonoLabel,gbc);
-
 
        telefonoField = new JTextField();
        telefonoField.setToolTipText("Ingrese un numero con codigo +502, con el formato (1234-5678)");
@@ -91,13 +81,11 @@ public class AgregarTrabajador extends JFrame{
        gbc.gridy = 8;
        AgregarTrabajador.add(telefonoField,gbc);
 
-
        agregar = new JButton("Agregar");
        agregar.setFont(new Font("Raleway", Font.BOLD, 16));
        gbc.gridy = 9;
        gbc.gridwidth = 2;
        AgregarTrabajador.add(agregar, gbc);
-
 
        regresar = new JButton("Regresar");
        regresar.setFont(new Font("Raleway", Font.BOLD, 14));
@@ -107,22 +95,17 @@ public class AgregarTrabajador extends JFrame{
        gbc.anchor = GridBagConstraints.EAST;
        AgregarTrabajador.add(regresar, gbc);
 
-
        gbc.gridx = 0;
        gbc.gridy = 10;
        gbc.gridwidth = 1;
        gbc.fill = GridBagConstraints.VERTICAL;
        AgregarTrabajador.add(Box.createVerticalStrut(20), gbc);
 
-
        setUndecorated(true);
        setContentPane(AgregarTrabajador);
        setSize(400,500);
        setLocationRelativeTo(null);
        setVisible(true);
-
-
-
 
        agregar.addActionListener(new ActionListener() {
            @Override
@@ -143,9 +126,9 @@ public class AgregarTrabajador extends JFrame{
                JOptionPane.showMessageDialog(AgregarTrabajador.this, "Trabajador: " + trabajador.getNombre() + "\nAgregado correctamente");
                dispose();
                new SetupFinca(sistema,finca,csv);
+           }
+       });
 
-
-           }});
        regresar.addActionListener(new ActionListener() {
            @Override
            public void actionPerformed(ActionEvent e) {

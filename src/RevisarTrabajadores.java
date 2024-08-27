@@ -33,6 +33,7 @@ public class RevisarTrabajadores extends JFrame{
         JScrollPane scrollPane = new JScrollPane(trabajadorTable);
         RevisarTrabajadores = new JPanel();
         RevisarTrabajadores.add(scrollPane);
+
         JButton ver_mas = new JButton("Modificar");
         JButton regresar = new JButton("regresar");
         RevisarTrabajadores.add(ver_mas);

@@ -9,7 +9,6 @@ public class Suministrador
     private File file;
     private String ID_Num;
 
-
     public Suministrador() {
         this.file = new File( "Suministradores.csv");
     }

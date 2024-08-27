@@ -12,8 +12,6 @@ import java.util.List;
 public class Calendario extends JFrame{
 
     public Calendario(TuFinca sistema, Finca finca, export_csv csv) {
-
-
         JPanel Calendario = new JPanel();
         Calendario.setLayout(new GridBagLayout());
         GridBagConstraints gbc = new GridBagConstraints();
@@ -35,24 +33,20 @@ public class Calendario extends JFrame{
         gbc.gridy=2;
         Calendario.add(regresar,gbc);
 
-
-        // Add a listener to update the label when a date is selected
         calendar.addPropertyChangeListener("calendar", evt -> {
             Date selectedDate = calendar.getDate();
             SimpleDateFormat dateFormat= new SimpleDateFormat("dd/MMM/yyyy");
             String dateOnly = dateFormat.format(selectedDate);
 
             new TareasDia(sistema,finca,csv,dateOnly);
-
         });
+
         regresar.addActionListener(new ActionListener() {
            @Override
            public void actionPerformed(ActionEvent e) {
                dispose();
            }
        });
-
-
 
         setContentPane(Calendario);
         setSize(600,320);

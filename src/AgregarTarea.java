@@ -99,7 +99,6 @@ public class AgregarTarea extends JFrame {
         gbc.gridy = 13;
         AgregarTarea.add(regresar,gbc);
 
-
         setContentPane(AgregarTarea);
         setSize(600,600);
         setVisible(true);
@@ -133,7 +132,6 @@ public class AgregarTarea extends JFrame {
                        Tarea.add(trabajador.getNombre());
                        Tarea.add(trabajador.getID_Num());
                        finca.addTarea(Tarea);
-                       //new Recordatorio(trabajador.getTelefono(), Tarea, 2);
                        if (Recordar.isSelected()){
                             new AsginarRecordatorio(finca, csv, trabajador, Tarea,datosTrabajador,datosTarea,tareasFile,file);
                             dispose();
@@ -152,6 +150,7 @@ public class AgregarTarea extends JFrame {
                        }else {
                            datosTrabajador += ",NoRecordar";
                            datosTarea += ",NoRecordar";
+
                            try {
                            csv.setupTarea(tareasFile,finca);
                            csv.exportData(datosTrabajador,tareasFile,finca,true);

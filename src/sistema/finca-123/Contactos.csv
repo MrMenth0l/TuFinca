@@ -1,11 +1,1 @@
 Nombre, Tipo de contacto, Direccion, Telefono, Correo, ID_Num
-Finanzas,Empresa,123 Calle Mayor,555-1234,finanzas@empresa.com,#FiEm001
-Recursos Humanos,Personal,456 Calle Segunda,555-5678,rrhh@empresa.com,#RePe002
-Ventas,Cliente,789 Calle Tercera,555-9012,ventas@empresa.com,#VeCl003
-Marketing,Agencia,321 Calle Cuarta,555-3456,marketing@agencia.com,#MaAg004
-IT,Soporte,654 Calle Quinta,555-7890,it@soporte.com,#ITSo005
-Compras,Proveedor,987 Calle Sexta,555-2345,compras@proveedor.com,#CoPr006
-Legal,Consultor,147 Calle Séptima,555-6789,legal@consultor.com,#LeCo007
-Producción,Fabricante,258 Calle Octava,555-1230,produccion@fabricante.com,#PrFa008
-Logística,Distribuidor,369 Calle Novena,555-4567,logistica@distribuidor.com,#LoDi009
-Calidad,Auditor,741 Calle Décima,555-8901,calidad@auditor.com,#CaAu010

@@ -18,13 +18,11 @@ public class AgregarSuministro extends JFrame {
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setUndecorated(true);
 
-
         JPanel AgregarSuministro = new JPanel();
         AgregarSuministro.setLayout(new GridBagLayout());
         GridBagConstraints gbc = new GridBagConstraints();
         gbc.insets = new Insets(5, 5, 5, 5);
         gbc.fill = GridBagConstraints.HORIZONTAL;
-
 
         JLabel titleLabel = new JLabel("Agregar Suministro");
         titleLabel.setFont(new Font("Raleway", Font.BOLD, 18));
@@ -34,14 +32,12 @@ public class AgregarSuministro extends JFrame {
         gbc.gridwidth = 2;
         AgregarSuministro.add(titleLabel, gbc);
 
-
         JLabel nombreLabel = new JLabel("Nombre de suministro");
         nombreLabel.setFont(new Font("Raleway", Font.PLAIN, 16));
         gbc.gridy = 1;
         gbc.gridwidth = 1;
         gbc.anchor = GridBagConstraints.WEST;
         AgregarSuministro.add(nombreLabel, gbc);
-
 
         NombreField = new JTextField();
         NombreField.setFont(new Font("Raleway", Font.PLAIN, 14));
@@ -50,13 +46,11 @@ public class AgregarSuministro extends JFrame {
         gbc.anchor = GridBagConstraints.CENTER;
         AgregarSuministro.add(NombreField, gbc);
 
-
         JLabel tipoLabel = new JLabel("Tipo de suministro");
         tipoLabel.setFont(new Font("Raleway", Font.PLAIN, 16));
         gbc.gridy = 3;
         gbc.anchor = GridBagConstraints.WEST;
         AgregarSuministro.add(tipoLabel, gbc);
-
 
         String[] tipos = {"Veterinario", "Quimico", "Concentrado", "Mecanico", "Pestizida", "Fertilizante", "Mixto"};
         TipoField = new JComboBox<>(tipos);
@@ -66,13 +60,11 @@ public class AgregarSuministro extends JFrame {
         gbc.anchor = GridBagConstraints.CENTER;
         AgregarSuministro.add(TipoField, gbc);
 
-
         JLabel existenciaLabel = new JLabel("Cantidad en existencia");
         existenciaLabel.setFont(new Font("Raleway", Font.PLAIN, 16));
         gbc.gridy = 5;
         gbc.anchor = GridBagConstraints.WEST;
         AgregarSuministro.add(existenciaLabel, gbc);
-
 
         ExistenciaField = new JTextField();
         ExistenciaField.setFont(new Font("Raleway", Font.PLAIN, 14));
@@ -81,13 +73,11 @@ public class AgregarSuministro extends JFrame {
         gbc.anchor = GridBagConstraints.CENTER;
         AgregarSuministro.add(ExistenciaField, gbc);
 
-
         JLabel diasLabel = new JLabel("Dias desde compra");
         diasLabel.setFont(new Font("Raleway", Font.PLAIN, 16));
         gbc.gridy = 7;
         gbc.anchor = GridBagConstraints.WEST;
         AgregarSuministro.add(diasLabel, gbc);
-
 
         DiasField = new JTextField();
         DiasField.setFont(new Font("Raleway", Font.PLAIN, 14));
@@ -95,7 +85,6 @@ public class AgregarSuministro extends JFrame {
         gbc.fill = GridBagConstraints.HORIZONTAL;
         gbc.anchor = GridBagConstraints.CENTER;
         AgregarSuministro.add(DiasField, gbc);
-
 
         agregarButton = new JButton("Agregar");
         agregarButton.setFont(new Font("Raleway", Font.BOLD, 16));
@@ -105,29 +94,23 @@ public class AgregarSuministro extends JFrame {
         gbc.anchor = GridBagConstraints.CENTER;
         AgregarSuministro.add(agregarButton, gbc);
 
-
         gbc.gridy = 10;
         gbc.weighty = 1;
         gbc.fill = GridBagConstraints.VERTICAL;
         AgregarSuministro.add(Box.createVerticalGlue(), gbc);
 
-
         Regresar = new JButton("Regresar");
         Regresar.setFont(new Font("Raleway", Font.BOLD, 14));
-        Regresar.setForeground(new Color(-11179215)); // Color: -11179215
+        Regresar.setForeground(new Color(-11179215));
         gbc.gridy = 11;
         gbc.gridwidth = 1;
         gbc.anchor = GridBagConstraints.EAST;
         AgregarSuministro.add(Regresar, gbc);
 
-
-        add(AgregarSuministro);
-
         setVisible(true);
         setContentPane(AgregarSuministro);
         setSize(300,380);
         setLocationRelativeTo(null);
-
 
         agregarButton.addActionListener(new ActionListener() {
             @Override

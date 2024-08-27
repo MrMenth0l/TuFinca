@@ -10,7 +10,6 @@ public class TareasDia extends JFrame {
     private JPanel TareasDia;
 
     public TareasDia(TuFinca sistema, Finca finca, export_csv csv, String date){
-
         List<List<String>> tareasList = finca.getTareas();
         Object [][] Tareas = new Object[tareasList.size()][4];
         String [] header = {"Trabajador", "Nombre de tarea", "Descripcion", "Fecha a realizarse"};
@@ -42,7 +41,6 @@ public class TareasDia extends JFrame {
         regresar.setFont(new Font("Raleway",Font.BOLD,14));
         regresar.setForeground(new Color(-11179215));
         TareasDia.add(regresar,BorderLayout.PAGE_END);
-
 
         setContentPane(TareasDia);
         setTitle("Tareas para " + date);

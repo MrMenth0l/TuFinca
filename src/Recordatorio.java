@@ -11,7 +11,6 @@ public class Recordatorio {
     public Recordatorio(String numero, List<String> Tarea, int tipo){
         Twilio.init(ACCOUNT_SID, AUTH_TOKEN);
 
-
         String to = "+502"+numero;
 
         String from = "+12513136808";
@@ -43,20 +42,14 @@ public class Recordatorio {
 
         }
 
-
-
         try {
-            // Create and send the message
             Message message = Message.creator(
                     new PhoneNumber(to),
                     new PhoneNumber(from),
                     mensaje
             ).create();
-
-            // Print the message SID (useful for tracking the message status)
             System.out.println("Recordatorio enviado. SID: " + message.getSid());
         } catch (Exception e) {
-            // Handle any errors that occur
             System.err.println("ERROR, mensaje no enviado: " + e.getMessage());
         }
     }

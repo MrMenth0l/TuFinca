@@ -27,7 +27,6 @@ public class AgregarSeccion extends JFrame {
         gbc.fill = GridBagConstraints.HORIZONTAL;
         gbc.insets = new Insets(5, 5, 5, 5);
 
-        // Title Label
         JLabel titleLabel = new JLabel("Agregar Seccion");
         titleLabel.setFont(new Font("Raleway", Font.BOLD, 18));
         titleLabel.setHorizontalAlignment(SwingConstants.CENTER);
@@ -36,19 +35,16 @@ public class AgregarSeccion extends JFrame {
         gbc.gridwidth = 19;
         AgregarSeccion.add(titleLabel, gbc);
 
-        // Nombre/Identificador Label
         JLabel nombreLabel = new JLabel("Nombre/Identificador");
         nombreLabel.setFont(new Font("Raleway", Font.PLAIN, 16));
         gbc.gridy = 1;
         AgregarSeccion.add(nombreLabel, gbc);
 
-        // Nombre/Identificador Field
         NombreField = new JTextField();
         NombreField.setFont(new Font("Raleway", Font.PLAIN, 14));
         gbc.gridy = 2;
         AgregarSeccion.add(NombreField, gbc);
 
-        // Tamaño Label
         JLabel sizeLabel = new JLabel("Tamaño");
         sizeLabel.setFont(new Font("Raleway", Font.PLAIN, 16));
         gbc.gridy = 3;
@@ -61,7 +57,6 @@ public class AgregarSeccion extends JFrame {
         gbc.ipadx = 50;
         AgregarSeccion.add(SizeField, gbc);
 
-
         MedidaField = new JComboBox<>(new String[]{
             "Manzanas", "Hectareas", "Metros²", "Yardas²", "Varas²"
         });
@@ -69,7 +64,6 @@ public class AgregarSeccion extends JFrame {
         gbc.gridx = 1;
         AgregarSeccion.add(MedidaField, gbc);
 
-        // Funcion Label
         JLabel funcionLabel = new JLabel("Funcion");
         funcionLabel.setFont(new Font("Raleway", Font.PLAIN, 16));
         gbc.gridx = 0;
@@ -77,39 +71,33 @@ public class AgregarSeccion extends JFrame {
         gbc.gridwidth = 19;
         AgregarSeccion.add(funcionLabel, gbc);
 
-        // Funcion Field
         FuncionField = new JTextField();
         FuncionField.setFont(new Font("Raleway", Font.PLAIN, 14));
         gbc.gridy = 6;
         AgregarSeccion.add(FuncionField, gbc);
 
-        // Estado Label
         JLabel estadoLabel = new JLabel("Estado");
         estadoLabel.setFont(new Font("Raleway", Font.PLAIN, 16));
         gbc.gridy = 7;
         AgregarSeccion.add(estadoLabel, gbc);
 
-        // Estado Field
         EstadoField = new JTextField();
         EstadoField.setFont(new Font("Raleway", Font.PLAIN, 14));
         gbc.gridy = 8;
         AgregarSeccion.add(EstadoField, gbc);
 
-        // Agregar Button
         agregarButton = new JButton("Agregar");
         agregarButton.setFont(new Font("Raleway", Font.BOLD, 16));
         gbc.gridy = 9;
         gbc.gridwidth = 17;
         AgregarSeccion.add(agregarButton, gbc);
 
-        // Agregar Cabezas de Ganado Button
         agregarCabezasDeGanadoButton = new JButton("Agregar Cabezas de ganado a seccion");
         agregarCabezasDeGanadoButton.setFont(new Font("Raleway", Font.BOLD, 16));
         gbc.gridx = 17;
         gbc.gridwidth = 2;
         AgregarSeccion.add(agregarCabezasDeGanadoButton, gbc);
 
-        // Regresar Button
         Regresar = new JButton("Regresar");
         Regresar.setFont(new Font("Raleway", Font.BOLD, 14));
         Regresar.setForeground(new Color(-11179215));
@@ -118,13 +106,11 @@ public class AgregarSeccion extends JFrame {
         gbc.gridwidth = 1;
         AgregarSeccion.add(Regresar, gbc);
 
-        // Vertical Spacer
         gbc.gridx = 0;
         gbc.gridy = 10;
         gbc.gridwidth = 18;
         gbc.fill = GridBagConstraints.VERTICAL;
         AgregarSeccion.add(Box.createVerticalStrut(20), gbc);
-
 
         Seccion seccion = new Seccion();
         setUndecorated(true);
@@ -133,7 +119,6 @@ public class AgregarSeccion extends JFrame {
         setSize(650,400);
         setLocationRelativeTo(null);
         setVisible(true);
-
 
         agregarButton.addActionListener(new ActionListener() {
             @Override
@@ -155,12 +140,14 @@ public class AgregarSeccion extends JFrame {
                 new SetupFinca(sistema,finca, csv);
             }
         });
+
         agregarCabezasDeGanadoButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 new AsignarGanado(sistema, finca, csv,seccion);
             }
         });
+
         Regresar.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {

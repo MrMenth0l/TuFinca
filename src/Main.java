@@ -19,14 +19,12 @@ public class  Main extends JFrame {
         Inicio = new JPanel();
         Inicio.setLayout(new BoxLayout(Inicio, BoxLayout.Y_AXIS));
 
-
         Inicio.add(Box.createVerticalGlue());
 
         InitialLabel = new JLabel("Bienvenido a TuFinca", SwingConstants.CENTER);
         InitialLabel.setFont(new Font("Raleway", Font.BOLD, 48));
         InitialLabel.setAlignmentX(Component.CENTER_ALIGNMENT);
         Inicio.add(InitialLabel);
-
 
         JPanel buttonPanel = new JPanel();
         buttonPanel.setLayout(new BoxLayout(buttonPanel, BoxLayout.X_AXIS));
@@ -35,7 +33,6 @@ public class  Main extends JFrame {
         IngresarCuenta.setForeground(new Color(-11179215));
         IngresarCuenta.setBackground(new Color(-11179215));
         buttonPanel.add(IngresarCuenta);
-
 
         buttonPanel.add(Box.createHorizontalStrut(10));
 
@@ -127,7 +124,7 @@ public class  Main extends JFrame {
                             if (scs.hasNextLine()) {
                                 scs.nextLine();
                             }
-                            while (scs.hasNext())  //returns a boolean value
+                            while (scs.hasNext())
                             {
                                 List<String> datos = new ArrayList<>();
                                 datos.add(scs.nextLine());
@@ -323,6 +320,8 @@ public class  Main extends JFrame {
                 }
             }
         }
+
+
         new Main(sistema, csv);
 
 

@@ -13,7 +13,6 @@ public class Trabajador {
     private List<List<String>> Tareas = new ArrayList<>();
     private File file;
 
-
     public Trabajador(){this.file = new File("Trabajadores.csv");}
 
     public void setNombre(String nombre) {Nombre = nombre;}

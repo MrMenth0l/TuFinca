@@ -39,14 +39,12 @@ public class Login extends JFrame {
         FincaField.setAlignmentX(Component.CENTER_ALIGNMENT);
         Login.add(FincaField);
 
-        Login.add(Box.createVerticalStrut(10)); // Spacer
-
+        Login.add(Box.createVerticalStrut(10));
 
         Usuario = new JLabel("Usuario");
         Usuario.setFont(new Font("Raleway", Font.PLAIN, 16));
         Usuario.setAlignmentX(Component.CENTER_ALIGNMENT);
         Login.add(Usuario);
-
 
         UsuarioField1 = new JTextField(15);
         UsuarioField1.setFont(new Font("Raleway", Font.PLAIN, 16));
@@ -54,7 +52,7 @@ public class Login extends JFrame {
         UsuarioField1.setAlignmentX(Component.CENTER_ALIGNMENT);
         Login.add(UsuarioField1);
 
-        Login.add(Box.createVerticalStrut(10)); // Spacer
+        Login.add(Box.createVerticalStrut(10));
 
 
         Pass = new JLabel("Contraseña");
@@ -62,25 +60,22 @@ public class Login extends JFrame {
         Pass.setAlignmentX(Component.CENTER_ALIGNMENT);
         Login.add(Pass);
 
-        // Password field
         PassField1 = new JPasswordField(15);
         PassField1.setFont(new Font("Raleway", Font.PLAIN, 16));
         PassField1.setMaximumSize(PassField1.getPreferredSize());
         PassField1.setAlignmentX(Component.CENTER_ALIGNMENT);
         Login.add(PassField1);
 
-        Login.add(Box.createVerticalStrut(10)); // Spacer
+        Login.add(Box.createVerticalStrut(10));
 
-        // Ingresar button
         IngresarButton = new JButton("Ingresar");
         IngresarButton.setFont(new Font("Raleway", Font.BOLD, 16));
         IngresarButton.setForeground(new Color(-11179215));
         IngresarButton.setAlignmentX(Component.CENTER_ALIGNMENT);
         Login.add(IngresarButton);
 
-        Login.add(Box.createVerticalStrut(10)); // Spacer
+        Login.add(Box.createVerticalStrut(10));
 
-        // Regresar button
         regresarButton = new JButton("Regresar");
         regresarButton.setFont(new Font("Raleway", Font.BOLD, 14));
         regresarButton.setForeground(new Color(-11179215));

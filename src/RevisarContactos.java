@@ -17,7 +17,6 @@ public class RevisarContactos extends JFrame {
        String[] header = {"Nombre", "Tipo de contacto", "Direccion", "Correo", "Telefono", "ID_Num"};
        Font font = new Font("Raleway",Font.BOLD,16);
 
-
        for (int i = 0; i < contactoList.size(); i++) {
            Contacto contacto = contactoList.get(i);
            Contactos[i][0] = contacto.getNombre();
@@ -28,13 +27,11 @@ public class RevisarContactos extends JFrame {
            Contactos[i][5] = contacto.getID_Num();
        }
 
-
        TableModel model = new DefaultTableModel(Contactos, header);
        JTable contactoTable = new JTable(model);
        contactoTable.setPreferredScrollableViewportSize(new Dimension(800, Contactos.length*15));
        Font font12 = new Font("Raleway",Font.PLAIN,12);
        contactoTable.setFont(font12);
-
 
        JScrollPane scrollPane = new JScrollPane(contactoTable);
        RevisarContactos = new JPanel();
@@ -46,13 +43,11 @@ public class RevisarContactos extends JFrame {
        ver_mas.setFont(font);
        regresar.setFont(font);
 
-
        setContentPane(RevisarContactos);
        setTitle("Los Contactos de tu finca");
        setExtendedState(JFrame.MAXIMIZED_BOTH);
        setLocationRelativeTo(null);
        setVisible(true);
-
 
        regresar.addActionListener(new ActionListener() {
            @Override
@@ -61,7 +56,6 @@ public class RevisarContactos extends JFrame {
                dispose();
            }
        });
-
 
        ver_mas.addActionListener(new ActionListener() {
            @Override

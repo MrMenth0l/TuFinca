@@ -22,7 +22,6 @@ public class RevisarSuministradores extends JFrame {
             Suministradores[i][1] = suministrador.getProducto();
             Suministradores[i][3] = String.valueOf(suministrador.getDias_espera());
             Suministradores[i][4] = suministrador.getID_Num();
-
         }
 
         TableModel model = new DefaultTableModel(Suministradores, header);

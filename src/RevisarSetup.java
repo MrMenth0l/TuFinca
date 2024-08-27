@@ -18,12 +18,10 @@ public class RevisarSetup extends JFrame{
         setTitle("Configurador de su Finca");
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
-        // Full screen setup
         GraphicsEnvironment ge = GraphicsEnvironment.getLocalGraphicsEnvironment();
         GraphicsDevice gd = ge.getDefaultScreenDevice();
         setExtendedState(JFrame.MAXIMIZED_BOTH);
 
-        // Initialize the main panel with GridBagLayout
         JPanel RevisarSetup = new JPanel();
         RevisarSetup.setLayout(new GridBagLayout());
         GridBagConstraints gbc = new GridBagConstraints();
@@ -32,7 +30,6 @@ public class RevisarSetup extends JFrame{
         gbc.weightx = 1;
         gbc.weighty = 1;
 
-        // Create and configure components
         revisarGanadoButton = new JButton("Cabezas de ganado");
         revisarGanadoButton.setIcon(new ImageIcon("src/graficos/vaca_icon.png"));
         revisarGanadoButton.setFont(new Font("Raleway", Font.PLAIN, 18));
@@ -113,7 +110,6 @@ public class RevisarSetup extends JFrame{
         gbc.gridx = 2;
         RevisarSetup.add(opciones_panel,gbc);
 
-
         JPopupMenu user_action = new JPopupMenu("ver mas");
         JButton calendario = new JButton("Calendario");
         calendario.setFont(new Font("Raleway", Font.BOLD, 14));
@@ -129,13 +125,13 @@ public class RevisarSetup extends JFrame{
         user_action.add(tarea);
         opciones.setFont(new Font("Raleway", Font.BOLD, 18));
         opciones.setComponentPopupMenu(user_action);
+
         opciones.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 user_action.show(opciones,0,opciones.getWidth()/2);
             }
         });
-
 
         setContentPane(RevisarSetup);
         setLocationRelativeTo(null);
@@ -148,6 +144,7 @@ public class RevisarSetup extends JFrame{
                 dispose();
             }
         });
+
         revisarSeccionesDeFincaButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -155,6 +152,7 @@ public class RevisarSetup extends JFrame{
                 dispose();
             }
         });
+
         revisarSuministradoresButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -162,6 +160,7 @@ public class RevisarSetup extends JFrame{
                 dispose();
             }
         });
+
         revisarSuministrosButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -169,6 +168,7 @@ public class RevisarSetup extends JFrame{
                 dispose();
             }
         });
+
         revisarCosechasbutton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -176,6 +176,7 @@ public class RevisarSetup extends JFrame{
                 dispose();
             }
         });
+
         revisarTrabajadoresbutton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -191,6 +192,7 @@ public class RevisarSetup extends JFrame{
                 dispose();
             }
         });
+
         Regresar.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -198,18 +200,21 @@ public class RevisarSetup extends JFrame{
                 dispose();
             }
         });
+
         usuario.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 new RevisarUsuario(sistema, finca, csv);
             }
         });
+
         calendario.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 new Calendario(sistema, finca, csv);
             }
         });
+
         tarea.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {

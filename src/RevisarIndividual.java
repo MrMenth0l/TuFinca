@@ -31,7 +31,6 @@ public class RevisarIndividual extends JFrame {
                 JButton button = new JButton("Revisar cabeza");
                 JLabel b = new JLabel("Seleccione que cabeza quiere revisar");
 
-
                 Object[][] cabeza_overview = new Object[3][2];
                 String[] header = {"Atributo", "Valor"};
 
@@ -47,14 +46,11 @@ public class RevisarIndividual extends JFrame {
                 RevisarIndividual.add(b,BorderLayout.NORTH);
                 RevisarIndividual.add(GanadoField, BorderLayout.NORTH);
 
-
                 setContentPane(RevisarIndividual);
                 setTitle("Revisar cabeza de ganado individual");
                 setSize(500,200);
                 setLocationRelativeTo(null);
                 setVisible(true);
-
-
 
                 button.addActionListener(new ActionListener() {
                     @Override
@@ -69,7 +65,6 @@ public class RevisarIndividual extends JFrame {
                                 cabeza_overview[2][0] = "Raza";
                                 cabeza_overview[2][1] = finca.getCabezaGanados().get(j).getRaza();
                                 String ID_Num = finca.getCabezaGanados().get(j).getID_Num();
-
 
                                 TableModel model = new DefaultTableModel(cabeza_overview,header);
                                 JTable overview_table = new JTable(model);
@@ -93,7 +88,6 @@ public class RevisarIndividual extends JFrame {
                                         cabeza.setRaza((String) overview_table.getValueAt(2,1));
                                         cabeza.setID_Num(ID_Num);
                                         JOptionPane.showMessageDialog(RevisarIndividual.this, cabeza.getID_Num() +" Modificada correctamente");
-
 
                                         File datos_cambiados = new File("Cabezas_temp.csv");
                                         Scanner sc1 = null;
@@ -138,7 +132,7 @@ public class RevisarIndividual extends JFrame {
                                     }
                                 });
                             }
-                    }
+                        }
                     }
                 });
                 break;
@@ -153,7 +147,6 @@ public class RevisarIndividual extends JFrame {
                 JComboBox SeccionField = new JComboBox<>(seccion_finca.toArray());
                  button = new JButton("Revisar seccion");
                 b = new JLabel("Seleccione que seccion quiere revisar");
-
 
                 Object[][] seccion_overview = new Object[5][2];
                 header = new String[]{"Atributo", "Valor"};
@@ -170,14 +163,11 @@ public class RevisarIndividual extends JFrame {
                 RevisarIndividual.add(b,BorderLayout.NORTH);
                 RevisarIndividual.add(SeccionField, BorderLayout.NORTH);
 
-
                 setContentPane(RevisarIndividual);
                 setTitle("Revisar seccion individual");
                 setSize(500,200);
                 setLocationRelativeTo(null);
                 setVisible(true);
-
-
 
                 button.addActionListener(new ActionListener() {
                     @Override
@@ -216,8 +206,6 @@ public class RevisarIndividual extends JFrame {
                                         seccion.setFuncion((String) overview_table.getValueAt(2,1));
                                         seccion.setEstado((String) overview_table.getValueAt(3,1));
                                         JOptionPane.showMessageDialog(RevisarIndividual.this, "Seccion: " + seccion.getID_Num() + " Modificada correctamente");
-
-
 
                                         File datos_cambiados = new File("temp.csv");
                                         Scanner sc1 = null;
@@ -262,7 +250,7 @@ public class RevisarIndividual extends JFrame {
                                     }
                                 });
                             }
-                    }
+                        }
                     }
                 });
                 break;
@@ -272,9 +260,8 @@ public class RevisarIndividual extends JFrame {
                     suministradores_finca.add(finca.getSuministradores().get(i).getNombre());
                 }
                 JComboBox SuministradorField = new JComboBox<>(suministradores_finca.toArray());
-                 button = new JButton("Revisar suministrador");
+                button = new JButton("Revisar suministrador");
                 b = new JLabel("Seleccione que suministrador quiere revisar");
-
 
                 Object[][] suministrador_overview = new Object[4][2];
                 header = new String[]{"Atributo", "Valor"};
@@ -286,20 +273,16 @@ public class RevisarIndividual extends JFrame {
                 b.setFont(font);
                 SuministradorField.setFont(font12);
 
-
                 RevisarIndividual.add(datos, BorderLayout.CENTER);
                 RevisarIndividual.add(button, BorderLayout.PAGE_END);
                 RevisarIndividual.add(b,BorderLayout.NORTH);
                 RevisarIndividual.add(SuministradorField, BorderLayout.NORTH);
-
 
                 setContentPane(RevisarIndividual);
                 setTitle("Revisar suministrador individual");
                 setSize(500,200);
                 setLocationRelativeTo(null);
                 setVisible(true);
-
-
 
                 button.addActionListener(new ActionListener() {
                     @Override
@@ -339,7 +322,6 @@ public class RevisarIndividual extends JFrame {
                                         String Dias_espera = String.valueOf(overview_table.getValueAt(3,1));
                                         suministrador.setDias_espera(Integer.parseInt(Dias_espera));
                                         JOptionPane.showMessageDialog(RevisarIndividual.this, "Seccion: " + suministrador.getID_Num() + " Modificado correctamente");
-
 
                                         File datos_cambiados = new File("temp.csv");
                                         Scanner sc1 = null;
@@ -384,7 +366,7 @@ public class RevisarIndividual extends JFrame {
                                     }
                                 });
                             }
-                    }
+                        }
                     }
                 });
                 break;
@@ -397,7 +379,6 @@ public class RevisarIndividual extends JFrame {
                  button = new JButton("Revisar suministro");
                 b = new JLabel("Seleccione que suministro quiere revisar");
 
-
                 Object[][] suministro_overview = new Object[4][2];
                 header = new String[]{"Atributo", "Valor"};
 
@@ -408,20 +389,16 @@ public class RevisarIndividual extends JFrame {
                 b.setFont(font);
                 SuministroField.setFont(font12);
 
-
                 RevisarIndividual.add(datos, BorderLayout.CENTER);
                 RevisarIndividual.add(button, BorderLayout.PAGE_END);
                 RevisarIndividual.add(b,BorderLayout.NORTH);
                 RevisarIndividual.add(SuministroField, BorderLayout.NORTH);
-
 
                 setContentPane(RevisarIndividual);
                 setTitle("Revisar suministro individual");
                 setSize(500,200);
                 setLocationRelativeTo(null);
                 setVisible(true);
-
-
 
                 button.addActionListener(new ActionListener() {
                     @Override
@@ -461,7 +438,6 @@ public class RevisarIndividual extends JFrame {
                                         String DiasDesdeCompra = String.valueOf(overview_table.getValueAt(2,1));
                                         suministro.setDiasDesdeCompra(Integer.parseInt(DiasDesdeCompra));
                                         JOptionPane.showMessageDialog(RevisarIndividual.this, "Suministro: " + suministro.getID_Num() + " Modificado correctamente");
-
 
                                         File datos_cambiados = new File("temp.csv");
                                         Scanner sc1 = null;
@@ -506,7 +482,7 @@ public class RevisarIndividual extends JFrame {
                                     }
                                 });
                             }
-                    }
+                        }
                     }
                 });
                 break;
@@ -518,7 +494,6 @@ public class RevisarIndividual extends JFrame {
                 JComboBox CosechaField = new JComboBox<>(cosechas_finca.toArray());
                  button = new JButton("Revisar cosecha");
                 b = new JLabel("Seleccione que cosecha quiere revisar");
-
 
                 Object[][] cosecha_overview = new Object[5][2];
                 header = new String[]{"Atributo", "Valor"};
@@ -535,14 +510,11 @@ public class RevisarIndividual extends JFrame {
                 RevisarIndividual.add(b,BorderLayout.NORTH);
                 RevisarIndividual.add(CosechaField, BorderLayout.NORTH);
 
-
                 setContentPane(RevisarIndividual);
                 setTitle("Revisar cosecha individual");
                 setSize(500,200);
                 setLocationRelativeTo(null);
                 setVisible(true);
-
-
 
                 button.addActionListener(new ActionListener() {
                     @Override
@@ -582,7 +554,6 @@ public class RevisarIndividual extends JFrame {
                                         cosecha.setEpoca((String) overview_table.getValueAt(3,1));
                                         cosecha.setGeografia((String) overview_table.getValueAt(4,1));
                                         JOptionPane.showMessageDialog(RevisarIndividual.this, "Cosecha: " + cosecha.getID_Num() + " Modificado correctamente");
-
 
                                         File datos_cambiados = new File("temp.csv");
                                         Scanner sc1 = null;
@@ -627,7 +598,7 @@ public class RevisarIndividual extends JFrame {
                                     }
                                 });
                             }
-                    }
+                        }
                     }
                 });
                 break;
@@ -640,7 +611,6 @@ public class RevisarIndividual extends JFrame {
                  button = new JButton("Revisar Trabajador");
                 b = new JLabel("Seleccione que trabajador quiere revisar");
 
-
                 Object[][] trabajador_overview = new Object[5][2];
                 header = new String[]{"Atributo", "Valor"};
 
@@ -651,20 +621,16 @@ public class RevisarIndividual extends JFrame {
                 b.setFont(font);
                 TrabajadorField.setFont(font12);
 
-
                 RevisarIndividual.add(datos, BorderLayout.CENTER);
                 RevisarIndividual.add(button, BorderLayout.PAGE_END);
                 RevisarIndividual.add(b,BorderLayout.NORTH);
                 RevisarIndividual.add(TrabajadorField, BorderLayout.NORTH);
-
 
                 setContentPane(RevisarIndividual);
                 setTitle("Revisar trabajador individual");
                 setSize(500,200);
                 setLocationRelativeTo(null);
                 setVisible(true);
-
-
 
                 button.addActionListener(new ActionListener() {
                     @Override
@@ -750,7 +716,7 @@ public class RevisarIndividual extends JFrame {
                                     }
                                 });
                             }
-                    }
+                        }
                     }
                 });
                 break;
@@ -764,7 +730,6 @@ public class RevisarIndividual extends JFrame {
                  button = new JButton("Revisar Contacto");
                 b = new JLabel("Seleccione que contacto quiere revisar");
 
-
                 Object[][] contacto_overview = new Object[5][2];
                 header = new String[]{"Atributo", "Valor"};
 
@@ -775,20 +740,16 @@ public class RevisarIndividual extends JFrame {
                 b.setFont(font);
                 ContactosField.setFont(font12);
 
-
                 RevisarIndividual.add(datos, BorderLayout.CENTER);
                 RevisarIndividual.add(button, BorderLayout.PAGE_END);
                 RevisarIndividual.add(b,BorderLayout.NORTH);
                 RevisarIndividual.add(ContactosField, BorderLayout.NORTH);
-
 
                 setContentPane(RevisarIndividual);
                 setTitle("Revisar trabajador individual");
                 setSize(500,200);
                 setLocationRelativeTo(null);
                 setVisible(true);
-
-
 
                 button.addActionListener(new ActionListener() {
                     @Override
@@ -806,7 +767,6 @@ public class RevisarIndividual extends JFrame {
                                 contacto_overview[3][1] = contacto.getCorreo();
                                 contacto_overview[4][0] = "Telefono";
                                 contacto_overview[4][1] = contacto.getTelefono();
-
 
                                 TableModel model = new DefaultTableModel(contacto_overview,header);
                                 JTable overview_table = new JTable(model);
@@ -830,7 +790,6 @@ public class RevisarIndividual extends JFrame {
                                         contacto.setCorreo((String) overview_table.getValueAt(3,1));
                                         contacto.setTelefono((String) overview_table.getValueAt(4,1));
                                         JOptionPane.showMessageDialog(RevisarIndividual.this, "Contacto: " + contacto.getID_Num() + " Modificado correctamente");
-
 
                                         File datos_cambiados = new File("temp.csv");
                                         Scanner sc1 = null;
@@ -875,7 +834,7 @@ public class RevisarIndividual extends JFrame {
                                     }
                                 });
                             }
-                    }
+                        }
                     }
                 });
                 break;

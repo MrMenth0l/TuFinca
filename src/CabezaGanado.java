@@ -1,4 +1,5 @@
 import java.io.File;
+import java.util.Date;
 
 public class CabezaGanado
 {
@@ -12,6 +13,9 @@ public class CabezaGanado
     private File fileSeccion;
     private Seccion seccion;
     private String ID_Num;
+    private boolean embarazada;
+    private Date embarazo_inicio;
+    private int embarazos;
 
     public void setNombre(String nombre) {
         Nombre = nombre;
@@ -59,7 +63,12 @@ public class CabezaGanado
         return Consumo;
     }
 
-    public String getDatos(){return getNombre() +","+getRaza()+","+ getEspecie()+","+getEdad()+"," + getID_Num();}
+    public String getDatos(){
+        if (embarazada){
+            return getNombre() +","+getRaza()+","+ getEspecie()+","+getEdad()+"," + getID_Num();
+        }
+        return getNombre() +","+getRaza()+","+ getEspecie()+","+getEdad()+"," + getID_Num();
+    }
 
     public void setSeccion(Seccion seccion) {this.seccion = seccion;}
     public Seccion getSeccion() {return seccion;}
@@ -72,4 +81,16 @@ public class CabezaGanado
     public void setID_Num(String ID_Num) {this.ID_Num = ID_Num;}
 
     public String getID_Num(){return ID_Num;}
+
+    public void setEmbarazada(boolean embarazada) {this.embarazada = embarazada;}
+
+    public boolean isEmbarazada() {return embarazada;}
+
+    public void setEmbarazo_inicio(Date embarazo_inicio) {this.embarazo_inicio = embarazo_inicio;}
+
+    public Date getEmbarazo_inicio() {return embarazo_inicio;}
+
+    public void setEmbarazos(int embarazos) {this.embarazos = embarazos;}
+
+    public int getEmbarazos() {return embarazos;}
 }

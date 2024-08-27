@@ -11,13 +11,10 @@ public class Cosecha
     private File file;
     private String ID_Num;
 
-
     public Cosecha()
     {
         this.file = new File("Cosechas.csv");
     }
-
-
 
     public void setTipo(String tipo) {
         this.tipo = tipo;
