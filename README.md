@@ -1,1 +1,3 @@
 # TuFinca
+
+TuFinca is the course proyect for POO class in UVG, yet it has become more than that. Apart from teaching us the inner workings of the java language and the structure of object manipulation and utilization, it has served as a sanctuary of peace. Through each line of code, we´ve found peace, we´ve found release, we´ve found ourselves. This propably won´t last long, but I just wanted to set it on paper, this code has helped me remain sane, it has aided me in keeping my peace and finding who I want to become. This code has become my life´s work this past couple of weeks, and I acknowledge the imperfect it is, yet it is mine. For there is nothing more precious than something one has created. 
