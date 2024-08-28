@@ -137,7 +137,6 @@ public class AgregarSeccion extends JFrame {
                 }
                 JOptionPane.showMessageDialog(AgregarSeccion.this, "Seccion: " + seccion.getSeccion() + "\nAgregada correctamente");
                 dispose();
-                new SetupFinca(sistema,finca, csv);
             }
         });
 

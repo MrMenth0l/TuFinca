@@ -136,7 +136,6 @@ public class AgregarContacto extends JFrame{
                }
                JOptionPane.showMessageDialog(AgregarContacto.this, "Contacto: " + contacto.getNombre() + "\nAgregado correctamente");
                dispose();
-               new SetupFinca(sistema,finca,csv);
 
 
            }

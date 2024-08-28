@@ -82,7 +82,7 @@ public class export_csv
 
     public void setupTarea(File file, Finca finca) throws IOException {
         if(!Files.exists(Path.of("src/sistema/finca-" + finca.getNombre_Finca()+"/Tareas/"+file))) {
-                exportData("Nombre, Descripcion, Fecha", file, finca, true);
+                exportData("Nombre, Descripcion, Fecha, Recordatorio, Realizada", file, finca, true);
             }
     }
 }

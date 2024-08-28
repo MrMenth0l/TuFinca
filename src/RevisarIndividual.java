@@ -76,7 +76,17 @@ public class RevisarIndividual extends JFrame {
                                 JButton modificar = new JButton("Modificar cabeza " + finca.getCabezaGanados().get(j).getNombre());
                                 modificar.setFont(font);
                                 RevisarIndividual.add(scrollPane);
-                                RevisarIndividual.add(modificar, BorderLayout.SOUTH);
+                                RevisarIndividual.add(modificar, BorderLayout.PAGE_END);
+
+                                JButton remover = new JButton("Remover cabeza"+ finca.getCabezaGanados().get(j).getNombre());
+                                remover.setFont(font);
+                                RevisarIndividual.add(remover,BorderLayout.PAGE_END);
+
+                                JButton regresar = new JButton("Regresar");
+                                regresar.setFont(font);
+                                RevisarIndividual.add(regresar,BorderLayout.PAGE_END);
+
+
                                 setSize(700,cabeza_overview.length*30 + 150);
 
                                 modificar.addActionListener(new ActionListener() {
@@ -128,6 +138,54 @@ public class RevisarIndividual extends JFrame {
                                         } catch (IOException ex) {
                                             throw new RuntimeException(ex);
                                         }
+                                        dispose();
+                                    }
+                                });
+
+                                regresar.addActionListener(new ActionListener() {
+                                    @Override
+                                    public void actionPerformed(ActionEvent e) {
+                                        dispose();
+                                    }
+                                });
+
+                                remover.addActionListener(new ActionListener() {
+                                    @Override
+                                    public void actionPerformed(ActionEvent e) {
+                                        File datos_cambiados = new File("Cabezas_temp.csv");
+                                        Scanner sc1 = null;
+                                        try {
+                                            sc1 = new Scanner(new File(finca.getFincaPath()+"/"+cabeza.getFile()));
+                                        } catch (FileNotFoundException ex) {
+                                            throw new RuntimeException(ex);
+                                        }
+                                        sc1.useDelimiter(",");
+                                        while (sc1.hasNext()){
+                                            List<String> datos = new ArrayList<String>();
+                                            datos.add(sc1.nextLine());
+                                            List<String> ganado = Arrays.asList(datos.get(0).split(","));
+                                            if (!ganado.getLast().equals(cabeza.getID_Num())){
+                                                try {
+                                                    csv.exportData(datos.get(0),datos_cambiados,finca);
+                                                } catch (IOException ex) {
+                                                    throw new RuntimeException(ex);
+                                                }
+                                            }
+                                        }
+                                        File datos_pasados = new File(finca.getFincaPath()+"/Cabezas_de_Ganado.csv");
+                                        datos_pasados.renameTo(new File(finca.getFincaPath()+"/Cabezas_de_Ganado1.csv"));
+                                        datos_cambiados = new File(finca.getFincaPath()+"/Cabezas_temp.csv");
+                                        try {
+                                            Files.move(datos_cambiados.toPath(), Path.of(finca.getFincaPath() + "/Cabezas_de_Ganado.csv"));
+                                        } catch (IOException ex) {
+                                            throw new RuntimeException(ex);
+                                        }
+                                        try {
+                                            Files.deleteIfExists(Paths.get(finca.getFincaPath()+"/Cabezas_de_Ganado1.csv"));
+                                        } catch (IOException ex) {
+                                            throw new RuntimeException(ex);
+                                        }
+                                        finca.removerCabezaGanado(cabeza);
                                         dispose();
                                     }
                                 });
@@ -196,7 +254,15 @@ public class RevisarIndividual extends JFrame {
                                 JButton modificar = new JButton("Modificar seccion " + finca.getSecciones().get(j).getSeccion());
                                 modificar.setFont(font);
                                 RevisarIndividual.add(scrollPane);
-                                RevisarIndividual.add(modificar, BorderLayout.SOUTH);
+                                RevisarIndividual.add(modificar, BorderLayout.PAGE_END);
+
+                                JButton remover = new JButton("Remover seccion "+ finca.getSecciones().get(j).getSeccion());
+                                remover.setFont(font);
+                                RevisarIndividual.add(remover,BorderLayout.PAGE_END);
+
+                                JButton regresar = new JButton("Regresar");
+                                regresar.setFont(font);
+                                RevisarIndividual.add(regresar,BorderLayout.PAGE_END);
                                 setSize(700,seccion_overview.length*30 + 150);
 
                                 modificar.addActionListener(new ActionListener() {
@@ -246,6 +312,54 @@ public class RevisarIndividual extends JFrame {
                                         } catch (IOException ex) {
                                             throw new RuntimeException(ex);
                                         }
+                                        dispose();
+                                    }
+                                });
+
+                                regresar.addActionListener(new ActionListener() {
+                                    @Override
+                                    public void actionPerformed(ActionEvent e) {
+                                        dispose();
+                                    }
+                                });
+
+                                remover.addActionListener(new ActionListener() {
+                                    @Override
+                                    public void actionPerformed(ActionEvent e) {
+                                    File datos_cambiados = new File("temp.csv");
+                                        Scanner sc1 = null;
+                                        try {
+                                            sc1 = new Scanner(new File(finca.getFincaPath()+"/"+seccion.getFile()));
+                                        } catch (FileNotFoundException ex) {
+                                            throw new RuntimeException(ex);
+                                        }
+                                        sc1.useDelimiter(",");
+                                        while (sc1.hasNext()){
+                                            List<String> datos = new ArrayList<String>();
+                                            datos.add(sc1.nextLine());
+                                            List<String> seccion_read = Arrays.asList(datos.get(0).split(","));
+                                            if (!seccion_read.getLast().equals(seccion.getID_Num())){
+                                                try {
+                                                    csv.exportData(datos.get(0),datos_cambiados,finca);
+                                                } catch (IOException ex) {
+                                                    throw new RuntimeException(ex);
+                                                }
+                                            }
+                                        }
+                                        File datos_pasados = new File(finca.getFincaPath()+"/Secciones.csv");
+                                        datos_pasados.renameTo(new File(finca.getFincaPath()+"/Secciones1.csv"));
+                                        datos_cambiados = new File(finca.getFincaPath()+"/temp.csv");
+                                        try {
+                                            Files.move(datos_cambiados.toPath(), Path.of(finca.getFincaPath() + "/Secciones.csv"));
+                                        } catch (IOException ex) {
+                                            throw new RuntimeException(ex);
+                                        }
+                                        try {
+                                            Files.deleteIfExists(Paths.get(finca.getFincaPath()+"/Secciones1.csv"));
+                                        } catch (IOException ex) {
+                                            throw new RuntimeException(ex);
+                                        }
+                                        finca.removerSeccion(seccion);
                                         dispose();
                                     }
                                 });
@@ -309,7 +423,15 @@ public class RevisarIndividual extends JFrame {
                                 JButton modificar = new JButton("Modificar Suministrador " + finca.getSuministradores().get(j).getNombre());
                                 modificar.setFont(font);
                                 RevisarIndividual.add(scrollPane);
-                                RevisarIndividual.add(modificar, BorderLayout.SOUTH);
+                                RevisarIndividual.add(modificar, BorderLayout.PAGE_END);
+
+                                JButton remover = new JButton("Remover Suministrador"+ finca.getSuministradores().get(j).getNombre());
+                                remover.setFont(font);
+                                RevisarIndividual.add(remover,BorderLayout.PAGE_END);
+
+                                JButton regresar = new JButton("Regresar");
+                                regresar.setFont(font);
+                                RevisarIndividual.add(regresar,BorderLayout.PAGE_END);
                                 setSize(700,suministrador_overview.length*30 + 150);
 
                                 modificar.addActionListener(new ActionListener() {
@@ -362,6 +484,56 @@ public class RevisarIndividual extends JFrame {
                                         } catch (IOException ex) {
                                             throw new RuntimeException(ex);
                                         }
+                                        dispose();
+                                    }
+                                });
+
+                                regresar.addActionListener(new ActionListener() {
+                                    @Override
+                                    public void actionPerformed(ActionEvent e) {
+                                        dispose();
+                                    }
+                                });
+
+                                remover.addActionListener(new ActionListener() {
+                                    @Override
+                                    public void actionPerformed(ActionEvent e) {
+                                        JOptionPane.showMessageDialog(RevisarIndividual.this, "Seccion: " + suministrador.getID_Num() + " Modificado correctamente");
+
+                                        File datos_cambiados = new File("temp.csv");
+                                        Scanner sc1 = null;
+                                        try {
+                                            sc1 = new Scanner(new File(finca.getFincaPath()+"/"+suministrador.getFile()));
+                                        } catch (FileNotFoundException ex) {
+                                            throw new RuntimeException(ex);
+                                        }
+                                        sc1.useDelimiter(",");
+                                        while (sc1.hasNext()){
+                                            List<String> datos = new ArrayList<String>();
+                                            datos.add(sc1.nextLine());
+                                            List<String> suministrador_read = Arrays.asList(datos.get(0).split(","));
+                                            if (!suministrador_read.getLast().equals(suministrador.getID_Num())){
+                                                try {
+                                                    csv.exportData(datos.get(0),datos_cambiados,finca);
+                                                } catch (IOException ex) {
+                                                    throw new RuntimeException(ex);
+                                                }
+                                            }
+                                        }
+                                        File datos_pasados = new File(finca.getFincaPath()+"/Suministradores.csv");
+                                        datos_pasados.renameTo(new File(finca.getFincaPath()+"/Suministradores1.csv"));
+                                        datos_cambiados = new File(finca.getFincaPath()+"/temp.csv");
+                                        try {
+                                            Files.move(datos_cambiados.toPath(), Path.of(finca.getFincaPath() + "/Suministradores.csv"));
+                                        } catch (IOException ex) {
+                                            throw new RuntimeException(ex);
+                                        }
+                                        try {
+                                            Files.deleteIfExists(Paths.get(finca.getFincaPath()+"/Suministradores1.csv"));
+                                        } catch (IOException ex) {
+                                            throw new RuntimeException(ex);
+                                        }
+                                        finca.removerSuministrador(suministrador);
                                         dispose();
                                     }
                                 });
@@ -425,7 +597,15 @@ public class RevisarIndividual extends JFrame {
                                 JButton modificar = new JButton("Modificar suministro " + finca.getSuministros().get(j).getNombre());
                                 modificar.setFont(font);
                                 RevisarIndividual.add(scrollPane);
-                                RevisarIndividual.add(modificar, BorderLayout.SOUTH);
+                                RevisarIndividual.add(modificar, BorderLayout.PAGE_END);
+
+                                JButton remover = new JButton("Remover suministro"+ finca.getSuministros().get(j).getNombre());
+                                remover.setFont(font);
+                                RevisarIndividual.add(remover,BorderLayout.PAGE_END);
+
+                                JButton regresar = new JButton("Regresar");
+                                regresar.setFont(font);
+                                RevisarIndividual.add(regresar,BorderLayout.PAGE_END);
                                 setSize(700,suministro_overview.length*30 + 150);
 
                                 modificar.addActionListener(new ActionListener() {
@@ -478,6 +658,56 @@ public class RevisarIndividual extends JFrame {
                                         } catch (IOException ex) {
                                             throw new RuntimeException(ex);
                                         }
+                                        dispose();
+                                    }
+                                });
+
+                                regresar.addActionListener(new ActionListener() {
+                                    @Override
+                                    public void actionPerformed(ActionEvent e) {
+                                        dispose();
+                                    }
+                                });
+
+                                remover.addActionListener(new ActionListener() {
+                                    @Override
+                                    public void actionPerformed(ActionEvent e) {
+                                        JOptionPane.showMessageDialog(RevisarIndividual.this, "Suministro: " + suministro.getID_Num() + " Modificado correctamente");
+
+                                        File datos_cambiados = new File("temp.csv");
+                                        Scanner sc1 = null;
+                                        try {
+                                            sc1 = new Scanner(new File(finca.getFincaPath()+"/"+suministro.getFile()));
+                                        } catch (FileNotFoundException ex) {
+                                            throw new RuntimeException(ex);
+                                        }
+                                        sc1.useDelimiter(",");
+                                        while (sc1.hasNext()){
+                                            List<String> datos = new ArrayList<String>();
+                                            datos.add(sc1.nextLine());
+                                            List<String> suministro_read = Arrays.asList(datos.get(0).split(","));
+                                            if (!suministro_read.getLast().equals(suministro.getID_Num())){
+                                                try {
+                                                    csv.exportData(datos.get(0),datos_cambiados,finca);
+                                                } catch (IOException ex) {
+                                                    throw new RuntimeException(ex);
+                                                }
+                                            }
+                                        }
+                                        File datos_pasados = new File(finca.getFincaPath()+"/Suministros.csv");
+                                        datos_pasados.renameTo(new File(finca.getFincaPath()+"/Suministros1.csv"));
+                                        datos_cambiados = new File(finca.getFincaPath()+"/temp.csv");
+                                        try {
+                                            Files.move(datos_cambiados.toPath(), Path.of(finca.getFincaPath() + "/Suministros.csv"));
+                                        } catch (IOException ex) {
+                                            throw new RuntimeException(ex);
+                                        }
+                                        try {
+                                            Files.deleteIfExists(Paths.get(finca.getFincaPath()+"/Suministros1.csv"));
+                                        } catch (IOException ex) {
+                                            throw new RuntimeException(ex);
+                                        }
+                                        finca.removerSuministro(suministro);
                                         dispose();
                                     }
                                 });
@@ -543,7 +773,15 @@ public class RevisarIndividual extends JFrame {
                                 JButton modificar = new JButton("Modificar cosecha " + finca.getCosechas().get(j).getTipo());
                                 modificar.setFont(font);
                                 RevisarIndividual.add(scrollPane);
-                                RevisarIndividual.add(modificar, BorderLayout.SOUTH);
+                                RevisarIndividual.add(modificar, BorderLayout.PAGE_END);
+
+                                JButton remover = new JButton("Remover cosecha "+ finca.getCosechas().get(j).getTipo());
+                                remover.setFont(font);
+                                RevisarIndividual.add(remover,BorderLayout.PAGE_END);
+
+                                JButton regresar = new JButton("Regresar");
+                                regresar.setFont(font);
+                                RevisarIndividual.add(regresar,BorderLayout.PAGE_END);
                                 setSize(700,cosecha_overview.length*30 + 150);
 
                                 modificar.addActionListener(new ActionListener() {
@@ -597,6 +835,55 @@ public class RevisarIndividual extends JFrame {
                                         dispose();
                                     }
                                 });
+                                regresar.addActionListener(new ActionListener() {
+                                    @Override
+                                    public void actionPerformed(ActionEvent e) {
+                                        dispose();
+                                    }
+                                });
+
+                                remover.addActionListener(new ActionListener() {
+                                    @Override
+                                    public void actionPerformed(ActionEvent e) {
+                                        JOptionPane.showMessageDialog(RevisarIndividual.this, "Cosecha: " + cosecha.getID_Num() + " Modificado correctamente");
+
+                                        File datos_cambiados = new File("temp.csv");
+                                        Scanner sc1 = null;
+                                        try {
+                                            sc1 = new Scanner(new File(finca.getFincaPath()+"/"+cosecha.getFile()));
+                                        } catch (FileNotFoundException ex) {
+                                            throw new RuntimeException(ex);
+                                        }
+                                        sc1.useDelimiter(",");
+                                        while (sc1.hasNext()){
+                                            List<String> datos = new ArrayList<String>();
+                                            datos.add(sc1.nextLine());
+                                            List<String> cosecha_read = Arrays.asList(datos.get(0).split(","));
+                                            if (!cosecha_read.getLast().equals(cosecha.getID_Num())){
+                                                try {
+                                                    csv.exportData(datos.get(0),datos_cambiados,finca);
+                                                } catch (IOException ex) {
+                                                    throw new RuntimeException(ex);
+                                                }
+                                            }
+                                        }
+                                        File datos_pasados = new File(finca.getFincaPath()+"/Cosechas.csv");
+                                        datos_pasados.renameTo(new File(finca.getFincaPath()+"/Cosechas1.csv"));
+                                        datos_cambiados = new File(finca.getFincaPath()+"/temp.csv");
+                                        try {
+                                            Files.move(datos_cambiados.toPath(), Path.of(finca.getFincaPath() + "/Cosechas.csv"));
+                                        } catch (IOException ex) {
+                                            throw new RuntimeException(ex);
+                                        }
+                                        try {
+                                            Files.deleteIfExists(Paths.get(finca.getFincaPath()+"/Cosechas1.csv"));
+                                        } catch (IOException ex) {
+                                            throw new RuntimeException(ex);
+                                        }
+                                        finca.removerCosecha(cosecha);
+                                        dispose();
+                                    }
+                                });
                             }
                         }
                     }
@@ -613,6 +900,7 @@ public class RevisarIndividual extends JFrame {
 
                 Object[][] trabajador_overview = new Object[5][2];
                 header = new String[]{"Atributo", "Valor"};
+
 
                 font = new Font("Raleway",Font.PLAIN,16);
                 font12 = new Font("Raleway",Font.PLAIN,12);
@@ -649,6 +937,8 @@ public class RevisarIndividual extends JFrame {
                                 trabajador_overview[4][0] = "Tareas asignadas";
                                 trabajador_overview[4][1] = trabajador.getTareas().size();
 
+                                Object[][] task_overview = new Object[trabajador.getTareas().size()][3];
+
                                 TableModel model = new DefaultTableModel(trabajador_overview,header);
                                 JTable overview_table = new JTable(model);
                                 overview_table.setPreferredScrollableViewportSize(new Dimension(600, trabajador_overview.length*30));
@@ -659,7 +949,15 @@ public class RevisarIndividual extends JFrame {
                                 JButton modificar = new JButton("Modificar Trabajador " + finca.getTrabajadores().get(j).getNombre());
                                 modificar.setFont(font);
                                 RevisarIndividual.add(scrollPane);
-                                RevisarIndividual.add(modificar, BorderLayout.SOUTH);
+                                RevisarIndividual.add(modificar, BorderLayout.PAGE_END);
+
+                                JButton remover = new JButton("Remover trabajador "+ finca.getTrabajadores().get(j).getNombre());
+                                remover.setFont(font);
+                                RevisarIndividual.add(remover,BorderLayout.PAGE_END);
+
+                                JButton regresar = new JButton("Regresar");
+                                regresar.setFont(font);
+                                RevisarIndividual.add(regresar,BorderLayout.PAGE_END);
                                 setSize(700,trabajador_overview.length*30 + 150);
 
                                 modificar.addActionListener(new ActionListener() {
@@ -712,6 +1010,56 @@ public class RevisarIndividual extends JFrame {
                                         } catch (IOException ex) {
                                             throw new RuntimeException(ex);
                                         }
+                                        dispose();
+                                    }
+                                });
+                                regresar.addActionListener(new ActionListener() {
+                                    @Override
+                                    public void actionPerformed(ActionEvent e) {
+                                        dispose();
+                                    }
+                                });
+
+                                remover.addActionListener(new ActionListener() {
+                                    @Override
+                                    public void actionPerformed(ActionEvent e) {
+                                        JOptionPane.showMessageDialog(RevisarIndividual.this, "Trabajador: " + trabajador.getID_Num() + " Modificado correctamente");
+
+
+                                        File datos_cambiados = new File("temp.csv");
+                                        Scanner sc1 = null;
+                                        try {
+                                            sc1 = new Scanner(new File(finca.getFincaPath()+"/"+trabajador.getFile()));
+                                        } catch (FileNotFoundException ex) {
+                                            throw new RuntimeException(ex);
+                                        }
+                                        sc1.useDelimiter(",");
+                                        while (sc1.hasNext()){
+                                            List<String> datos = new ArrayList<String>();
+                                            datos.add(sc1.nextLine());
+                                            List<String> trabajador_read = Arrays.asList(datos.get(0).split(","));
+                                            if (!trabajador_read.getLast().equals(trabajador.getID_Num())){
+                                                try {
+                                                    csv.exportData(datos.get(0),datos_cambiados,finca);
+                                                } catch (IOException ex) {
+                                                    throw new RuntimeException(ex);
+                                                }
+                                            }
+                                        }
+                                        File datos_pasados = new File(finca.getFincaPath()+"/Trabajadores.csv");
+                                        datos_pasados.renameTo(new File(finca.getFincaPath()+"/Trabajadores1.csv"));
+                                        datos_cambiados = new File(finca.getFincaPath()+"/temp.csv");
+                                        try {
+                                            Files.move(datos_cambiados.toPath(), Path.of(finca.getFincaPath() + "/Trabajadores.csv"));
+                                        } catch (IOException ex) {
+                                            throw new RuntimeException(ex);
+                                        }
+                                        try {
+                                            Files.deleteIfExists(Paths.get(finca.getFincaPath()+"/Trabajadores1.csv"));
+                                        } catch (IOException ex) {
+                                            throw new RuntimeException(ex);
+                                        }
+                                        finca.removerTrabajador(trabajador);
                                         dispose();
                                     }
                                 });
@@ -778,7 +1126,15 @@ public class RevisarIndividual extends JFrame {
                                 JButton modificar = new JButton("Modificar Contacto " + finca.getContactos().get(j).getNombre());
                                 modificar.setFont(font);
                                 RevisarIndividual.add(scrollPane);
-                                RevisarIndividual.add(modificar, BorderLayout.SOUTH);
+                                RevisarIndividual.add(modificar, BorderLayout.PAGE_END);
+
+                                JButton remover = new JButton("Remover Contacto "+ finca.getContactos().get(j).getNombre());
+                                remover.setFont(font);
+                                RevisarIndividual.add(remover,BorderLayout.PAGE_END);
+
+                                JButton regresar = new JButton("Regresar");
+                                regresar.setFont(font);
+                                RevisarIndividual.add(regresar,BorderLayout.PAGE_END);
                                 setSize(700,contacto_overview.length*30 + 150);
 
                                 modificar.addActionListener(new ActionListener() {
@@ -830,6 +1186,55 @@ public class RevisarIndividual extends JFrame {
                                         } catch (IOException ex) {
                                             throw new RuntimeException(ex);
                                         }
+                                        dispose();
+                                    }
+                                });
+                                regresar.addActionListener(new ActionListener() {
+                                    @Override
+                                    public void actionPerformed(ActionEvent e) {
+                                        dispose();
+                                    }
+                                });
+
+                                remover.addActionListener(new ActionListener() {
+                                    @Override
+                                    public void actionPerformed(ActionEvent e) {
+                                        JOptionPane.showMessageDialog(RevisarIndividual.this, "Contacto: " + contacto.getID_Num() + " Modificado correctamente");
+
+                                        File datos_cambiados = new File("temp.csv");
+                                        Scanner sc1 = null;
+                                        try {
+                                            sc1 = new Scanner(new File(finca.getFincaPath()+"/"+contacto.getFile()));
+                                        } catch (FileNotFoundException ex) {
+                                            throw new RuntimeException(ex);
+                                        }
+                                        sc1.useDelimiter(",");
+                                        while (sc1.hasNext()){
+                                            List<String> datos = new ArrayList<String>();
+                                            datos.add(sc1.nextLine());
+                                            List<String> contacto_read = Arrays.asList(datos.get(0).split(","));
+                                            if (!contacto_read.getLast().equals(contacto.getID_Num())){
+                                                try {
+                                                    csv.exportData(datos.get(0),datos_cambiados,finca);
+                                                } catch (IOException ex) {
+                                                    throw new RuntimeException(ex);
+                                                }
+                                            }
+                                        }
+                                        File datos_pasados = new File(finca.getFincaPath()+"/Contactos.csv");
+                                        datos_pasados.renameTo(new File(finca.getFincaPath()+"/Contactos1.csv"));
+                                        datos_cambiados = new File(finca.getFincaPath()+"/temp.csv");
+                                        try {
+                                            Files.move(datos_cambiados.toPath(), Path.of(finca.getFincaPath() + "/Contactos.csv"));
+                                        } catch (IOException ex) {
+                                            throw new RuntimeException(ex);
+                                        }
+                                        try {
+                                            Files.deleteIfExists(Paths.get(finca.getFincaPath()+"/Contactos1.csv"));
+                                        } catch (IOException ex) {
+                                            throw new RuntimeException(ex);
+                                        }
+                                        finca.removerContacto(contacto);
                                         dispose();
                                     }
                                 });

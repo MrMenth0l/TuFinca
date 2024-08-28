@@ -55,6 +55,7 @@ public class RevisarCabezas extends JFrame {
         regresar.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
+                new RevisarSetup(sistema,finca,csv);
                 dispose();
             }
         });

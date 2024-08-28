@@ -129,7 +129,6 @@ public class AgregarSuministro extends JFrame {
                 }
                 JOptionPane.showMessageDialog(AgregarSuministro.this, "Suministro: " + suministro.getNombre() + "\nAgregado correctamente");
                 dispose();
-                new SetupFinca(sistema,finca,csv);
             }
         });
         Regresar.addActionListener(new ActionListener() {

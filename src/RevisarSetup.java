@@ -126,6 +126,14 @@ public class RevisarSetup extends JFrame{
         opciones.setFont(new Font("Raleway", Font.BOLD, 18));
         opciones.setComponentPopupMenu(user_action);
 
+        JButton finanzas = new JButton("Revisar finanzas");
+        finanzas.setFont(new Font("Raleway", Font.PLAIN, 18));
+        finanzas.setIcon(new ImageIcon("src/graficos/finanzasSmall.png"));
+        gbc.gridy = 4;
+        gbc.gridx = 2;
+        RevisarSetup.add(finanzas,gbc);
+
+
         opciones.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -196,7 +204,7 @@ public class RevisarSetup extends JFrame{
         Regresar.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                new SetupFinca(sistema,finca, csv);
+                new Overview(sistema,finca, csv);
                 dispose();
             }
         });

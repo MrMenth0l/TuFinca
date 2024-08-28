@@ -159,8 +159,6 @@ public class AgregarGanado extends JFrame {
                 }
                 JOptionPane.showMessageDialog(AgregarGanado.this, "Cabeza de ganado: " + cabezaGanado.getNombre() + "\nAgregada correctamente");
                 dispose();
-                new SetupFinca(sistema,finca, csv);
-
             }
         });
 

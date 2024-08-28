@@ -15,6 +15,7 @@ public class Finca {
     private List<List<String>> tareas = new ArrayList<>();
     private String Nombre_Finca;
     private String Usuario_activo;
+    private Finanzas finanzas;
 
 
 
@@ -40,6 +41,30 @@ public class Finca {
     public void addContacto(Contacto contacto){contactos.add(contacto);}
     public void addTarea(List<String> tarea){tareas.add(tarea);}
 
+    public void removerCabezaGanado(CabezaGanado cabezaGanado){
+                cabezaGanados.remove(cabezaGanado);
+    }
+    public void removerSeccion(Seccion seccion){
+                secciones.remove(seccion);
+    }
+    public void removerSuministrador(Suministrador suministrador){
+        suministradores.remove(suministrador);
+    }
+    public void removerCosecha(Cosecha cosecha){
+        cosechas.remove(cosecha);
+    }
+    public void removerSuministro(Suministro suministro){
+        suministros.remove(suministro);
+    }
+    public void removerTrabajador(Trabajador trabajador){
+        trabajadores.remove(trabajador);
+    }
+    public void removerContacto(Contacto contacto){
+        contactos.remove(contacto);
+    }
+
+
+
     public void setNombre_Finca(String nombre_Finca) {Nombre_Finca = nombre_Finca;this.finca = new File("Fincas.csv");}
     public String getNombre_Finca() {return Nombre_Finca;}
 
@@ -50,4 +75,6 @@ public class Finca {
     public String getUsuario_activo(){return this.Usuario_activo;}
     public void setUsuario_activo(String usuario_activo) {this.Usuario_activo = usuario_activo;}
 
+    public void setFinanzas(Finanzas finanzas) {this.finanzas = finanzas;}
+    public Finanzas getFinanzas() {return finanzas;}
 }

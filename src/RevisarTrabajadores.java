@@ -41,6 +41,10 @@ public class RevisarTrabajadores extends JFrame{
         ver_mas.setFont(font);
         regresar.setFont(font);
 
+        JButton performance = new JButton("Desempeño");
+        performance.setFont(font);
+        RevisarTrabajadores.add(performance);
+
         setContentPane(RevisarTrabajadores);
         setTitle("Los Trabajadores de tu finca");
         setExtendedState(JFrame.MAXIMIZED_BOTH);

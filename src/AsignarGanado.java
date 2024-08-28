@@ -57,7 +57,7 @@ public class AsignarGanado extends JFrame{
                         }
 
                 JOptionPane.showMessageDialog(AsignarGanado.this, "Cabeza: " + GanadoField.getSelectedItem() + "\nAgregado a la seccion");
-                setVisible(false);
+                dispose();
             }
         });
         Regresar.addActionListener(new ActionListener() {
@@ -134,8 +134,7 @@ public class AsignarGanado extends JFrame{
                     }
                 }
                 JOptionPane.showMessageDialog(AsignarGanado.this, "Cabeza: " + GanadoField.getSelectedItem() + "\nAgregado a seccion: " + SeccionesField.getSelectedItem());
-                new SetupFinca(sistema,finca, csv);
-                setVisible(false);
+                dispose();
             }
         });
         Regresar.addActionListener(new ActionListener() {
