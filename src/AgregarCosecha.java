@@ -126,22 +126,28 @@ public class AgregarCosecha extends JFrame {
         agregarButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                Cosecha cosecha = new Cosecha();
-                cosecha.setTipo(CosechaField.getText());
-                cosecha.setTamaño(Integer.parseInt(SizeField.getText()));
-                cosecha.setMedida((String) MedidaField.getSelectedItem());
-                cosecha.setEstado((String) EstadoField.getSelectedItem());
-                cosecha.setEpoca((String) EpocaField.getSelectedItem());
-                cosecha.setGeografia(GeoField.getText());
-                cosecha.setID_Num(finca.getCosechas().size()+1);
-                finca.addCosecha(cosecha);
-                try {
-                    csv.exportData(cosecha.getDatos(), cosecha.getFile(),finca);
-                } catch (IOException ex) {
-                    throw new RuntimeException(ex);
-                }
-                JOptionPane.showMessageDialog(AgregarCosecha.this, "Cosecha: " + cosecha.getTipo() + "\nAgregada correctamente");
-                dispose();
+                if (CosechaField.getText().length()>=2 ) {
+                    Cosecha cosecha = new Cosecha();
+                    cosecha.setTipo(CosechaField.getText());
+                    try {
+                        cosecha.setTamaño(Integer.parseInt(SizeField.getText()));
+                        cosecha.setMedida((String) MedidaField.getSelectedItem());
+                        cosecha.setEstado((String) EstadoField.getSelectedItem());
+                        cosecha.setEpoca((String) EpocaField.getSelectedItem());
+                        cosecha.setGeografia(GeoField.getText());
+                        cosecha.setID_Num(finca.getCosechas().size() + 1);
+                        finca.addCosecha(cosecha);
+                        try {
+                            csv.exportData(cosecha.getDatos(), cosecha.getFile(), finca);
+                        } catch (IOException ex) {
+                            throw new RuntimeException(ex);
+                        }
+                        JOptionPane.showMessageDialog(AgregarCosecha.this, "Cosecha: " + cosecha.getTipo() + "\nAgregada correctamente");
+                        dispose();
+                    } catch (NumberFormatException ex) {
+                        JOptionPane.showMessageDialog(AgregarCosecha.this, "Ingrese un tamaño valido, solo usando numeros.");
+                    }
+                }else JOptionPane.showMessageDialog(AgregarCosecha.this, "Ingrese un tipo de cosecha valido. (minimo 2 letras)");
             }
         });
         this.Regresar.addActionListener(new ActionListener() {

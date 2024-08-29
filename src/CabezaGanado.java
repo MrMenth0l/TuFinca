@@ -1,4 +1,5 @@
 import java.io.File;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 
 public class CabezaGanado
@@ -15,6 +16,7 @@ public class CabezaGanado
     private String ID_Num;
     private boolean embarazada;
     private Date embarazo_inicio;
+    private Date embarazo_alerta;
     private int embarazos;
 
     public void setNombre(String nombre) {
@@ -65,9 +67,9 @@ public class CabezaGanado
 
     public String getDatos(){
         if (embarazada){
-            return getNombre() +","+getRaza()+","+ getEspecie()+","+getEdad()+"," + getID_Num();
+            return getNombre() +","+getRaza()+","+ getEspecie()+","+getEdad()+"," + getID_Num() + ",verdadero,"+ getEmbarazo_inicio(" ") + ","+getEmbarazo_alerta(" ");
         }
-        return getNombre() +","+getRaza()+","+ getEspecie()+","+getEdad()+"," + getID_Num();
+        return getNombre() +","+getRaza()+","+ getEspecie()+","+getEdad()+"," + getID_Num() + ",falso, no aplica, no aplica";
     }
 
     public void setSeccion(Seccion seccion) {this.seccion = seccion;}
@@ -90,7 +92,27 @@ public class CabezaGanado
 
     public Date getEmbarazo_inicio() {return embarazo_inicio;}
 
+    public void setEmbarazo_alerta(Date embarazo_alerta) {
+        this.embarazo_alerta = embarazo_alerta;
+    }
+
+    public Date getEmbarazo_alerta() {
+        return embarazo_alerta;
+    }
+    public String getEmbarazo_alerta(String pp){
+        SimpleDateFormat dateFormat= new SimpleDateFormat("dd/MMM/yyyy");
+        String dateOnly = dateFormat.format(embarazo_alerta);
+        return dateOnly;
+    }
+
+    public String getEmbarazo_inicio(String pp){
+        SimpleDateFormat dateFormat= new SimpleDateFormat("dd/MMM/yyyy");
+        String dateOnly = dateFormat.format(embarazo_inicio);
+        return dateOnly;
+    }
+
     public void setEmbarazos(int embarazos) {this.embarazos = embarazos;}
 
     public int getEmbarazos() {return embarazos;}
+
 }

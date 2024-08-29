@@ -5,7 +5,10 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.IOException;
+import java.time.LocalDate;
+import java.util.Calendar;
 import java.util.Date;
+import java.util.Objects;
 
 public class AgregarGanado extends JFrame {
     private JPanel AgregarGanado;
@@ -145,8 +148,28 @@ public class AgregarGanado extends JFrame {
                 cabezaGanado.setEspecie((String) EspecieField.getSelectedItem());
                 cabezaGanado.setSeccion(seccion);
                 if (embarazoCheck.isSelected()){
+                    String duracion_embarazo = (String) EspecieField.getSelectedItem();
                     cabezaGanado.setEmbarazada(true);
+                    Calendar parto = embarazo_inicio_field.getCalendar();
+                    switch (Objects.requireNonNull(duracion_embarazo)){
+                        case "Bovino":
+                            parto.add(Calendar.MONTH, 9);
+                            break;
+                        case "Aviar":
+                            parto.add(Calendar.MONTH, 5);
+                            break;
+                        case "Equino":
+                            parto.add(Calendar.MONTH, 11);
+                            break;
+                        case"Ovino":
+                            parto.add(Calendar.MONTH, 5);
+                            break;
+                        case "Caprino":
+                            parto.add(Calendar.MONTH, 5);
+                            break;
+                    }
                     cabezaGanado.setEmbarazo_inicio(embarazo_inicio_field.getDate());
+                    cabezaGanado.setEmbarazo_alerta(parto.getTime());
                 }
                 ID_Num = finca.getCabezaGanados().size()+1;
                 cabezaGanado.setID_Num(ID_Num);

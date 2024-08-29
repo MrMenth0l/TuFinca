@@ -4,6 +4,7 @@ import java.io.File;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.*;
 import java.util.List;
@@ -62,7 +63,7 @@ public class  Main extends JFrame {
             setVisible(false);
         });
     }
-    public static void main(String[] args) throws IOException {
+    public static void main(String[] args) throws IOException, ParseException {
 
         export_csv csv = new export_csv();
         TuFinca sistema = new TuFinca();
@@ -113,6 +114,16 @@ public class  Main extends JFrame {
                                 ganado.setEspecie(cabeza.get(2));
                                 ganado.setEdad(Integer.parseInt(cabeza.get(3)));
                                 ganado.setID_Num(cabeza.get(4));
+                                if (cabeza.get(5).equals("verdadero")){
+                                    ganado.setEmbarazada(true);
+                                    SimpleDateFormat formatter = new SimpleDateFormat("dd/MMM/yyyy", Locale.ENGLISH);
+                                    Date embarazo_inicio = formatter.parse(cabeza.get(6));
+                                    ganado.setEmbarazo_inicio(embarazo_inicio);
+                                    Date embarazo_alerta = formatter.parse(cabeza.get(7));
+                                    ganado.setEmbarazo_alerta(embarazo_alerta);
+                                }else {
+                                    ganado.setEmbarazada(false);
+                                }
                                 finca.addCabezaGanado(ganado);
                             }
                             scg.close();

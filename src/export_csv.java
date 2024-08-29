@@ -24,7 +24,7 @@ public class export_csv
             exportData("Usuario, Contraseña", Usuarios,finca);
 
             File Ganado = new File("Cabezas_de_Ganado.csv");
-            exportData("Nombre, Raza, Especie, Edad(años), ID_Num",  Ganado, finca);
+            exportData("Nombre, Raza, Especie, Edad(años), ID_Num, Embarazada, Inicio de embarazo, Fecha esperada de parto",  Ganado, finca);
 
             File Secciones = new File("Secciones.csv");
             exportData("Seccion, Tamaño, Medida, Funcion, Estado, Cabezas, ID_Num",  Secciones, finca);

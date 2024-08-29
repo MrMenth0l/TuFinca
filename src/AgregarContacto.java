@@ -122,22 +122,27 @@ public class AgregarContacto extends JFrame{
            @Override
            public void actionPerformed(ActionEvent e) {
                Contacto contacto = new Contacto();
-               contacto.setNombre(nombreField.getText());
-               contacto.setTipo_de_contacto((String) tipoField.getSelectedItem());
-               contacto.setDireccion(direccionField.getText());
-               contacto.setCorreo(correoField.getText());
-               contacto.setTelefono(telefonoField.getText());
-               finca.addContacto(contacto);
-               contacto.setID_Num(finca.getContactos().size());
-               try {
-                   csv.exportData(contacto.getDatos(), contacto.getFile(),finca);
-               } catch (IOException ex) {
-                   throw new RuntimeException(ex);
+               if (telefonoField.getText().matches("\\d{4}-\\d{4}") && nombreField.getText().length() >=2){
+                   contacto.setNombre(nombreField.getText());
+                   contacto.setTipo_de_contacto((String) tipoField.getSelectedItem());
+                   contacto.setDireccion(direccionField.getText());
+                   contacto.setCorreo(correoField.getText());
+                   contacto.setTelefono(telefonoField.getText());
+                   finca.addContacto(contacto);
+                   contacto.setID_Num(finca.getContactos().size());
+                   try {
+                       csv.exportData(contacto.getDatos(), contacto.getFile(),finca);
+                   } catch (IOException ex) {
+                       throw new RuntimeException(ex);
+                   }
+                   JOptionPane.showMessageDialog(AgregarContacto.this, "Contacto: " + contacto.getNombre() + "\nAgregado correctamente");
+
+                   dispose();
+               } else if (nombreField.getText().length() < 2) {
+                   JOptionPane.showMessageDialog(AgregarContacto.this, "Ingrese un nombre valido\nRecuerde que tiene que ser minimo 3 letras de largo");
+               }else if (!telefonoField.getText().matches("\\d{4}-\\d{4}")) {
+                   JOptionPane.showMessageDialog(AgregarContacto.this, "Ingrese un telefono valido\nRecuerde usar el siguiente formato: ####-####");
                }
-               JOptionPane.showMessageDialog(AgregarContacto.this, "Contacto: " + contacto.getNombre() + "\nAgregado correctamente");
-               dispose();
-
-
            }
        });
 

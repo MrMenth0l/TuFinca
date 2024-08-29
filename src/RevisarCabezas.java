@@ -6,6 +6,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
+import java.util.Date;
 import java.util.List;
 
 public class RevisarCabezas extends JFrame {
@@ -16,8 +17,8 @@ public class RevisarCabezas extends JFrame {
 
     public RevisarCabezas(TuFinca sistema, Finca finca,export_csv csv) {
         List<CabezaGanado> ganadoList = finca.getCabezaGanados();
-        Object[][] cabezasGanado = new Object[ganadoList.size()][5];
-        String[] header = {"Nombre", "Raza","Especie", "Edad", "ID_Num"};
+        Object[][] cabezasGanado = new Object[ganadoList.size()][7];
+        String[] header = {"Nombre", "Raza","Especie", "Edad","Fecha de embarazo","Fecha de parto(esperado)", "ID_Num"};
 
         for (int i = 0; i < ganadoList.size(); i++) {
             CabezaGanado cabeza = ganadoList.get(i);
@@ -25,7 +26,14 @@ public class RevisarCabezas extends JFrame {
             cabezasGanado[i][1] = cabeza.getRaza();
             cabezasGanado[i][2] = cabeza.getEspecie();
             cabezasGanado[i][3] = String.valueOf(cabeza.getEdad());
-            cabezasGanado[i][4] = cabeza.getID_Num();
+            if (cabeza.isEmbarazada()){
+                cabezasGanado[i][4] = cabeza.getEmbarazo_inicio("");
+                cabezasGanado[i][5]= cabeza.getEmbarazo_alerta("");
+            }else {
+                cabezasGanado[i][4] = "no aplica";
+                cabezasGanado[i][5]= "no aplica";
+            }
+            cabezasGanado[i][6] = cabeza.getID_Num();
         }
 
         TableModel model = new DefaultTableModel(cabezasGanado, header);
