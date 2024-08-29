@@ -31,7 +31,7 @@ public class RevisarIndividual extends JFrame {
                 JButton button = new JButton("Revisar cabeza");
                 JLabel b = new JLabel("Seleccione que cabeza quiere revisar");
 
-                Object[][] cabeza_overview = new Object[3][2];
+                Object[][] cabeza_overview = new Object[5][2];
                 String[] header = {"Atributo", "Valor"};
 
                 Font font = new Font("Raleway",Font.PLAIN,16);
@@ -64,6 +64,16 @@ public class RevisarIndividual extends JFrame {
                                 cabeza_overview[1][1] = finca.getCabezaGanados().get(j).getEdad();
                                 cabeza_overview[2][0] = "Raza";
                                 cabeza_overview[2][1] = finca.getCabezaGanados().get(j).getRaza();
+                                cabeza_overview[3][0] = "Fecha de embarazo";
+                                cabeza_overview[4][0] = "Fecha esperada de parto";
+                                if (cabeza.isEmbarazada()) {
+                                    cabeza_overview[3][1] = finca.getCabezaGanados().get(j).getEmbarazo_inicio("");
+                                    cabeza_overview[4][1] = finca.getCabezaGanados().get(j).getEmbarazo_alerta(" ");
+                                }else {
+                                    cabeza_overview[3][1] = "No aplica";
+                                    cabeza_overview[4][1] = "No aplica";
+                                }
+
                                 String ID_Num = finca.getCabezaGanados().get(j).getID_Num();
 
                                 TableModel model = new DefaultTableModel(cabeza_overview,header);
@@ -164,7 +174,7 @@ public class RevisarIndividual extends JFrame {
                                             List<String> datos = new ArrayList<String>();
                                             datos.add(sc1.nextLine());
                                             List<String> ganado = Arrays.asList(datos.get(0).split(","));
-                                            if (!ganado.getLast().equals(cabeza.getID_Num())){
+                                            if (!ganado.get(4).equals(cabeza.getID_Num())){
                                                 try {
                                                     csv.exportData(datos.get(0),datos_cambiados,finca);
                                                 } catch (IOException ex) {
