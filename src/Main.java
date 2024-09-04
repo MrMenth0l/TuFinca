@@ -78,10 +78,9 @@ public class  Main extends JFrame {
                 sistema.addFinca(finca);
                 for (int j = 0; j < Objects.requireNonNull(Datos_Finca).length; j++) {
                     String a =new File(String.valueOf(Datos_Finca[j])).getName();
-
                     switch (a){
                         case "Usuarios.csv":
-                            File Usuarios_finca = new File(fincas[i]+"/"+"Usuarios.csv");
+                            File Usuarios_finca = new File(fincas[i]+"/Usuarios.csv");
                             Scanner scu = new Scanner(new File(String.valueOf(Usuarios_finca)));
                             scu.useDelimiter(",");
                             while (scu.hasNext())
@@ -114,7 +113,7 @@ public class  Main extends JFrame {
                                 ganado.setEspecie(cabeza.get(2));
                                 ganado.setEdad(Integer.parseInt(cabeza.get(3)));
                                 ganado.setID_Num(cabeza.get(4));
-                                if (cabeza.get(5).equals("verdadero")){
+                                if (cabeza.get(5).equals("true")){
                                     ganado.setEmbarazada(true);
                                     SimpleDateFormat formatter = new SimpleDateFormat("dd/MMM/yyyy", Locale.ENGLISH);
                                     Date embarazo_inicio = formatter.parse(cabeza.get(6));
@@ -331,7 +330,6 @@ public class  Main extends JFrame {
                 }
             }
         }
-
         new Main(sistema, csv);
     }
 }

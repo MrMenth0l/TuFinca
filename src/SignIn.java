@@ -56,6 +56,19 @@ public class SignIn extends JFrame {
 
         SignIn.add(Box.createVerticalStrut(10));
 
+        JLabel emailLabel = new JLabel("Ingrese un correo electronico(Opcional)");
+        emailLabel.setFont(new Font("Raleway", Font.PLAIN, 16));
+        emailLabel.setAlignmentX(Component.CENTER_ALIGNMENT);
+        SignIn.add(emailLabel);
+
+        JTextField emailField = new JTextField(15);
+        emailField.setFont(new Font("Raleway", Font.PLAIN, 16));
+        emailField.setMaximumSize(emailField.getPreferredSize());
+        emailField.setAlignmentX(Component.CENTER_ALIGNMENT);
+        SignIn.add(emailField);
+
+        SignIn.add(Box.createVerticalStrut(10));
+
         JLabel passLabel = new JLabel("Ingrese su contraseña");
         passLabel.setFont(new Font("Raleway", Font.PLAIN, 16));
         passLabel.setAlignmentX(Component.CENTER_ALIGNMENT);
@@ -100,7 +113,7 @@ public class SignIn extends JFrame {
         setContentPane(SignIn);
         setTitle("Crear cuenta");
         setDefaultCloseOperation(EXIT_ON_CLOSE);
-        setSize(300,400);
+        setSize(300,450);
         setLocationRelativeTo(null);
         setVisible(true);
         IngresarButton.addActionListener(new ActionListener() {
@@ -114,26 +127,32 @@ public class SignIn extends JFrame {
                     }
                 }
                 if(PassField.getText().equals(PassField2.getText())) {
-                    finca.setNombre_Finca(FincaField.getText());
-                    usuario_activo.setUser(UsuarioField.getText());
-                    usuario_activo.setPass(PassField.getText());
-                    usuario_activo.getFile();
-                    sistema.addFinca(finca);
-                    try {
-                        csv.exportFinca(finca);
-                    } catch (IOException ex) {
-                        throw new RuntimeException(ex);
-                    }
-                    JOptionPane.showMessageDialog(SignIn.this, "Bienvenido " + usuario_activo.getUser());
-                    finca.addUsuario(usuario_activo);
-                    try {
-                        csv.exportData(usuario_activo.getUser()+"," +usuario_activo.getPass(), usuario_activo.getFile(),finca);
-                    } catch (IOException ex) {
-                        throw new RuntimeException(ex);
-                    }
-                    new Overview(sistema, finca, csv);
-                    finca.setUsuario_activo(usuario_activo.getUser());
-                    dispose();
+                    if (!FincaField.getText().isBlank()) {
+                        if (!UsuarioField.getText().isBlank()) {
+                            if (!PassField.getText().isBlank()) {
+                                finca.setNombre_Finca(FincaField.getText());
+                                usuario_activo.setUser(UsuarioField.getText());
+                                usuario_activo.setPass(PassField.getText());
+                                usuario_activo.getFile();
+                                sistema.addFinca(finca);
+                                try {
+                                    csv.exportFinca(finca);
+                                } catch (IOException ex) {
+                                    throw new RuntimeException(ex);
+                                }
+                                JOptionPane.showMessageDialog(SignIn.this, "Bienvenido " + usuario_activo.getUser());
+                                finca.addUsuario(usuario_activo);
+                                try {
+                                    csv.exportData(usuario_activo.getUser() + "," + usuario_activo.getPass(), usuario_activo.getFile(), finca);
+                                } catch (IOException ex) {
+                                    throw new RuntimeException(ex);
+                                }
+                                new Overview(sistema, finca, csv);
+                                finca.setUsuario_activo(usuario_activo.getUser());
+                                dispose();
+                            }else {JOptionPane.showMessageDialog(SignIn.this,"Ingrese su contraseña");}
+                        }else {JOptionPane.showMessageDialog(SignIn.this,"Ingrese su usuario");}
+                    }else {JOptionPane.showMessageDialog(SignIn.this,"Ingrese su codigo de finca");}
                 }else{JOptionPane.showMessageDialog(SignIn.this,"Ingrese bien su contraseña");}
             }
         });

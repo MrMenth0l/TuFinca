@@ -25,7 +25,7 @@ public class RevisarIndividual extends JFrame {
             case 1:
                 List<String> ganado_finca = new ArrayList<>();
                 for (int i = 0; i < finca.getCabezaGanados().size(); i++) {
-                    ganado_finca.add(finca.getCabezaGanados().get(i).getNombre());
+                    ganado_finca.add(finca.getCabezaGanados().get(i).getNombre()+"-"+finca.getCabezaGanados().get(i).getID_Num());
                 }
                 JComboBox GanadoField = new JComboBox<>(ganado_finca.toArray());
                 JButton button = new JButton("Revisar cabeza");
@@ -55,8 +55,9 @@ public class RevisarIndividual extends JFrame {
                 button.addActionListener(new ActionListener() {
                     @Override
                     public void actionPerformed(ActionEvent e) {
+                        String id_num = GanadoField.getSelectedItem().toString();
                         for (int j = 0; j < finca.getCabezaGanados().size(); j++) {
-                            if (finca.getCabezaGanados().get(j).getNombre().equals(GanadoField.getSelectedItem())) {
+                            if (id_num.contains(finca.getCabezaGanados().get(j).getID_Num())) {
                                 CabezaGanado cabeza = finca.getCabezaGanados().get(j);
                                 cabeza_overview[0][0] = "Nombre: ";
                                 cabeza_overview[0][1] = finca.getCabezaGanados().get(j).getNombre();
@@ -210,7 +211,7 @@ public class RevisarIndividual extends JFrame {
                 Seccion seccion;
                 List<String> seccion_finca = new ArrayList<>();
                 for (int i = 0; i < finca.getSecciones().size(); i++) {
-                    seccion_finca.add(finca.getSecciones().get(i).getSeccion());
+                    seccion_finca.add(finca.getSecciones().get(i).getSeccion()+"-"+finca.getSecciones().get(i).getID_Num());
                 }
                 JComboBox SeccionField = new JComboBox<>(seccion_finca.toArray());
                  button = new JButton("Revisar seccion");
@@ -241,7 +242,7 @@ public class RevisarIndividual extends JFrame {
                     @Override
                     public void actionPerformed(ActionEvent e) {
                         for (int j = 0; j < finca.getSecciones().size(); j++) {
-                            if (finca.getSecciones().get(j).getSeccion().equals(SeccionField.getSelectedItem())) {
+                            if (SeccionField.toString().contains(finca.getSecciones().get(j).getID_Num())) {
                                 Seccion seccion = finca.getSecciones().get(j);
                                 seccion_overview[0][0] = "Nombre: ";
                                 seccion_overview[0][1] = seccion.getSeccion();
@@ -381,7 +382,7 @@ public class RevisarIndividual extends JFrame {
             case 3:
                 List<String> suministradores_finca = new ArrayList<>();
                 for (int i = 0; i < finca.getSuministradores().size(); i++) {
-                    suministradores_finca.add(finca.getSuministradores().get(i).getNombre());
+                    suministradores_finca.add(finca.getSuministradores().get(i).getNombre()+"-"+finca.getSuministradores().get(i).getID_Num());
                 }
                 JComboBox SuministradorField = new JComboBox<>(suministradores_finca.toArray());
                 button = new JButton("Revisar suministrador");
@@ -412,7 +413,7 @@ public class RevisarIndividual extends JFrame {
                     @Override
                     public void actionPerformed(ActionEvent e) {
                         for (int j = 0; j < finca.getSuministradores().size(); j++) {
-                            if (finca.getSuministradores().get(j).getNombre().equals(SuministradorField.getSelectedItem())) {
+                            if (SuministradorField.toString().contains(finca.getSuministradores().get(j).getID_Num())) {
                                 Suministrador suministrador = finca.getSuministradores().get(j);
                                 suministrador_overview[0][0] = "Nombre: ";
                                 suministrador_overview[0][1] = suministrador.getNombre();
@@ -555,7 +556,7 @@ public class RevisarIndividual extends JFrame {
             case 4:
                 List<String> suministros_finca = new ArrayList<>();
                 for (int i = 0; i < finca.getSuministros().size(); i++) {
-                    suministros_finca.add(finca.getSuministros().get(i).getNombre());
+                    suministros_finca.add(finca.getSuministros().get(i).getNombre()+"-"+finca.getSuministros().get(i).getID_Num());
                 }
                 JComboBox SuministroField = new JComboBox<>(suministros_finca.toArray());
                  button = new JButton("Revisar suministro");
@@ -586,7 +587,7 @@ public class RevisarIndividual extends JFrame {
                     @Override
                     public void actionPerformed(ActionEvent e) {
                         for (int j = 0; j < finca.getSuministros().size(); j++) {
-                            if (finca.getSuministros().get(j).getNombre().equals(SuministroField.getSelectedItem())) {
+                            if (SuministroField.toString().contains(finca.getSuministros().get(j).getID_Num())) {
                                 Suministro suministro = finca.getSuministros().get(j);
                                 suministro_overview[0][0] = "Nombre: ";
                                 suministro_overview[0][1] = suministro.getNombre();
@@ -729,7 +730,7 @@ public class RevisarIndividual extends JFrame {
             case 5:
                 List<String> cosechas_finca = new ArrayList<>();
                 for (int i = 0; i < finca.getCosechas().size(); i++) {
-                    cosechas_finca.add(finca.getCosechas().get(i).getTipo());
+                    cosechas_finca.add(finca.getCosechas().get(i).getTipo()+"-"+finca.getCosechas().get(i).getID_Num());
                 }
                 JComboBox CosechaField = new JComboBox<>(cosechas_finca.toArray());
                  button = new JButton("Revisar cosecha");
@@ -758,9 +759,9 @@ public class RevisarIndividual extends JFrame {
 
                 button.addActionListener(new ActionListener() {
                     @Override
-                    public void actionPerformed(ActionEvent e) {
+                    public void actionPerformed(ActionEvent e){
                         for (int j = 0; j < finca.getCosechas().size(); j++) {
-                            if (finca.getCosechas().get(j).getTipo().equals(CosechaField.getSelectedItem())) {
+                            if (CosechaField.toString().contains(finca.getCosechas().get(j).getID_Num())) {
                                 Cosecha cosecha = finca.getCosechas().get(j);
                                 cosecha_overview[0][0] = "Nombre: ";
                                 cosecha_overview[0][1] = cosecha.getTipo();
@@ -902,7 +903,7 @@ public class RevisarIndividual extends JFrame {
             case 6:
                 List<String> trabajadores_finca = new ArrayList<>();
                 for (int i = 0; i < finca.getTrabajadores().size(); i++) {
-                    trabajadores_finca.add(finca.getTrabajadores().get(i).getNombre());
+                    trabajadores_finca.add(finca.getTrabajadores().get(i).getNombre()+"-"+finca.getTrabajadores().get(i).getID_Num());
                 }
                 JComboBox TrabajadorField = new JComboBox<>(trabajadores_finca.toArray());
                  button = new JButton("Revisar Trabajador");
@@ -934,7 +935,7 @@ public class RevisarIndividual extends JFrame {
                     @Override
                     public void actionPerformed(ActionEvent e) {
                         for (int j = 0; j < finca.getTrabajadores().size(); j++) {
-                            if (finca.getTrabajadores().get(j).getNombre().equals(TrabajadorField.getSelectedItem())) {
+                            if (TrabajadorField.toString().contains(finca.getTrabajadores().get(j).getID_Num())) {
                                 Trabajador trabajador = finca.getTrabajadores().get(j);
                                 trabajador_overview[0][0] = "Nombre: ";
                                 trabajador_overview[0][1] = trabajador.getNombre();
@@ -1082,7 +1083,7 @@ public class RevisarIndividual extends JFrame {
             case 7:
                 List<String> contactos_finca = new ArrayList<>();
                 for (int i = 0; i < finca.getContactos().size(); i++) {
-                    contactos_finca.add(finca.getContactos().get(i).getNombre());
+                    contactos_finca.add(finca.getContactos().get(i).getNombre()+"-"+finca.getContactos().get(i).getID_Num());
                 }
                 JComboBox ContactosField = new JComboBox<>(contactos_finca.toArray());
                  button = new JButton("Revisar Contacto");
@@ -1113,7 +1114,7 @@ public class RevisarIndividual extends JFrame {
                     @Override
                     public void actionPerformed(ActionEvent e) {
                         for (int j = 0; j < finca.getContactos().size(); j++) {
-                            if (finca.getContactos().get(j).getNombre().equals(ContactosField.getSelectedItem())) {
+                            if (ContactosField.toString().contains(finca.getContactos().get(j).getID_Num())) {
                                 Contacto contacto = finca.getContactos().get(j);
                                 contacto_overview[0][0] = "Nombre: ";
                                 contacto_overview[0][1] = contacto.getNombre();

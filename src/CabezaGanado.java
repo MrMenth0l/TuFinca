@@ -67,9 +67,9 @@ public class CabezaGanado
 
     public String getDatos(){
         if (embarazada){
-            return getNombre() +","+getRaza()+","+ getEspecie()+","+getEdad()+"," + getID_Num() + ",verdadero,"+ getEmbarazo_inicio(" ") + ","+getEmbarazo_alerta(" ");
+            return getNombre() +","+getRaza()+","+ getEspecie()+","+getEdad()+"," + getID_Num() + ",true,"+ getEmbarazo_inicio(" ") + ","+getEmbarazo_alerta(" ");
         }
-        return getNombre() +","+getRaza()+","+ getEspecie()+","+getEdad()+"," + getID_Num() + ",falso, no aplica, no aplica";
+        return getNombre() +","+getRaza()+","+ getEspecie()+","+getEdad()+"," + getID_Num() + ",false, no aplica, no aplica";
     }
 
     public void setSeccion(Seccion seccion) {this.seccion = seccion;}
